@@ -1,37 +1,81 @@
 #!/usr/bin/env perl
 
-  require "giraffidae.pm";
+require "giraffidae.pm";
+
+sub pegBox {
+  my $drac = $_[0], $head = $_[1], $tail = $_[2];
+  return substr($drac, $head, $tail) . substr($drac, 0, $head);
+}
+
+sub Fn {
+  my $qp = $_[0];
+  return "\t" . pegBox($qp, 25, 35) . "\n";
+}
+
+sub Cn {
+  my $qp = $_[0];
+  return "\t" . pegBox($qp, 00, 60) . "\n";
+}
+
+sub Gn {
+  my $qp = $_[0];
+  return "\t" . pegBox($qp, 35, 25) . "\n";
+}
+
+sub Dn {
+  my $qp = $_[0];
+  return "\t" . pegBox($qp, 10, 50) . "\n";
+}
+
+sub An {
+  my $qp = $_[0];
+  return "\t" . pegBox($qp, 45, 15) . "\n";
+}
+
+sub En {
+  my $qp = $_[0];
+  return "\t" . pegBox($qp, 20, 40) . "\n";
+}
+
+sub Bn {
+  my $qp = $_[0];
+  return "\t" . pegBox($qp, 55, 05) . "\n";
+}
+
+sub Tm {
+  return "\t" . $_[0] . "-$_[1]" . '-sv' . time . "\n";
+}
 
 sub tuning_CGDAE {
-  my $qp = $ArtioDactyla{$_[0]};
-  print "\t" . $_[0] . '-v' . time . "\n";
-  print "\t" . substr($qp, 20, 40) . substr($qp, 00, 20) . "\n"; # En
-  print "\t" . substr($qp, 45, 15) . substr($qp, 00, 45) . "\n"; # An
-  print "\t" . substr($qp, 10, 50) . substr($qp, 00, 10) . "\n"; # Dn
-  print "\t" . substr($qp, 35, 25) . substr($qp, 00, 35) . "\n"; # Gn
-  print "\t" . substr($qp, 00, 60) . substr($qp, 00, 00) . "\n"; # Cn
+  my $data = $ArtioDactyla{$_[0]};
+  print Tm $_[0], 'cgdae';
+  print En $data;
+  print An $data;
+  print Dn $data;
+  print Gn $data;
+  print Cn $data;
 }
 
 sub tuning_BEADGCF {
-  my $qp = $ArtioDactyla{$_[0]};
-  print "\t" . $_[0] . '-v' . time . "\n";
-  print "\t" . substr($qp, 25, 35) . substr($qp, 00, 25) . "\n"; # Fn
-  print "\t" . substr($qp, 00, 60) . substr($qp, 00, 00) . "\n"; # Cn
-  print "\t" . substr($qp, 35, 25) . substr($qp, 00, 35) . "\n"; # Gn
-  print "\t" . substr($qp, 10, 50) . substr($qp, 00, 10) . "\n"; # Dn
-  print "\t" . substr($qp, 45, 15) . substr($qp, 00, 45) . "\n"; # An
-  print "\t" . substr($qp, 20, 40) . substr($qp, 00, 20) . "\n"; # En
-  print "\t" . substr($qp, 55, 05) . substr($qp, 00, 55) . "\n"; # Bn
+  my $data = $ArtioDactyla{$_[0]};
+  print Tm $_[0], 'beadgcf';
+  print Fn $data;
+  print Cn $data;
+  print Gn $data;
+  print Dn $data;
+  print An $data;
+  print En $data;
+  print Bn $data;
 }
 
 sub tuning_EADGBE {
-  my $qp = $ArtioDactyla{$_[0]};
-  print "\t" . $_[0] . '-v' . time . "\n";
-  print "\t" . substr($qp, 20, 40) . substr($qp, 00, 20) . "\n"; # En
-  print "\t" . substr($qp, 55, 05) . substr($qp, 00, 55) . "\n"; # Bn
-  print "\t" . substr($qp, 35, 25) . substr($qp, 00, 35) . "\n"; # Gn
-  print "\t" . substr($qp, 10, 50) . substr($qp, 00, 10) . "\n"; # Dn
-  print "\t" . substr($qp, 45, 15) . substr($qp, 00, 45) . "\n"; # An
-  print "\t" . substr($qp, 20, 40) . substr($qp, 00, 20) . "\n"; # En
+  my $data = $ArtioDactyla{$_[0]};
+  print Tm $_[0], 'eadgbe';
+  print En $data;
+  print Bn $data;
+  print Gn $data;
+  print Dn $data;
+  print An $data;
+  print En $data;
 }
 
