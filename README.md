@@ -10,9 +10,11 @@ Morphology
 ---
 
 ### Usage
-command line
+command-line
 
     perl -w pangaea.pl
+
+    perl -w pangaea.pl j3 k1
 
 ---
 

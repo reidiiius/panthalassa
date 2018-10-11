@@ -6,13 +6,18 @@ use warnings;
 
 require "cetacea.pm";
 
-print "\n\n";
+if ($ARGV[0]) {
+  print "\n\n";
 
-  tuning_EADGBE('j36');
+    eadgbe($ARGV[0]);
 
-print "\n\n";
+  print "\n\n";
 
-  tuning_EADGBE('k15');
+    eadgbe($ARGV[1]);
 
-print "\n\n";
+  print "\n\n";
+}
+else {
+  &displayMenu;
+}
 
