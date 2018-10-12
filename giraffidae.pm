@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+package Giraffidae;
 
 %ArtioDactyla = (
       'j2' => "HgHg PuFe ____ ____ CuNp PbAu ____ AuPb ____ AgUr ____ FePu ",
