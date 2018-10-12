@@ -3,9 +3,7 @@ package Cetacea;
 require "giraffidae.pm";
 
 sub pegBox {
-  my $tail = pop;
-  my $head = pop;
-  my $drac = pop;
+  my ($drac, $head, $tail) = ($_[0], $_[1], $_[2]);
   return substr($drac, $head, $tail) . substr($drac, 0, $head);
 }
 
@@ -55,9 +53,8 @@ sub Fk {
 }
 
 sub Tm {
-  my $tail = pop;
-  my $head = pop;
-  return "\t" . $head . "-$tail" . '-sv' . time . "\n";
+  my ($keysig, $tuning) = ($_[0], $_[1]);
+  return "\t" . $keysig . "-$tuning" . '-sv' . time . "\n";
 }
 
 sub memberP {
@@ -167,10 +164,12 @@ sub displayMenu {
   j5y6 n0 n345y7 n25x6 n167 n67x2 n6x2
   /;
 
+  my @a = (@corundum, @emerald);
+  my $n = scalar(@a) / 2;
   my $i = 0;
-  foreach my $item (@corundum, @emerald) {
+  foreach my $item (@a) {
     print "\n" if ($i % 7 == 0);
-    print "\n" if ($i == 42);
+    print "\n" if ($i == $n);
     print "\t$item";
     $i += 1;
   }
