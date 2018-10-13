@@ -8,57 +8,47 @@ sub pegBox {
 }
 
 sub Bj {
-  my $qp = shift;
-  return "\t" . pegBox($qp, 50, 10) . "\n";
+  return "\t" . pegBox($data, 50, 10) . "\n";
 }
 
 sub Fn {
-  my $qp = shift;
-  return "\t" . pegBox($qp, 25, 35) . "\n";
+  return "\t" . pegBox($data, 25, 35) . "\n";
 }
 
 sub Cn {
-  my $qp = shift;
-  return "\t" . pegBox($qp, 00, 60) . "\n";
+  return "\t" . pegBox($data, 00, 60) . "\n";
 }
 
 sub Gn {
-  my $qp = shift;
-  return "\t" . pegBox($qp, 35, 25) . "\n";
+  return "\t" . pegBox($data, 35, 25) . "\n";
 }
 
 sub Dn {
-  my $qp = shift;
-  return "\t" . pegBox($qp, 10, 50) . "\n";
+  return "\t" . pegBox($data, 10, 50) . "\n";
 }
 
 sub An {
-  my $qp = shift;
-  return "\t" . pegBox($qp, 45, 15) . "\n";
+  return "\t" . pegBox($data, 45, 15) . "\n";
 }
 
 sub En {
-  my $qp = shift;
-  return "\t" . pegBox($qp, 20, 40) . "\n";
+  return "\t" . pegBox($data, 20, 40) . "\n";
 }
 
 sub Bn {
-  my $qp = shift;
-  return "\t" . pegBox($qp, 55, 05) . "\n";
+  return "\t" . pegBox($data, 55, 05) . "\n";
 }
 
 sub Fk {
-  my $qp = shift;
-  return "\t" . pegBox($qp, 30, 30) . "\n";
+  return "\t" . pegBox($data, 30, 30) . "\n";
 }
 
 sub Tm {
-  my ($keysig, $tuning) = ($_[0], $_[1]);
-  return "\t" . $keysig . "-$tuning" . '-sv' . time . "\n";
+  my ($esc, $cse) = ("\033[0;33m", "\033[0m");
+  return "\t$esc" . $sign . "-$tune" . '-sv' . time . "$cse\n";
 }
 
 sub memberP {
-  my $qp = shift;
   foreach my $item (keys %Giraffidae::ArtioDactyla) {
     if ($item eq $qp) {
       return $item;
@@ -67,13 +57,13 @@ sub memberP {
 }
 
 sub exchequer {
-  my $qp = shift;
+  local $qp = shift;
   my $preset = 'n0';
   if (not $qp) {
     return $preset;
   }
   else {
-    my $clave = memberP($qp);
+    my $clave = memberP;
     if (not $clave) {
       $clave = $preset;
     }
@@ -82,70 +72,62 @@ sub exchequer {
 }
 
 sub beadgcf {
-  my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
-  print Tm $sign, 'beadgcf';
-  print Fn $data;
-  print Cn $data;
-  print Gn $data;
-  print Dn $data;
-  print An $data;
-  print En $data;
-  print Bn $data;
+  local ($sign, $data, $tune);
+  $sign = exchequer pop;
+  $data = $Giraffidae::ArtioDactyla{$sign};
+  $tune = 'beadgcf';
+  print Tm, Fn, Cn, Gn, Dn, An, En, Bn;
 }
 
 sub bfbfb {
-  my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
-  print Tm $sign, 'bfbfb';
-  print Bn $data;
-  print Fn $data;
-  print Bn $data;
-  print Fn $data;
-  print Bn $data;
+  local ($sign, $data, $tune);
+  $sign = exchequer pop;
+  $data = $Giraffidae::ArtioDactyla{$sign};
+  $tune = 'bfbfb';
+  print Tm, Bn, Fn, Bn, Fn, Bn;
 }
 
 sub cgdae {
-  my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
-  print Tm $sign, 'cgdae';
-  print En $data;
-  print An $data;
-  print Dn $data;
-  print Gn $data;
-  print Cn $data;
+  local ($sign, $data, $tune);
+  $sign = exchequer pop;
+  $data = $Giraffidae::ArtioDactyla{$sign};
+  $tune = 'cgdae';
+  print Tm, En, An, Dn, Gn, Cn;
+}
+
+sub dadgad {
+  local ($sign, $data, $tune);
+  $sign = exchequer pop;
+  $data = $Giraffidae::ArtioDactyla{$sign};
+  $tune = 'dadgad';
+  print Tm, Dn, An, Gn, Dn, An, Dn;
+}
+
+sub dgdgbd {
+  local ($sign, $data, $tune);
+  $sign = exchequer pop;
+  $data = $Giraffidae::ArtioDactyla{$sign};
+  $tune = 'dgdgbd';
+  print Tm, Dn, Bn, Gn, Dn, Gn, Dn;
 }
 
 sub eadgbe {
-  my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
-  print Tm $sign, 'eadgbe';
-  print En $data;
-  print Bn $data;
-  print Gn $data;
-  print Dn $data;
-  print An $data;
-  print En $data;
+  local ($sign, $data, $tune);
+  $sign = exchequer pop;
+  $data = $Giraffidae::ArtioDactyla{$sign};
+  $tune = 'eadgbe';
+  print Tm, En, Bn, Gn, Dn, An, En;
 }
 
 sub fkbjdn {
-  my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
-  print Tm $sign, 'fkbjdn';
-  print Dn $data;
-  print Bj $data;
-  print Fk $data;
-  print Dn $data;
-  print Bj $data;
-  print Fk $data;
+  local ($sign, $data, $tune);
+  $sign = exchequer pop;
+  $data = $Giraffidae::ArtioDactyla{$sign};
+  $tune = 'fkbjdn';
+  print Tm, Dn, Bj, Fk, Dn, Bj, Fk;
 }
 
-sub displayMenu {
+sub gemstone {
   my @corundum = qw/
   j136y7 j167y2 j17 j17y2 j2 j23 j236
   j23k6 j246y3 j26 j26y3 j26y34 j2k56 j2k56x4
@@ -164,7 +146,11 @@ sub displayMenu {
   j5y6 n0 n345y7 n25x6 n167 n67x2 n6x2
   /;
 
-  my @a = (@corundum, @emerald);
+  return (@corundum, @emerald); 
+}
+
+sub displayMenu {
+  my @a = gemstone;
   my $n = scalar(@a) / 2;
   my $i = 0;
   foreach my $item (@a) {
