@@ -49,9 +49,11 @@ sub Tm {
 }
 
 sub memberP {
-  foreach my $item (keys %Giraffidae::ArtioDactyla) {
-    if ($item eq $qp) {
-      return $item;
+  if ($qp =~ m/^([jkn][0-7]+)+([xy][1-7]+)?$/) {
+    foreach my $item (keys %Giraffidae::ArtioDactyla) {
+      if ($item eq $qp) {
+        return $item;
+      }
     }
   }
 }
