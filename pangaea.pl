@@ -1,8 +1,8 @@
 #!/usr/bin/env perl
 
-use strict;
-use warnings;
 # use diagnostics;
+use warnings;
+use strict;
 
 require "cetacea.pm";
 

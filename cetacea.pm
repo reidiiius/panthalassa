@@ -1,5 +1,8 @@
 package Cetacea;
 
+use warnings;
+use strict;
+
 require "giraffidae.pm";
 
 sub pegBox {
@@ -8,47 +11,58 @@ sub pegBox {
 }
 
 sub Bj {
+  my $data = shift;
   return "\t" . pegBox($data, 50, 10) . "\n";
 }
 
 sub Fn {
+  my $data = shift;
   return "\t" . pegBox($data, 25, 35) . "\n";
 }
 
 sub Cn {
+  my $data = shift;
   return "\t" . pegBox($data, 00, 60) . "\n";
 }
 
 sub Gn {
+  my $data = shift;
   return "\t" . pegBox($data, 35, 25) . "\n";
 }
 
 sub Dn {
+  my $data = shift;
   return "\t" . pegBox($data, 10, 50) . "\n";
 }
 
 sub An {
+  my $data = shift;
   return "\t" . pegBox($data, 45, 15) . "\n";
 }
 
 sub En {
+  my $data = shift;
   return "\t" . pegBox($data, 20, 40) . "\n";
 }
 
 sub Bn {
+  my $data = shift;
   return "\t" . pegBox($data, 55, 05) . "\n";
 }
 
 sub Fk {
+  my $data = shift;
   return "\t" . pegBox($data, 30, 30) . "\n";
 }
 
 sub Tm {
+  my ($sign, $tune) = ($_[0], $_[1]);
   my ($esc, $cse) = ("\033[0;33m", "\033[0m");
   return "\t$esc" . $sign . "-$tune" . '-sv' . time . "$cse\n";
 }
 
 sub memberP {
+  my $qp = shift;
   if ($qp =~ m/^([jkn][0-7]+)+([xy][1-7]+)?$/) {
     foreach my $item (keys %Giraffidae::ArtioDactyla) {
       if ($item eq $qp) {
@@ -59,13 +73,13 @@ sub memberP {
 }
 
 sub exchequer {
-  local $qp = shift;
+  my $qp = shift;
   my $preset = 'n0';
   if (not $qp) {
     return $preset;
   }
   else {
-    my $clave = memberP;
+    my $clave = memberP $qp;
     if (not $clave) {
       $clave = $preset;
     }
@@ -74,59 +88,100 @@ sub exchequer {
 }
 
 sub beadgcf {
-  local ($sign, $data, $tune);
-  $sign = exchequer pop;
-  $data = $Giraffidae::ArtioDactyla{$sign};
-  $tune = 'beadgcf';
-  print Tm, Fn, Cn, Gn, Dn, An, En, Bn;
+  my $qp = shift;
+  my $sign = exchequer $qp;
+  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $tune = 'beadgcf';
+  print Tm($sign, $tune),
+              Fn($data),
+            Cn($data),
+          Gn($data),
+        Dn($data),
+      An($data),
+    En($data),
+  Bn($data);
 }
 
 sub bfbfb {
-  local ($sign, $data, $tune);
-  $sign = exchequer pop;
-  $data = $Giraffidae::ArtioDactyla{$sign};
-  $tune = 'bfbfb';
-  print Tm, Bn, Fn, Bn, Fn, Bn;
+  my $qp = shift;
+  my $sign = exchequer $qp;
+  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $tune = 'bfbfb';
+  print Tm($sign, $tune),
+          Bn($data),
+        Fn($data),
+      Bn($data),
+    Fn($data),
+  Bn($data);
 }
 
 sub cgdae {
-  local ($sign, $data, $tune);
-  $sign = exchequer pop;
-  $data = $Giraffidae::ArtioDactyla{$sign};
-  $tune = 'cgdae';
-  print Tm, En, An, Dn, Gn, Cn;
+  my $qp = shift;
+  my $sign = exchequer $qp;
+  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $tune = 'cgdae';
+  print Tm($sign, $tune),
+          En($data),
+        An($data),
+      Dn($data),
+    Gn($data),
+  Cn($data);
 }
 
 sub dadgad {
-  local ($sign, $data, $tune);
-  $sign = exchequer pop;
-  $data = $Giraffidae::ArtioDactyla{$sign};
-  $tune = 'dadgad';
-  print Tm, Dn, An, Gn, Dn, An, Dn;
+  my $qp = shift;
+  my $sign = exchequer $qp;
+  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $tune = 'dadgad';
+  print Tm($sign, $tune),
+            Dn($data),
+          An($data),
+        Gn($data),
+      Dn($data),
+    An($data),
+  Dn($data);
 }
 
 sub dgdgbd {
-  local ($sign, $data, $tune);
-  $sign = exchequer pop;
-  $data = $Giraffidae::ArtioDactyla{$sign};
-  $tune = 'dgdgbd';
-  print Tm, Dn, Bn, Gn, Dn, Gn, Dn;
+  my $qp = shift;
+  my $sign = exchequer $qp;
+  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $tune = 'dgdgbd';
+  print Tm($sign, $tune),
+            Dn($data),
+          Bn($data),
+        Gn($data),
+      Dn($data),
+    Gn($data),
+  Dn($data);
 }
 
 sub eadgbe {
-  local ($sign, $data, $tune);
-  $sign = exchequer pop;
-  $data = $Giraffidae::ArtioDactyla{$sign};
-  $tune = 'eadgbe';
-  print Tm, En, Bn, Gn, Dn, An, En;
+  my $qp = shift;
+  my $sign = exchequer $qp;
+  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $tune = 'eadgbe';
+  print Tm($sign, $tune),
+            En($data),
+          Bn($data),
+        Gn($data),
+      Dn($data),
+    An($data),
+  En($data);
 }
 
 sub fkbjdn {
-  local ($sign, $data, $tune);
-  $sign = exchequer pop;
-  $data = $Giraffidae::ArtioDactyla{$sign};
-  $tune = 'fkbjdn';
-  print Tm, Dn, Bj, Fk, Dn, Bj, Fk;
+  my $qp = shift;
+  my $sign = exchequer $qp;
+  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $tune = 'fkbjdn';
+  print Tm($sign, $tune),
+            Dn($data),
+          Bj($data),
+        Fk($data),
+      Dn($data),
+    Bj($data),
+  Fk($data);
 }
 
 sub gemstone {
