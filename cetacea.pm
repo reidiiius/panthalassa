@@ -7,72 +7,91 @@ require "giraffidae.pm";
 
 sub pegBox {
   my ($drac, $head, $tail) = ($_[0], $_[1], $_[2]);
-  return substr($drac, $head, $tail) . substr($drac, 0, $head);
+  my $cord = substr($drac, $head, $tail) . substr($drac, 0, $head);
+  return "\t" . $cord . "\n";
 }
 
 sub Bj {
   my $data = shift;
-  return "\t" . pegBox($data, 50, 10) . "\n";
+  return pegBox($data, 50, 10);
 }
 
 sub Fn {
   my $data = shift;
-  return "\t" . pegBox($data, 25, 35) . "\n";
+  return pegBox($data, 25, 35);
 }
 
 sub Cn {
   my $data = shift;
-  return "\t" . pegBox($data, 00, 60) . "\n";
+  return pegBox($data, 0, 60);
 }
 
 sub Gn {
   my $data = shift;
-  return "\t" . pegBox($data, 35, 25) . "\n";
+  return pegBox($data, 35, 25);
 }
 
 sub Dn {
   my $data = shift;
-  return "\t" . pegBox($data, 10, 50) . "\n";
+  return pegBox($data, 10, 50);
 }
 
 sub An {
   my $data = shift;
-  return "\t" . pegBox($data, 45, 15) . "\n";
+  return pegBox($data, 45, 15);
 }
 
 sub En {
   my $data = shift;
-  return "\t" . pegBox($data, 20, 40) . "\n";
+  return pegBox($data, 20, 40);
 }
 
 sub Bn {
   my $data = shift;
-  return "\t" . pegBox($data, 55, 05) . "\n";
+  return pegBox($data, 55, 05);
 }
 
 sub Fk {
   my $data = shift;
-  return "\t" . pegBox($data, 30, 30) . "\n";
+  return pegBox($data, 30, 30);
 }
 
 sub Tm {
   my ($sign, $tune) = ($_[0], $_[1]);
   my ($esc, $cse) = ("\033[0;33m", "\033[0m");
-  return "\t$esc" . $sign . "-$tune" . '-sv' . time . "$cse\n";
+  my $srl = $sign . "-$tune" . "-sv" . time;
+  return "\t$esc" . $srl . "$cse\n";
+}
+
+sub tacet {
+  my $rest;
+  for (my $i = 0; $i < 12; $i++) {
+    $rest .= '____ ';
+  }
+  return $rest; 
+}
+
+sub retrieve {
+  my $sign = shift;
+  my $data = $Giraffidae::ArtioDactyla{$sign};
+  if (length($data) != 60) {
+    return &tacet;
+  }
+  else {
+    return $data;
+  }
 }
 
 sub memberP {
   my $qp = shift;
   if ($qp =~ m/^([jkn][0-7]+)+([xy][1-7]+)?$/) {
-    foreach my $item (keys %Giraffidae::ArtioDactyla) {
-      if ($item eq $qp) {
-        return $item;
-      }
+    if (defined $Giraffidae::ArtioDactyla{$qp}) {
+      return $qp;
     }
   }
 }
 
-sub exchequer {
+sub sentinel {
   my $qp = shift;
   my $preset = 'n0';
   if (not $qp) {
@@ -89,8 +108,8 @@ sub exchequer {
 
 sub beadgcf {
   my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $sign = sentinel $qp;
+  my $data = retrieve $sign;
   my $tune = 'beadgcf';
   print Tm($sign, $tune),
               Fn($data),
@@ -104,8 +123,8 @@ sub beadgcf {
 
 sub bfbfb {
   my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $sign = sentinel $qp;
+  my $data = retrieve $sign;
   my $tune = 'bfbfb';
   print Tm($sign, $tune),
           Bn($data),
@@ -117,8 +136,8 @@ sub bfbfb {
 
 sub cgdae {
   my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $sign = sentinel $qp;
+  my $data = retrieve $sign;
   my $tune = 'cgdae';
   print Tm($sign, $tune),
           En($data),
@@ -130,8 +149,8 @@ sub cgdae {
 
 sub dadgad {
   my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $sign = sentinel $qp;
+  my $data = retrieve $sign;
   my $tune = 'dadgad';
   print Tm($sign, $tune),
             Dn($data),
@@ -144,8 +163,8 @@ sub dadgad {
 
 sub dgdgbd {
   my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $sign = sentinel $qp;
+  my $data = retrieve $sign;
   my $tune = 'dgdgbd';
   print Tm($sign, $tune),
             Dn($data),
@@ -158,8 +177,8 @@ sub dgdgbd {
 
 sub eadgbe {
   my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $sign = sentinel $qp;
+  my $data = retrieve $sign;
   my $tune = 'eadgbe';
   print Tm($sign, $tune),
             En($data),
@@ -172,8 +191,8 @@ sub eadgbe {
 
 sub fkbjdn {
   my $qp = shift;
-  my $sign = exchequer $qp;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
+  my $sign = sentinel $qp;
+  my $data = retrieve $sign;
   my $tune = 'fkbjdn';
   print Tm($sign, $tune),
             Dn($data),
