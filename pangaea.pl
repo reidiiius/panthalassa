@@ -10,21 +10,20 @@ sub atrium {
 
   my $tune = 'eadgbe';
 
-  if ($_[0]) {
+  if (defined @_) {
     print "\n\n";
 
-    Cetacea::headstock($tune, $_[0]);
+    Cetacea::phonoGraph($tune, $_[0]);
 
     print "\n\n";
 
-    Cetacea::headstock($tune, $_[1]);
+    Cetacea::phonoGraph($tune, $_[1]);
 
     print "\n\n";
   }
   else {
     Cetacea::displayMenu();
   }
-
 }
 
 atrium(@ARGV);

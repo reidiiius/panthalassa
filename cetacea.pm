@@ -11,52 +11,52 @@ sub pegBox {
   return "\t" . $cord . "\n";
 }
 
-sub Bj {
+sub str_Bj {
   my $data = shift;
   return pegBox($data, 50, 10);
 }
 
-sub Fn {
+sub str_Fn {
   my $data = shift;
   return pegBox($data, 25, 35);
 }
 
-sub Cn {
+sub str_Cn {
   my $data = shift;
   return pegBox($data, 0, 60);
 }
 
-sub Gn {
+sub str_Gn {
   my $data = shift;
   return pegBox($data, 35, 25);
 }
 
-sub Dn {
+sub str_Dn {
   my $data = shift;
   return pegBox($data, 10, 50);
 }
 
-sub An {
+sub str_An {
   my $data = shift;
   return pegBox($data, 45, 15);
 }
 
-sub En {
+sub str_En {
   my $data = shift;
   return pegBox($data, 20, 40);
 }
 
-sub Bn {
+sub str_Bn {
   my $data = shift;
   return pegBox($data, 55, 05);
 }
 
-sub Fk {
+sub str_Fk {
   my $data = shift;
   return pegBox($data, 30, 30);
 }
 
-sub Tm {
+sub diadema {
   my ($sign, $tune) = ($_[0], $_[1]);
   my ($esc, $cse) = ("\033[0;33m", "\033[0m");
   my $srl = $sign . "-$tune" . "-sv" . time;
@@ -64,17 +64,14 @@ sub Tm {
 }
 
 sub tacet {
-  my $rest;
-  for (my $i = 0; $i < 12; $i++) {
-    $rest .= '____ ';
-  }
+  my $rest = '____ ' x 12;
   return $rest; 
 }
 
 sub retrieve {
   my $sign = shift;
   if ($sign =~ m/^([jkn][0-7]+)+([xy][1-7]+)?$/) {
-    my $data = Giraffidae::LaurasiaTheria($sign);
+    my $data = Giraffidae::acquirobtineo($sign);
     if (defined $data) {
       return $data;
     }
@@ -90,87 +87,87 @@ sub retrieve {
 sub beadgcf {
   my ($tune, $sign, $data)
    = ($_[0], $_[1], $_[2]); 
-  print Tm($sign, $tune),
-              Fn($data),
-            Cn($data),
-          Gn($data),
-        Dn($data),
-      An($data),
-    En($data),
-  Bn($data);
+  print diadema($sign, $tune),
+              str_Fn($data),
+            str_Cn($data),
+          str_Gn($data),
+        str_Dn($data),
+      str_An($data),
+    str_En($data),
+  str_Bn($data);
 }
 
 sub bfbfb {
   my ($tune, $sign, $data)
    = ($_[0], $_[1], $_[2]); 
-  print Tm($sign, $tune),
-          Bn($data),
-        Fn($data),
-      Bn($data),
-    Fn($data),
-  Bn($data);
+  print diadema($sign, $tune),
+          str_Bn($data),
+        str_Fn($data),
+      str_Bn($data),
+    str_Fn($data),
+  str_Bn($data);
 }
 
 sub cgdae {
   my ($tune, $sign, $data)
    = ($_[0], $_[1], $_[2]); 
-  print Tm($sign, $tune),
-          En($data),
-        An($data),
-      Dn($data),
-    Gn($data),
-  Cn($data);
+  print diadema($sign, $tune),
+          str_En($data),
+        str_An($data),
+      str_Dn($data),
+    str_Gn($data),
+  str_Cn($data);
 }
 
 sub dadgad {
   my ($tune, $sign, $data)
    = ($_[0], $_[1], $_[2]); 
-  print Tm($sign, $tune),
-            Dn($data),
-          An($data),
-        Gn($data),
-      Dn($data),
-    An($data),
-  Dn($data);
+  print diadema($sign, $tune),
+            str_Dn($data),
+          str_An($data),
+        str_Gn($data),
+      str_Dn($data),
+    str_An($data),
+  str_Dn($data);
 }
 
 sub dgdgbd {
   my ($tune, $sign, $data)
    = ($_[0], $_[1], $_[2]); 
-  print Tm($sign, $tune),
-            Dn($data),
-          Bn($data),
-        Gn($data),
-      Dn($data),
-    Gn($data),
-  Dn($data);
+  print diadema($sign, $tune),
+            str_Dn($data),
+          str_Bn($data),
+        str_Gn($data),
+      str_Dn($data),
+    str_Gn($data),
+  str_Dn($data);
 }
 
 sub eadgbe {
   my ($tune, $sign, $data)
    = ($_[0], $_[1], $_[2]);
-  print Tm($sign, $tune),
-            En($data),
-          Bn($data),
-        Gn($data),
-      Dn($data),
-    An($data),
-  En($data);
+  print diadema($sign, $tune),
+            str_En($data),
+          str_Bn($data),
+        str_Gn($data),
+      str_Dn($data),
+    str_An($data),
+  str_En($data);
 }
 
 sub fkbjdn {
   my ($tune, $sign, $data)
    = ($_[0], $_[1], $_[2]); 
-  print Tm($sign, $tune),
-            Dn($data),
-          Bj($data),
-        Fk($data),
-      Dn($data),
-    Bj($data),
-  Fk($data);
+  print diadema($sign, $tune),
+            str_Dn($data),
+          str_Bj($data),
+        str_Fk($data),
+      str_Dn($data),
+    str_Bj($data),
+  str_Fk($data);
 }
 
-sub headstock {
+sub phonoGraph {
   my $tune = $_[0] || 'beadgcf';
   my $sign = $_[1] || 'n0';
   my $data = retrieve $sign;
@@ -227,7 +224,7 @@ sub gemstone {
 }
 
 sub displayMenu {
-  my @a = gemstone;
+  my @a = &gemstone;
   my $n = scalar(@a) / 2;
   my $i = 0;
   foreach my $item (@a) {

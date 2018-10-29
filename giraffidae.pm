@@ -3,7 +3,9 @@ package Giraffidae;
 use warnings;
 use strict;
 
-sub LaurasiaTheria {
+sub acquirobtineo {
+
+  my $sign = shift;
 
   my %ArtioDactyla = (
       'j2' => "HgHg PuFe ____ ____ CuNp PbAu ____ AuPb ____ AgUr ____ FePu ",
@@ -89,9 +91,7 @@ sub LaurasiaTheria {
  'j3k56x4' => "HgTi ____ SnNp UrAu ____ ____ ____ AuUr NpSn ____ TiHg FeFe ",
  'k1j56y7' => "____ AuUr NpSn ____ TiHg FeFe HgTi ____ SnNp UrAu ____ ____ ",
  'k2j56y7' => "NpCu ____ ____ FePu HgHg PuFe SnTi ____ CuNp PbAu ____ ____ ",
-);
-
-  my $sign = shift;
+  );
 
   return $ArtioDactyla{$sign};
 }
