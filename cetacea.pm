@@ -6,8 +6,8 @@ use strict;
 require "giraffidae.pm";
 
 sub pegBox {
-  my ($drac, $head, $tail) = ($_[0], $_[1], $_[2]);
-  my $cord = substr($drac, $head, $tail) . substr($drac, 0, $head);
+  my ($data, $head, $tail) = ($_[0], $_[1], $_[2]);
+  my $cord = substr($data, $head, $tail) . substr($data, 0, $head);
   return "\t" . $cord . "\n";
 }
 
@@ -73,44 +73,23 @@ sub tacet {
 
 sub retrieve {
   my $sign = shift;
-  my $data = $Giraffidae::ArtioDactyla{$sign};
-  if (length($data) != 60) {
+  if ($sign =~ m/^([jkn][0-7]+)+([xy][1-7]+)?$/) {
+    my $data = Giraffidae::LaurasiaTheria($sign);
+    if (defined $data) {
+      return $data;
+    }
+    else {
+      return &tacet;
+    }
+  }
+  else {
     return &tacet;
-  }
-  else {
-    return $data;
-  }
-}
-
-sub memberP {
-  my $qp = shift;
-  if ($qp =~ m/^([jkn][0-7]+)+([xy][1-7]+)?$/) {
-    if (defined $Giraffidae::ArtioDactyla{$qp}) {
-      return $qp;
-    }
-  }
-}
-
-sub sentinel {
-  my $qp = shift;
-  my $preset = 'n0';
-  if (not $qp) {
-    return $preset;
-  }
-  else {
-    my $clave = memberP $qp;
-    if (not $clave) {
-      $clave = $preset;
-    }
-    return $clave; 
   }
 }
 
 sub beadgcf {
-  my $qp = shift;
-  my $sign = sentinel $qp;
-  my $data = retrieve $sign;
-  my $tune = 'beadgcf';
+  my ($tune, $sign, $data)
+   = ($_[0], $_[1], $_[2]); 
   print Tm($sign, $tune),
               Fn($data),
             Cn($data),
@@ -122,10 +101,8 @@ sub beadgcf {
 }
 
 sub bfbfb {
-  my $qp = shift;
-  my $sign = sentinel $qp;
-  my $data = retrieve $sign;
-  my $tune = 'bfbfb';
+  my ($tune, $sign, $data)
+   = ($_[0], $_[1], $_[2]); 
   print Tm($sign, $tune),
           Bn($data),
         Fn($data),
@@ -135,10 +112,8 @@ sub bfbfb {
 }
 
 sub cgdae {
-  my $qp = shift;
-  my $sign = sentinel $qp;
-  my $data = retrieve $sign;
-  my $tune = 'cgdae';
+  my ($tune, $sign, $data)
+   = ($_[0], $_[1], $_[2]); 
   print Tm($sign, $tune),
           En($data),
         An($data),
@@ -148,10 +123,8 @@ sub cgdae {
 }
 
 sub dadgad {
-  my $qp = shift;
-  my $sign = sentinel $qp;
-  my $data = retrieve $sign;
-  my $tune = 'dadgad';
+  my ($tune, $sign, $data)
+   = ($_[0], $_[1], $_[2]); 
   print Tm($sign, $tune),
             Dn($data),
           An($data),
@@ -162,10 +135,8 @@ sub dadgad {
 }
 
 sub dgdgbd {
-  my $qp = shift;
-  my $sign = sentinel $qp;
-  my $data = retrieve $sign;
-  my $tune = 'dgdgbd';
+  my ($tune, $sign, $data)
+   = ($_[0], $_[1], $_[2]); 
   print Tm($sign, $tune),
             Dn($data),
           Bn($data),
@@ -176,10 +147,8 @@ sub dgdgbd {
 }
 
 sub eadgbe {
-  my $qp = shift;
-  my $sign = sentinel $qp;
-  my $data = retrieve $sign;
-  my $tune = 'eadgbe';
+  my ($tune, $sign, $data)
+   = ($_[0], $_[1], $_[2]);
   print Tm($sign, $tune),
             En($data),
           Bn($data),
@@ -190,10 +159,8 @@ sub eadgbe {
 }
 
 sub fkbjdn {
-  my $qp = shift;
-  my $sign = sentinel $qp;
-  my $data = retrieve $sign;
-  my $tune = 'fkbjdn';
+  my ($tune, $sign, $data)
+   = ($_[0], $_[1], $_[2]); 
   print Tm($sign, $tune),
             Dn($data),
           Bj($data),
@@ -201,6 +168,40 @@ sub fkbjdn {
       Dn($data),
     Bj($data),
   Fk($data);
+}
+
+sub headstock {
+  my $tune = $_[0] || 'beadgcf';
+  my $sign = $_[1] || 'n0';
+  my $data = retrieve $sign;
+  my @args = ($tune, $sign, $data);
+
+  if ($tune =~ 'beadgcf') {
+    beadgcf(@args);
+  }
+  elsif ($tune =~ 'bfbfb') {
+    bfbfb(@args);
+  }
+  elsif ($tune =~ 'cgdae') {
+    cgdae(@args);
+  }
+  elsif ($tune =~ 'dadgad') {
+    dadgad(@args);
+  }
+  elsif ($tune =~ 'dgdgbd') {
+    dgdgbd(@args);
+  }
+  elsif ($tune =~ 'eadgbe') {
+    eadgbe(@args);
+  }
+  elsif ($tune =~ 'fkbjdn') {
+    fkbjdn(@args);
+  } 
+  else {
+    my $esc = "\033[0;";
+    my ($red, $bwn) = ("${esc}31m", "${esc}33m");
+    bfbfb("${red}$_[0]$bwn", 'error', &tacet);
+  }
 }
 
 sub gemstone {
@@ -237,4 +238,6 @@ sub displayMenu {
   }
   print "\n\n";
 }
+
+1
 

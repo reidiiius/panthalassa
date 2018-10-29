@@ -6,18 +6,26 @@ use strict;
 
 require "cetacea.pm";
 
-if ($ARGV[0]) {
-  print "\n\n";
+sub atrium {
 
-    Cetacea::eadgbe($ARGV[0]);
+  my $tune = 'eadgbe';
 
-  print "\n\n";
+  if ($_[0]) {
+    print "\n\n";
 
-    Cetacea::eadgbe($ARGV[1]);
+    Cetacea::headstock($tune, $_[0]);
 
-  print "\n\n";
+    print "\n\n";
+
+    Cetacea::headstock($tune, $_[1]);
+
+    print "\n\n";
+  }
+  else {
+    Cetacea::displayMenu();
+  }
+
 }
-else {
-  Cetacea::displayMenu();
-}
+
+atrium(@ARGV);
 
