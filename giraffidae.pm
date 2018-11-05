@@ -3,11 +3,7 @@ package Giraffidae;
 use warnings;
 use strict;
 
-sub acquirobtineo {
-
-  my $sign = shift;
-
-  my %ArtioDactyla = (
+our %ArtioDactyla = (
       'j2' => "HgHg PuFe ____ ____ CuNp PbAu ____ AuPb ____ AgUr ____ FePu ",
       'j3' => "HgSn ____ SnHg UrFe ____ PbAg ____ AuAu ____ AgPb ____ FeUr ",
       'j5' => "PbCu ____ AuSn ____ AgHg TiFe FeTi ____ ____ SnAu ____ CuPb ",
@@ -91,8 +87,10 @@ sub acquirobtineo {
  'j3k56x4' => "HgTi ____ SnNp UrAu ____ ____ ____ AuUr NpSn ____ TiHg FeFe ",
  'k1j56y7' => "____ AuUr NpSn ____ TiHg FeFe HgTi ____ SnNp UrAu ____ ____ ",
  'k2j56y7' => "NpCu ____ ____ FePu HgHg PuFe SnTi ____ CuNp PbAu ____ ____ ",
-  );
+);
 
+sub acquirobtineo {
+  my $sign = shift;
   return $ArtioDactyla{$sign};
 }
 
