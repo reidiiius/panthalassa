@@ -8,7 +8,7 @@ require "cetacea.pm";
 
 sub atrium {
 
-  my $tune = 'eadgbe';
+  my $tune = 'beadgcf';
 
   if (@_) {
     print "\n\n";
