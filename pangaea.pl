@@ -10,7 +10,7 @@ sub atrium {
 
   my $tune = 'eadgbe';
 
-  if (defined @_) {
+  if (@_) {
     print "\n\n";
 
     Cetacea::phonoGraph($tune, $_[0]);
