@@ -4,22 +4,22 @@
 use warnings;
 use strict;
 
-require "cetacea.pm";
+require "./cetacea.pm";
 
 sub atrium {
 
-  my $tune = 'beadgcf';
-
   if (@_) {
-    print "\n\n";
+    my $tune = 'beadgcf';
+    my $size = scalar(@_);
+    my $item = 0;
 
-    Cetacea::phonoGraph($tune, $_[0]);
+    while ($item < $size) {
+      print "\n";
+      Cetacea::phonoGraph($tune, $_[$item]);
 
-    print "\n\n";
-
-    Cetacea::phonoGraph($tune, $_[1]);
-
-    print "\n\n";
+      $item += 1;
+    }
+    print "\n";
   }
   else {
     Cetacea::displayMenu();

@@ -3,7 +3,7 @@ package Cetacea;
 use warnings;
 use strict;
 
-require "giraffidae.pm";
+require "./giraffidae.pm";
 
 sub pegBox {
   my ($data, $head, $tail) = ($_[0], $_[1], $_[2]);
@@ -236,5 +236,5 @@ sub displayMenu {
   print "\n\n";
 }
 
-1
+1;
 

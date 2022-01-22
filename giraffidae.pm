@@ -94,5 +94,5 @@ sub acquirobtineo {
   return $ArtioDactyla{$sign};
 }
 
-1
+1;
 
