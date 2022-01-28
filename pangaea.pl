@@ -14,9 +14,9 @@ sub atrium {
     my $size = scalar(@_);
     my $item = 0;
 
-    while ($item < $size) {
+    while ( $item < $size ) {
       print "\n";
-      Cetacea::phonoGraph($tune, $_[$item]);
+      Cetacea::phonoGraph( $tune, $_[$item] );
 
       $item += 1;
     }
