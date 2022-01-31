@@ -1,5 +1,4 @@
 #!/usr/bin/env perl
-require 5.30.0;
 
 # use diagnostics;
 use warnings;

@@ -89,9 +89,22 @@ our %ArtioDactyla = (
   'k2j56y7' => "NpCu ____ ____ FePu HgHg PuFe SnTi ____ CuNp PbAu ____ ____ ",
 );
 
-sub acquirobtineo {
+sub acquire {
   my $sign = shift;
   return $ArtioDactyla{$sign};
+}
+
+sub membership {
+  my $sign = shift;
+  my $item = 'malarkey';
+  my @arks = keys %ArtioDactyla;
+
+  while (@arks) {
+    $item = pop(@arks);
+    if ( $item eq $sign ) {
+      return 1;
+    }
+  }
 }
 
 1;

@@ -70,14 +70,10 @@ sub tacet {
 
 sub retrieve {
   my $sign = shift;
-  if ( $sign =~ m/^([jkn][0-7]+)+([xy][1-7]+)?$/ ) {
-    my $data = Giraffidae::acquirobtineo($sign);
-    if ( defined $data ) {
-      return $data;
-    }
-    else {
-      return &tacet;
-    }
+  my $data = Giraffidae::acquire($sign);
+
+  if ( defined $data ) {
+    return $data;
   }
   else {
     return &tacet;
@@ -86,7 +82,7 @@ sub retrieve {
 
 sub beadgcf {
   my ( $tune, $sign, $data ) =
-    ( $_[0], $_[1], $_[2] );
+     ( $_[0], $_[1], $_[2] );
   print diadema( $sign, $tune ),
     str_Fn($data),
     str_Cn($data),
@@ -99,7 +95,7 @@ sub beadgcf {
 
 sub bfbfb {
   my ( $tune, $sign, $data ) =
-    ( $_[0], $_[1], $_[2] );
+     ( $_[0], $_[1], $_[2] );
   print diadema( $sign, $tune ),
     str_Bn($data),
     str_Fn($data),
@@ -110,7 +106,7 @@ sub bfbfb {
 
 sub cgdae {
   my ( $tune, $sign, $data ) =
-    ( $_[0], $_[1], $_[2] );
+     ( $_[0], $_[1], $_[2] );
   print diadema( $sign, $tune ),
     str_En($data),
     str_An($data),
@@ -121,7 +117,7 @@ sub cgdae {
 
 sub dadgad {
   my ( $tune, $sign, $data ) =
-    ( $_[0], $_[1], $_[2] );
+     ( $_[0], $_[1], $_[2] );
   print diadema( $sign, $tune ),
     str_Dn($data),
     str_An($data),
@@ -133,7 +129,7 @@ sub dadgad {
 
 sub dgdgbd {
   my ( $tune, $sign, $data ) =
-    ( $_[0], $_[1], $_[2] );
+     ( $_[0], $_[1], $_[2] );
   print diadema( $sign, $tune ),
     str_Dn($data),
     str_Bn($data),
@@ -145,7 +141,7 @@ sub dgdgbd {
 
 sub eadgbe {
   my ( $tune, $sign, $data ) =
-    ( $_[0], $_[1], $_[2] );
+     ( $_[0], $_[1], $_[2] );
   print diadema( $sign, $tune ),
     str_En($data),
     str_Bn($data),
@@ -157,7 +153,7 @@ sub eadgbe {
 
 sub fkbjdn {
   my ( $tune, $sign, $data ) =
-    ( $_[0], $_[1], $_[2] );
+     ( $_[0], $_[1], $_[2] );
   print diadema( $sign, $tune ),
     str_Dn($data),
     str_Bj($data),
@@ -167,9 +163,26 @@ sub fkbjdn {
     str_Fk($data);
 }
 
+sub incorrect {
+  my $sign = shift;
+  return "\t\033[0;33m$sign ?\033[0;33m\n";
+}
+
 sub phonoGraph {
-  my $tune = $_[0] || 'beadgcf';
-  my $sign = $_[1] || 'n0';
+  my $tune = lc( $_[0] ) || 'beadgcf';
+  my $sign = lc( $_[1] ) || 'n0';
+
+  if ( $sign =~ m/^([jkn][0-7]+)+([xy][1-7]+)?$/ ) {
+    unless ( Giraffidae::membership $sign ) {
+      print incorrect($sign);
+      return 0;
+    }
+  }
+  else {
+    print incorrect($sign);
+    return 0;
+  }
+ 
   my $data = retrieve $sign;
   my @args = ( $tune, $sign, $data );
 
@@ -227,6 +240,7 @@ sub displayMenu {
   my @a = &gemstone;
   my $n = scalar(@a) / 2;
   my $i = 0;
+
   foreach my $item (@a) {
     print "\n" if ( $i % 7 == 0 );
     print "\n" if ( $i == $n );
