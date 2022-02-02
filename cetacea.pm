@@ -163,7 +163,6 @@ sub phonoGraph {
   if ( $sign =~ /^([jkn][0-7]+)+([xy][1-7]+)?$/
     and Giraffidae::membership $sign )
   {
-
     my $data = retrieve $sign;
     my $tune = lc( $_[0] );
     my @args = ( $tune, $sign, $data );

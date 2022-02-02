@@ -14,11 +14,17 @@ sub atrium {
       $tune = shift;      # change tuning
     }
 
-    print "\n";
-    for (@_) {
-      Cetacea::phonoGraph( $tune, $_ );
+    if (@_) {
       print "\n";
+      for (@_) {
+        Cetacea::phonoGraph( $tune, $_ );
+        print "\n";
+      }
     }
+    else {
+      Cetacea::displayMenu();
+    }
+
   }
   else {
     Cetacea::displayMenu();
