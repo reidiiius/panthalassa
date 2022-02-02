@@ -5,6 +5,10 @@ use strict;
 
 require './giraffidae.pm';
 
+sub tacet {
+  '____ ' x 12;
+}
+
 sub pegBox {
   my ( $data, $head, $tail ) = ( $_[0], $_[1], $_[2] );
   my $cord = substr( $data, $head, $tail ) . substr( $data, 0, $head );
@@ -57,7 +61,7 @@ sub str_Fk {
   pegBox( $data, 30, 30 );
 }
 
-sub diadema {
+sub wreath {
   my ( $sign, $tune ) = ( $_[0], $_[1] );
   my ( $esc, $cse ) = ( "\033[0;33m", "\033[0m" );
   my $srl = $sign . "-$tune" . "-sv" . time;
@@ -65,8 +69,80 @@ sub diadema {
   "\t$esc" . $srl . "$cse\n";
 }
 
-sub tacet {
-  '____ ' x 12;
+sub beadgcf {
+  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
+  my $diadem = wreath( $sign, $tune );
+
+  print $diadem,
+    str_Fn($data),
+    str_Cn($data),
+    str_Gn($data),
+    str_Dn($data),
+    str_An($data),
+    str_En($data),
+    str_Bn($data);
+}
+
+sub bfbfb {
+  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
+  my ( $bn, $fn ) = ( str_Bn($data), str_Fn($data) );
+  my $diadem = wreath( $sign, $tune );
+
+  print $diadem, $bn, $fn, $bn, $fn, $bn;
+}
+
+sub cgdae {
+  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
+  my $diadem = wreath( $sign, $tune );
+
+  print $diadem,
+    str_En($data),
+    str_An($data),
+    str_Dn($data),
+    str_Gn($data),
+    str_Cn($data);
+}
+
+sub dadgad {
+  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
+  my ( $an, $dn, $gn ) = ( str_An($data), str_Dn($data), str_Gn($data) );
+  my $diadem = wreath( $sign, $tune );
+
+  print $diadem, $dn, $an, $gn, $dn, $an, $dn;
+}
+
+sub dgdgbd {
+  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
+  my ( $gn, $bn, $dn ) = ( str_Gn($data), str_Bn($data), str_Dn($data) );
+  my $diadem = wreath( $sign, $tune );
+
+  print $diadem, $dn, $bn, $gn, $dn, $gn, $dn;
+}
+
+sub eadgbe {
+  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
+  my ( $gn, $dn, $an, $en, $bn ) = (
+    str_Gn($data), str_Dn($data), str_An($data), str_En($data),
+    str_Bn($data)
+  );
+  my $diadem = wreath( $sign, $tune );
+
+  print $diadem, $en, $bn, $gn, $dn, $an, $en;
+}
+
+sub fkbjdn {
+  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
+  my ( $dn, $bj, $fk ) = ( str_Dn($data), str_Bj($data), str_Fk($data) );
+  my $diadem = wreath( $sign, $tune );
+
+  print $diadem, $dn, $bj, $fk, $dn, $bj, $fk;
+}
+
+sub incorrect {
+  my $errs = shift;
+  my ( $esc, $cse ) = ( "\033[0;33m", "\033[0m" );
+
+  "\t${esc}$errs ?${cse}\n";
 }
 
 sub retrieve {
@@ -81,83 +157,7 @@ sub retrieve {
   }
 }
 
-sub beadgcf {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my $codex = diadema( $sign, $tune );
-
-  print $codex,
-    str_Fn($data),
-    str_Cn($data),
-    str_Gn($data),
-    str_Dn($data),
-    str_An($data),
-    str_En($data),
-    str_Bn($data);
-}
-
-sub bfbfb {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my ( $bn, $fn ) = ( str_Bn($data), str_Fn($data) );
-  my $codex = diadema( $sign, $tune );
-
-  print $codex, $bn, $fn, $bn, $fn, $bn;
-}
-
-sub cgdae {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my $codex = diadema( $sign, $tune );
-
-  print $codex,
-    str_En($data),
-    str_An($data),
-    str_Dn($data),
-    str_Gn($data),
-    str_Cn($data);
-}
-
-sub dadgad {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my ( $an, $dn, $gn ) = ( str_An($data), str_Dn($data), str_Gn($data) );
-  my $codex = diadema( $sign, $tune );
-
-  print $codex, $dn, $an, $gn, $dn, $an, $dn;
-}
-
-sub dgdgbd {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my ( $gn, $bn, $dn ) = ( str_Gn($data), str_Bn($data), str_Dn($data) );
-  my $codex = diadema( $sign, $tune );
-
-  print $codex, $dn, $bn, $gn, $dn, $gn, $dn;
-}
-
-sub eadgbe {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my ( $gn, $dn, $an, $en, $bn ) = (
-    str_Gn($data), str_Dn($data), str_An($data), str_En($data),
-    str_Bn($data)
-  );
-  my $codex = diadema( $sign, $tune );
-
-  print $codex, $en, $bn, $gn, $dn, $an, $en;
-}
-
-sub fkbjdn {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my ( $dn, $bj, $fk ) = ( str_Dn($data), str_Bj($data), str_Fk($data) );
-  my $codex = diadema( $sign, $tune );
-
-  print $codex, $dn, $bj, $fk, $dn, $bj, $fk;
-}
-
-sub incorrect {
-  my $sign = shift;
-  my ( $esc, $cse ) = ( "\033[0;33m", "\033[0m" );
-
-  "\t${esc}$sign ?${cse}\n";
-}
-
-sub phonoGraph {
+sub vestibule {
   my $sign = lc( $_[1] );
 
   if ( $sign =~ /^([jkn][0-7]+)+([xy][1-7]+)?$/
@@ -184,15 +184,17 @@ sub phonoGraph {
     {
       bfbfb(@args);
     }
-    elsif ( $tune eq 'cello'
+    elsif ( $tune =~ /^bouz.*/
+      or $tune eq 'cello'
       or $tune =~ /^c?gdae?/
       or $tune eq 'p5'
-      or $tune =~ /^viol.+/ )
+      or $tune =~ /^mand.*/
+      or $tune =~ /^viol.*/ )
     {
       cgdae(@args);
     }
     elsif ( $tune eq 'dadgad'
-      or $tune eq 'celtic' )
+      or $tune =~ /^celt.*/ )
     {
       dadgad(@args);
     }
@@ -217,8 +219,7 @@ sub phonoGraph {
       fkbjdn(@args);
     }
     else {
-      my ( $esc, $cse ) = ( "\033[0;33m", "\033[0m" );
-      die "\t${esc}$_[0] ?${cse}\n\n";
+      die incorrect($tune), "\n";
     }
   }
   else {

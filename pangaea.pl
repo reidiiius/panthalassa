@@ -6,7 +6,7 @@ use strict;
 
 require './cetacea.pm';
 
-sub atrium {
+sub entryway {
   my $tune = 'eadgbe';    # default tuning
 
   if (@_) {
@@ -17,7 +17,7 @@ sub atrium {
     if (@_) {
       print "\n";
       for (@_) {
-        Cetacea::phonoGraph( $tune, $_ );
+        Cetacea::vestibule( $tune, $_ );
         print "\n";
       }
     }
@@ -31,5 +31,5 @@ sub atrium {
   }
 }
 
-atrium(@ARGV);
+entryway(@ARGV);
 

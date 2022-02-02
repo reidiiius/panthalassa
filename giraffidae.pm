@@ -3,7 +3,7 @@ package Giraffidae;
 use warnings;
 use strict;
 
-our %ArtioDactyla = (
+our %Metalograph = (
   'j2'      => "HgHg PuFe ____ ____ CuNp PbAu ____ AuPb ____ AgUr ____ FePu ",
   'j3'      => "HgSn ____ SnHg UrFe ____ PbAg ____ AuAu ____ AgPb ____ FeUr ",
   'j5'      => "PbCu ____ AuSn ____ AgHg TiFe FeTi ____ ____ SnAu ____ CuPb ",
@@ -90,11 +90,11 @@ our %ArtioDactyla = (
 );
 
 sub acquire {
-  $ArtioDactyla{$_};
+  $Metalograph{$_};
 }
 
 sub membership {
-  exists $ArtioDactyla{$_};
+  exists $Metalograph{$_};
 }
 
 1;
