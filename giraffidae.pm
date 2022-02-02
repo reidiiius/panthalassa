@@ -90,21 +90,11 @@ our %ArtioDactyla = (
 );
 
 sub acquire {
-  my $sign = shift;
-  return $ArtioDactyla{$sign};
+  $ArtioDactyla{$_};
 }
 
 sub membership {
-  my $sign = shift;
-  my $item = 'malarkey';
-  my @arks = keys %ArtioDactyla;
-
-  while (@arks) {
-    $item = pop(@arks);
-    if ( $item eq $sign ) {
-      return 1;
-    }
-  }
+  exists $ArtioDactyla{$_};
 }
 
 1;

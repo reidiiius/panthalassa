@@ -7,19 +7,18 @@ use strict;
 require './cetacea.pm';
 
 sub atrium {
+  my $tune = 'eadgbe';    # default tuning
 
   if (@_) {
-    my $tune = 'beadgcf';
-    my $size = scalar(@_);
-    my $item = 0;
-
-    while ( $item < $size ) {
-      print "\n";
-      Cetacea::phonoGraph( $tune, $_[$item] );
-
-      $item += 1;
+    unless ( $_[0] =~ /^([jkn][0-7]+)+([xy][1-7]+)?$/ ) {
+      $tune = shift;      # change tuning
     }
+
     print "\n";
+    for (@_) {
+      Cetacea::phonoGraph( $tune, $_ );
+      print "\n";
+    }
   }
   else {
     Cetacea::displayMenu();

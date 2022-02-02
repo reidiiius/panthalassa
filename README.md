@@ -16,6 +16,8 @@ command-line
 
     perl -w pangaea.pl j3 k1
 
+    perl -w pangaea.pl cello j3 k1
+
 ---
 
 ### Distribution
