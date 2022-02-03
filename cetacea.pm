@@ -9,9 +9,36 @@ sub tacet {
   '____ ' x 12;
 }
 
+sub refine {
+  my $yarn = shift;
+  my $wire = $yarn;
+
+    $wire =~ s/__/_/g;
+    $wire =~ s/Ti/o/g;
+    $wire =~ s/Mn/p/g;
+    $wire =~ s/Fe/q/g;
+    $wire =~ s/Cu/r/g;
+    $wire =~ s/Ag/s/g;
+    $wire =~ s/Sn/t/g;
+    $wire =~ s/Au/u/g;
+    $wire =~ s/Hg/v/g;
+    $wire =~ s/Pb/w/g;
+    $wire =~ s/Ur/x/g;
+    $wire =~ s/Np/y/g;
+    $wire =~ s/Pu/z/g;
+
+  if ( length($wire) == 36 ) {
+    $wire;
+  }
+  else {
+    $yarn;
+  }
+}
+
 sub pegBox {
   my ( $data, $head, $tail ) = ( $_[0], $_[1], $_[2] );
   my $cord = substr( $data, $head, $tail ) . substr( $data, 0, $head );
+  $cord = refine($cord);
 
   "\t" . $cord . "\n";
 }
