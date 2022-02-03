@@ -5,29 +5,27 @@ use strict;
 
 require './giraffidae.pm';
 
-sub tacet {
-  '____ ' x 12;
-}
-
 sub refine {
   my $yarn = shift;
   my $wire = $yarn;
 
-    $wire =~ s/__/_/g;
-    $wire =~ s/Ti/o/g;
-    $wire =~ s/Mn/p/g;
-    $wire =~ s/Fe/q/g;
-    $wire =~ s/Cu/r/g;
-    $wire =~ s/Ag/s/g;
-    $wire =~ s/Sn/t/g;
-    $wire =~ s/Au/u/g;
-    $wire =~ s/Hg/v/g;
-    $wire =~ s/Pb/w/g;
-    $wire =~ s/Ur/x/g;
-    $wire =~ s/Np/y/g;
-    $wire =~ s/Pu/z/g;
+  $wire =~ s/Ti/o/g;
+  $wire =~ s/Mn/p/g;
+  $wire =~ s/Fe/q/g;
+  $wire =~ s/Cu/r/g;
+  $wire =~ s/Ag/s/g;
+  $wire =~ s/Sn/t/g;
+  $wire =~ s/Au/u/g;
+  $wire =~ s/Hg/v/g;
+  $wire =~ s/Pb/w/g;
+  $wire =~ s/Ur/x/g;
+  $wire =~ s/Np/y/g;
+  $wire =~ s/Pu/z/g;
+  $wire =~ s/__/_/g;
 
-  if ( length($wire) == 36 ) {
+  my $size = length($wire);
+
+  if ( $size >= 24 and $size <= 72 ) {
     $wire;
   }
   else {
@@ -180,7 +178,7 @@ sub retrieve {
     $data;
   }
   else {
-    &tacet;
+    &Giraffidae::tacet;
   }
 }
 

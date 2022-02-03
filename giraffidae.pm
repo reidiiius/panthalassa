@@ -89,6 +89,10 @@ our %Metalograph = (
   'k2j56y7' => "NpCu ____ ____ FePu HgHg PuFe SnTi ____ CuNp PbAu ____ ____ ",
 );
 
+sub tacet {
+  '____ ' x 12;
+}
+
 sub acquire {
   $Metalograph{$_};
 }
