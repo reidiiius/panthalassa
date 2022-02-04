@@ -4,7 +4,8 @@
 use warnings;
 use strict;
 
-require './cetacea.pm';
+use lib './Mirovia';
+use Rodinia;
 
 sub entryway {
   my $tune = 'eadgbe';    # default tuning
@@ -17,17 +18,17 @@ sub entryway {
     if (@_) {
       print "\n";
       for (@_) {
-        Cetacea::vestibule( $tune, $_ );
+        Rodinia::vestibule( $tune, $_ );
         print "\n";
       }
     }
     else {
-      Cetacea::displayMenu();
+      Rodinia::displayMenu();
     }
 
   }
   else {
-    Cetacea::displayMenu();
+    Rodinia::displayMenu();
   }
 }
 

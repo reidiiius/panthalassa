@@ -1,0 +1,113 @@
+package Rodinia;
+
+use warnings;
+use strict;
+
+use Gondwana;
+use Laurasia;
+
+sub incorrect {
+  my $errs = shift;
+  my ( $esc, $cse ) = ( "\033[0;33m", "\033[0m" );
+
+  "\t${esc}$errs ?${cse}\n";
+}
+
+sub retrieve {
+  my $sign = shift;
+  my $data = Gondwana::acquire($sign);
+
+  if ( defined $data ) {
+    $data;
+  }
+  else {
+    &Gondwana::tacet;
+  }
+}
+
+sub vestibule {
+  my $sign = lc( $_[1] );
+
+  if ( $sign =~ /^([jkn][0-7]+)+([xy][1-7]+)?$/
+    and Gondwana::membership $sign )
+  {
+    my $data = retrieve $sign;
+    my $tune = lc( $_[0] );
+    my @args = ( $tune, $sign, $data );
+
+    if ( $tune eq 'bass'
+      or $tune =~ /^beadgc?/
+      or $tune =~ /^b?eadgc/
+      or $tune eq 'eadg'
+      or $tune eq 'p4' )
+    {
+      Laurasia::beadgcf(@args);
+    }
+    elsif ( $tune eq 'a4'
+      or $tune =~ /^bfb/
+      or $tune eq 'b5'
+      or $tune eq 'd5'
+      or $tune =~ /^fbf/
+      or $tune =~ /^tritone?/ )
+    {
+      Laurasia::bfbfb(@args);
+    }
+    elsif ( $tune =~ /^bouz.*/
+      or $tune eq 'cello'
+      or $tune =~ /^c?gdae?/
+      or $tune eq 'p5'
+      or $tune =~ /^mand.*/
+      or $tune =~ /^viol.*/ )
+    {
+      Laurasia::cgdae(@args);
+    }
+    elsif ( $tune eq 'dadgad'
+      or $tune =~ /^celt.*/ )
+    {
+      Laurasia::dadgad(@args);
+    }
+    elsif ( $tune eq 'banjo'
+      or $tune eq 'dobro'
+      or $tune =~ /^d?gdgbd/
+      or $tune =~ /^open.*/
+      or $tune =~ /^slack.*/ )
+    {
+      Laurasia::dgdgbd(@args);
+    }
+    elsif ( $tune =~ /dgbe/
+      or $tune =~ /gcea/
+      or $tune =~ /^gu?itar/
+      or $tune =~ /^uku(le)?/ )
+    {
+      Laurasia::eadgbe(@args);
+    }
+    elsif ( $tune eq 'fkbjdn'
+      or $tune eq 'm3' )
+    {
+      Laurasia::fkbjdn(@args);
+    }
+    else {
+      die incorrect($tune), "\n";
+    }
+  }
+  else {
+    print incorrect($sign);
+  }
+}
+
+sub displayMenu {
+  my @a = &Gondwana::gemstone;
+  my $n = scalar(@a) / 2;
+  my $i = 0;
+
+  foreach (@a) {
+    print "\n" if ( $i % 7 == 0 );
+    print "\n" if ( $i == $n );
+    print "\t$_";
+    $i++;
+  }
+  print "\n\n";
+}
+
+1;
+
