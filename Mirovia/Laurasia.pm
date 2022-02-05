@@ -87,9 +87,9 @@ sub str_Fk {
 sub wreath {
   my ( $sign, $tune ) = ( $_[0], $_[1] );
   my ( $esc, $cse ) = ( "\033[0;33m", "\033[0m" );
-  my $srl = $sign . "-$tune" . "-sv" . time;
+  my $crown = $sign . "-$tune" . '-i' . time;
 
-  "\t$esc" . $srl . "$cse\n";
+  "\t$esc" . $crown . "$cse\n";
 }
 
 sub beadgcf {

@@ -11,7 +11,8 @@ sub entryway {
   my $tune = 'eadgbe';    # default tuning
 
   if (@_) {
-    unless ( $_[0] =~ /^([jkn][0-7]+)+([xy][1-7]+)?$/ ) {
+    my $clef = Rodinia::validate( $_[0] );
+    unless ( $clef ) {
       $tune = shift;      # change tuning
     }
 
@@ -23,12 +24,12 @@ sub entryway {
       }
     }
     else {
-      Rodinia::displayMenu();
+      Rodinia::dashboard;
     }
 
   }
   else {
-    Rodinia::displayMenu();
+    Rodinia::dashboard;
   }
 }
 

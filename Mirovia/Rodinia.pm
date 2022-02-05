@@ -13,6 +13,13 @@ sub incorrect {
   "\t${esc}$errs ?${cse}\n";
 }
 
+sub validate {
+  my $sign = shift;
+  my $reps = qr/^([ijkn][0-7]+)+([lm][1-7]+)?([hi]+)?$/;
+
+  ( $sign =~ $reps and Gondwana::membership $sign ); 
+}
+
 sub retrieve {
   my $sign = shift;
   my $data = Gondwana::acquire($sign);
@@ -21,15 +28,14 @@ sub retrieve {
     $data;
   }
   else {
-    &Gondwana::tacet;
+    Gondwana::tacet;
   }
 }
 
 sub vestibule {
   my $sign = lc( $_[1] );
 
-  if ( $sign =~ /^([jkn][0-7]+)+([xy][1-7]+)?$/
-    and Gondwana::membership $sign )
+  if ( validate $sign )
   {
     my $data = retrieve $sign;
     my $tune = lc( $_[0] );
@@ -95,8 +101,8 @@ sub vestibule {
   }
 }
 
-sub displayMenu {
-  my @a = &Gondwana::gemstone;
+sub dashboard {
+  my @a = Gondwana::gemstone;
   my $n = scalar(@a) / 2;
   my $i = 0;
 
