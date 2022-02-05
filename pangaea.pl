@@ -8,16 +8,18 @@ use lib './Mirovia';
 use Rodinia;
 
 sub entryway {
-  my $tune = 'eadgbe';    # default tuning
 
   if (@_) {
+    my $tune = 'eadgbe';  # default tuning
     my $clef = Rodinia::validate( $_[0] );
+
     unless ( $clef ) {
       $tune = shift;      # change tuning
     }
 
     if (@_) {
       print "\n";
+
       for (@_) {
         Rodinia::vestibule( $tune, $_ );
         print "\n";

@@ -134,12 +134,24 @@ sub tacet {
 
 sub acquire {
   my $sign = shift;
-  $Metalograph{$sign};
+
+  if ( defined $sign ) {
+    $Metalograph{$sign};
+  }
+  else {
+    tacet;
+  }
 }
 
 sub membership {
   my $sign = shift;
-  exists $Metalograph{$sign};
+
+  if ( defined $sign ) {
+    exists $Metalograph{$sign};
+  }
+  else {
+    0;
+  }
 }
 
 sub gemstone {

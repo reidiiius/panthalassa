@@ -15,9 +15,12 @@ sub incorrect {
 
 sub validate {
   my $sign = shift;
-  my $reps = qr/^([ijkn][0-7]+)+([lm][1-7]+)?([hi]+)?$/;
 
-  ( $sign =~ $reps and Gondwana::membership $sign ); 
+  if ( defined $sign ) {
+    my $reps = qr/^([ijkn][0-7]+)+([lm][1-7]+)?([hi]+)?$/;
+
+    ( $sign =~ $reps and Gondwana::membership $sign ); 
+  }
 }
 
 sub retrieve {
@@ -102,15 +105,15 @@ sub vestibule {
 }
 
 sub dashboard {
-  my @a = Gondwana::gemstone;
-  my $n = scalar(@a) / 2;
-  my $i = 0;
+  my @menu = Gondwana::gemstone;
+  my $size = scalar(@menu) / 2;
+  my $item = 0;
 
-  foreach (@a) {
-    print "\n" if ( $i % 7 == 0 );
-    print "\n" if ( $i == $n );
-    print "\t$_";
-    $i++;
+  foreach (@menu) {
+    print "\n" if ( $item % 7 == 0 );
+    print "\n" if ( $item == $size );
+    print "\t$menu[$item]";
+    $item++;
   }
   print "\n\n";
 }
