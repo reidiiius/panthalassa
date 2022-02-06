@@ -10,27 +10,24 @@ use Rodinia;
 sub entryway {
 
   if (@_) {
-    my $tune = 'eadgbe';  # default tuning
+    my $tune = 'eadgbe';                     # default tuning
     my $clef = Rodinia::validate( $_[0] );
 
-    unless ( $clef ) {
-      $tune = shift;      # change tuning
+    unless ($clef) {
+      $tune = shift;                         # change tuning
     }
 
-    my ( $size, $span ) = ( length($tune), 9 );
-
-    if (@_ and $size <= $span ) {
+    if ( @_ and Rodinia::boundary $tune ) {
       print "\n";
 
       for (@_) {
-        $size = length($_);
-
-        if ( $size <= $span ) {
+        if ( Rodinia::boundary $_ ) {
           Rodinia::vestibule( $tune, $_ );
           print "\n";
         }
         else {
-          my $snip = substr($_, 0, $span) . '..?';
+          my $span = Rodinia::CURB;
+          my $snip = substr( $_, 0, $span ) . '..?';
           my $errs = Rodinia::penlight($snip);
           print "\t$errs\n\n";
         }

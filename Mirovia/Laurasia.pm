@@ -145,7 +145,8 @@ sub dgdgbd {
 sub eadgbe {
   my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
   my ( $gn, $dn, $an, $en, $bn ) = (
-    str_Gn($data), str_Dn($data), str_An($data), str_En($data), str_Bn($data)
+    str_Gn($data), str_Dn($data), str_An($data), str_En($data),
+    str_Bn($data)
   );
   my $diadem = wreath( $sign, $tune );
 

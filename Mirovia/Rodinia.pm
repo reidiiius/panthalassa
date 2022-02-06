@@ -6,6 +6,8 @@ use strict;
 use Gondwana;
 use Laurasia;
 
+use constant CURB => 9;
+
 sub penlight {
   my $snip = shift;
   my ( $esc, $cse ) = ( "\033[0;33m", "\033[0m" );
@@ -13,17 +15,20 @@ sub penlight {
   "${esc}$snip${cse}";
 }
 
+sub boundary {
+  my $word = shift;
+  my ( $size, $span ) = ( length($word), CURB );
+
+  ( $size <= $span );
+}
+
 sub validate {
   my $sign = shift;
 
-  if ( defined $sign ) {
-    my ( $size, $span ) = ( length($sign), 9 );
+  if ( defined $sign and boundary $sign ) {
+    my $reps = qr/^([ijkn][0-7]+)+([lm][1-7]+)?([hi]+)?$/;
 
-    if ( $size <= $span ) {
-      my $reps = qr/^([ijkn][0-7]+)+([lm][1-7]+)?([hi]+)?$/;
-
-      ( $sign =~ $reps and Gondwana::membership $sign ); 
-    }
+    ( $sign =~ $reps and Gondwana::membership $sign );
   }
 }
 
@@ -42,8 +47,7 @@ sub retrieve {
 sub vestibule {
   my $sign = lc( $_[1] );
 
-  if ( validate $sign )
-  {
+  if ( validate $sign ) {
     my $data = retrieve $sign;
     my $tune = lc( $_[0] );
     my @args = ( $tune, $sign, $data );
