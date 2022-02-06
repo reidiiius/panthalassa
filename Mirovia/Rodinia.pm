@@ -17,9 +17,13 @@ sub validate {
   my $sign = shift;
 
   if ( defined $sign ) {
-    my $reps = qr/^([ijkn][0-7]+)+([lm][1-7]+)?([hi]+)?$/;
+    my $span = length($sign);
 
-    ( $sign =~ $reps and Gondwana::membership $sign ); 
+    if ( $span < 9 ) {
+      my $reps = qr/^([ijkn][0-7]+)+([lm][1-7]+)?([hi]+)?$/;
+
+      ( $sign =~ $reps and Gondwana::membership $sign ); 
+    }
   }
 }
 
