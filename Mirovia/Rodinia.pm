@@ -6,20 +6,20 @@ use strict;
 use Gondwana;
 use Laurasia;
 
-sub incorrect {
-  my $errs = shift;
+sub penlight {
+  my $snip = shift;
   my ( $esc, $cse ) = ( "\033[0;33m", "\033[0m" );
 
-  "\t${esc}$errs ?${cse}\n";
+  "${esc}$snip${cse}";
 }
 
 sub validate {
   my $sign = shift;
 
   if ( defined $sign ) {
-    my $span = length($sign);
+    my ( $size, $span ) = ( length($sign), 9 );
 
-    if ( $span < 9 ) {
+    if ( $size <= $span ) {
       my $reps = qr/^([ijkn][0-7]+)+([lm][1-7]+)?([hi]+)?$/;
 
       ( $sign =~ $reps and Gondwana::membership $sign ); 
@@ -90,7 +90,7 @@ sub vestibule {
     elsif ( $tune =~ /dgbe/
       or $tune =~ /gcea/
       or $tune =~ /^gu?itar/
-      or $tune =~ /^uku(le)?/ )
+      or $tune =~ /^uk[eu](le)?/ )
     {
       Laurasia::eadgbe(@args);
     }
@@ -100,11 +100,15 @@ sub vestibule {
       Laurasia::fkbjdn(@args);
     }
     else {
-      die incorrect($tune), "\n";
+      my $snip = "$tune ?";
+      my $errs = penlight($snip);
+      die "\t$errs\n\n";
     }
   }
   else {
-    print incorrect($sign);
+    my $snip = "$sign ?";
+    my $errs = penlight($snip);
+    print "\t$errs\n";
   }
 }
 
