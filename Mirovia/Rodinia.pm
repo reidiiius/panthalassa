@@ -26,7 +26,7 @@ sub validate {
   my $sign = shift;
 
   if ( defined $sign and boundary $sign ) {
-    my $reps = qr/^([ijkn][0-7]+)+([lm][1-7]+)?([hi]+)?$/;
+    my $reps = qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/;
 
     ( $sign =~ $reps and Gondwana::membership $sign );
   }
@@ -106,7 +106,7 @@ sub vestibule {
     else {
       my $snip = "$tune ?";
       my $errs = penlight($snip);
-      die "\t$errs\n\n";
+      print "\t$errs\n";
     }
   }
   else {
@@ -114,6 +114,25 @@ sub vestibule {
     my $errs = penlight($snip);
     print "\t$errs\n";
   }
+}
+
+sub kleenex {
+  my $lingo = shift;
+  my @altar = sort &Gondwana::gemstone;
+  my $colum = 8;
+  my $cycle = 1;
+  my $accum = '';
+
+  print "\n";
+  foreach my $argot (@altar) {
+    if ( $argot =~ m"$lingo" ) {
+      $accum = $accum . "\t$argot";
+      $accum = $accum . "\n" if $cycle % $colum == 0;
+      $cycle++;
+    }
+  }
+  print( penlight($accum), "\n" ) if $accum;
+  print "\n" if --$cycle % $colum != 0;
 }
 
 sub dashboard {

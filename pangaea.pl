@@ -17,6 +17,22 @@ sub entryway {
       $tune = shift;                         # change tuning
     }
 
+    if ( $tune eq 'search' and defined $_[0] ) {
+      my $span = Rodinia::CURB * 6;
+
+      if ( length $_[0] <= $span ) {
+        &Rodinia::kleenex;
+        return 0;
+      }
+      else {
+        my $snip = substr( $_[0], 0, $span );
+        my $errs = "\n\t\x1b[0;33m$snip\x1b[0m";
+        my $warn = "\x1b[0;91m<-overflow:$span\x1b[0m\n\n";
+        print $errs, $warn;
+        return 0;
+      }
+    }
+
     if ( @_ and Rodinia::boundary $tune ) {
       print "\n";
 

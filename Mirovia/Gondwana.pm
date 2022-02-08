@@ -89,6 +89,13 @@ my %Metalograph = (
   'k2j56l7' => "NpCu ____ ____ FePu HgHg PuFe SnTi ____ CuNp PbAu ____ ____ ",
 );
 
+## addendum
+$Metalograph{'j35'} =
+  'NpCu ____ TiSn FePu ____ PuFe SnTi ____ ____ PbAu ____ AuPb ';
+
+$Metalograph{'k16'} =
+  '____ PuFe SnTi ____ CuNp PbAu ____ AuPb ____ ____ TiSn FePu ';
+
 ## synonyms
 $Metalograph{'j2h'} =
   'HgCu PuMn ____ ____ CuHg PbFe ____ AuAg ____ AgAu ____ FePb ';
@@ -156,23 +163,23 @@ sub membership {
 
 sub gemstone {
   my @corundum = qw/
-    i0 j136l7 j167l2 j167l2h j17 j17l2 j2
+    j136l7 j167l2 j167l2h j17 j17l2 j2
     j23 j236 j23k6 j246l3 j26 j26l3 j26l34
     j2h j2k56 j2k56m4 j2k6 j2k6l3 j2k6m5 j2l3
     j2l3h j3 j34k6 j36 j36h j3k56m4 j3k5m4
-    j3k6 j6 k157m6 k1j6 k256 k26 k26m5
+    j3k6 j6 k157m6 k16 k1j6 k256 k26 k26m5
     k2j17 k2j6 k2j6h k56 k56m4 k6 k6h
     k6m5 n0 n167m4 n26l5 n345 n45l2 n5l2
     /;
 
   my @emerald = qw/
-    i0 k135m4 k345m2 k345m2h k34 k34m2 k2
+    k135m4 k345m2 k345m2h k34 k34m2 k2
     k12 k125 k12j5 k257m1 k25 k25m1 k25m17
     k2h k2j56 k2j56l7 k2j5 k2j5m1 k2j5l6 k2m1
     k2m1h k1 k17j5 k15 k15h k1j56l7 k1j6l7
-    k1j5 k5 j346l5 j3k5 j256 j25 j25l6
+    k1j5 k5 j346l5 j35 j3k5 j256 j25 j25l6
     j2k34 j2k5 j2k5h j56 j56l7 j5 j5h
-    j5l6 n0 n345l7 n25m6 n167 n67m2 n6m2
+    j5l6 i0 n345l7 n25m6 n167 n67m2 n6m2
     /;
 
   ( @corundum, @emerald );
