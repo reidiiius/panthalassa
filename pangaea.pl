@@ -26,9 +26,9 @@ sub entryway {
       }
       else {
         my $snip = substr( $_[0], 0, $span );
-        my $errs = "\n\t\x1b[0;33m$snip\x1b[0m";
-        my $warn = "\x1b[0;91m<-overflow:$span\x1b[0m\n\n";
-        print $errs, $warn;
+        my $errs = Rodinia::penlight( $snip, 37 );
+        my $warn = Rodinia::penlight( "<-overflow:$span", 91 );
+        print "\n\t$errs$warn\n\n";
         return 0;
       }
     }
@@ -44,15 +44,17 @@ sub entryway {
         else {
           my $span = Rodinia::CURB;
           my $snip = substr( $_, 0, $span ) . '..?';
-          my $errs = Rodinia::penlight($snip);
+          my $errs = Rodinia::penlight( $snip, 91 );
           print "\t$errs\n\n";
         }
       }
     }
     else {
-      my $snip = Rodinia::penlight('Example:');
+      my $snip = Rodinia::penlight( 'Example:', 96 );
+      my $opus = "perl -w $0";
       print "\n\t$snip\n";
-      print "\t\tperl -w pangaea.pl viola n0 j36\n\n";
+      print "\t\t$opus viola n0 j36\n\n";
+      print "\t\t$opus search '^[jk]\\d([jk]\\d)?\$'\n\n";
     }
   }
   else {

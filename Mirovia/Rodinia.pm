@@ -10,7 +10,8 @@ use constant CURB => 9;
 
 sub penlight {
   my $snip = shift;
-  my ( $esc, $cse ) = ( "\033[0;33m", "\033[0m" );
+  my $code = shift || 33;
+  my ( $esc, $cse ) = ( "\033[0;${code}m", "\033[0m" );
 
   "${esc}$snip${cse}";
 }
@@ -105,13 +106,13 @@ sub vestibule {
     }
     else {
       my $snip = "$tune ?";
-      my $errs = penlight($snip);
+      my $errs = penlight( $snip, 91 );
       print "\t$errs\n";
     }
   }
   else {
     my $snip = "$sign ?";
-    my $errs = penlight($snip);
+    my $errs = penlight( $snip, 91 );
     print "\t$errs\n";
   }
 }
@@ -131,7 +132,7 @@ sub kleenex {
       $cycle++;
     }
   }
-  print( penlight($accum), "\n" ) if $accum;
+  print( penlight( $accum, 93 ), "\n" ) if $accum;
   print "\n" if --$cycle % $colum != 0;
 }
 
