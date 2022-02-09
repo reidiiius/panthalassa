@@ -3,6 +3,31 @@ package Laurasia;
 use warnings;
 use strict;
 
+sub invert {
+  my $yarn = shift;
+  my $span = length($yarn);
+  my $wire = $yarn;
+
+  $wire =~ y/jklm134567/kjml317654/;
+  $wire =~ s/76/67/;
+  $wire =~ s/75/57/;
+  $wire =~ s/65/56/;
+  $wire =~ s/64/46/;
+  $wire =~ s/54/45/;
+  $wire =~ s/32/23/;
+  $wire =~ s/31/13/;
+  $wire =~ s/21/12/;
+
+  my $size = length($wire);
+
+  if ( $size == $span ) {
+    $wire;
+  }
+  else {
+    $yarn;
+  }
+}
+
 sub refine {
   my $yarn = shift;
   my $wire = $yarn;

@@ -54,6 +54,7 @@ sub entryway {
       my $opus = "perl -w $0";
       print "\n\t$snip\n";
       print "\t\t$opus viola n0 j36\n\n";
+      print "\t\t$opus viola: n0 j36\n\n";
       print "\t\t$opus search '^[jk]\\d([jk]\\d)?\$'\n\n";
     }
   }

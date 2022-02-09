@@ -51,6 +51,13 @@ sub vestibule {
   if ( validate $sign ) {
     my $data = retrieve $sign;
     my $tune = lc( $_[0] );
+
+    if ( $tune =~ /\w+:$/ ) {
+      $sign = Laurasia::invert($sign);
+      $data = retrieve $sign;
+      $tune = substr($tune, 0, -1);
+    }
+
     my @args = ( $tune, $sign, $data );
 
     if ( $tune eq 'bass'
@@ -107,7 +114,8 @@ sub vestibule {
     else {
       my $snip = "$tune ?";
       my $errs = penlight( $snip, 91 );
-      print "\t$errs\n";
+      print "\t$errs\n\n";
+      exit 0;
     }
   }
   else {
