@@ -55,7 +55,7 @@ sub vestibule {
     if ( $tune =~ /\w+:$/ ) {
       $sign = Laurasia::invert($sign);
       $data = retrieve $sign;
-      $tune = substr($tune, 0, -1);
+      $tune = substr( $tune, 0, -1 );
     }
 
     my @args = ( $tune, $sign, $data );
@@ -64,14 +64,14 @@ sub vestibule {
       or $tune =~ /^beadgc?/
       or $tune =~ /^b?eadgc/
       or $tune eq 'eadg'
+      or $tune eq 'oud'
       or $tune eq 'p4' )
     {
       Laurasia::beadgcf(@args);
     }
     elsif ( $tune eq 'a4'
       or $tune =~ /^bfb/
-      or $tune eq 'b5'
-      or $tune eq 'd5'
+      or $tune =~ /[bd]5/
       or $tune =~ /^fbf/
       or $tune =~ /^tritone?/ )
     {
@@ -80,9 +80,10 @@ sub vestibule {
     elsif ( $tune =~ /^bouz.*/
       or $tune eq 'cello'
       or $tune =~ /^c?gdae?/
+      or $tune eq 'fiddle'
       or $tune eq 'p5'
-      or $tune =~ /^mand.*/
-      or $tune =~ /^viol.*/ )
+      or $tune =~ /^mando.*/
+      or $tune =~ /^viol[ai].*/ )
     {
       Laurasia::cgdae(@args);
     }
@@ -100,6 +101,7 @@ sub vestibule {
       Laurasia::dgdgbd(@args);
     }
     elsif ( $tune =~ /dgbe/
+      or $tune eq 'gamba'
       or $tune =~ /gcea/
       or $tune =~ /^gu?itar/
       or $tune =~ /^uk[eu](le)?/ )

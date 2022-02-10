@@ -20,7 +20,7 @@ sub invert {
 
   my $size = length($wire);
 
-  if ( $size == $span ) {
+  if ( $size == $span and $wire ne $yarn ) {
     $wire;
   }
   else {
@@ -48,7 +48,7 @@ sub refine {
 
   my $size = length($wire);
 
-  if ( $size >= 24 and $size <= 72 ) {
+  if ( $wire ne $yarn and $size >= 24 and $size <= 72 ) {
     $wire;
   }
   else {
