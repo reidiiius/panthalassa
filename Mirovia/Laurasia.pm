@@ -20,12 +20,7 @@ sub invert {
 
   my $size = length($wire);
 
-  if ( $size == $span and $wire ne $yarn ) {
-    $wire;
-  }
-  else {
-    $yarn;
-  }
+  ( $size == $span and $wire ne $yarn ) ? $wire : $yarn;
 }
 
 sub refine {
@@ -48,12 +43,7 @@ sub refine {
 
   my $size = length($wire);
 
-  if ( $wire ne $yarn and $size >= 24 and $size <= 72 ) {
-    $wire;
-  }
-  else {
-    $yarn;
-  }
+  ( $wire ne $yarn and $size >= 24 and $size <= 72 ) ? $wire : $yarn;
 }
 
 sub pegBox {

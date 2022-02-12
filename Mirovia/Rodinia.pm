@@ -37,12 +37,7 @@ sub retrieve {
   my $sign = shift;
   my $data = Gondwana::acquire($sign);
 
-  if ( defined $data ) {
-    $data;
-  }
-  else {
-    Gondwana::tacet;
-  }
+  ( defined $data ) ? $data : Gondwana::tacet;
 }
 
 sub vestibule {
