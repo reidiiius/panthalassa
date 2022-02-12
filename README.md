@@ -22,6 +22,8 @@ command-line
 
     perl -w pangaea.pl search j23\|k12
 
+    perl -w pangaea.pl bass gamut
+
 ---
 
 ### Distribution

@@ -109,6 +109,11 @@ sub tacet {
   '____ ' x 12;
 }
 
+sub keynotes {
+  my @arks = keys %Metalograph;
+  sort @arks;
+}
+
 sub acquire {
   my $sign = shift;
 

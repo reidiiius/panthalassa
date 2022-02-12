@@ -15,6 +15,14 @@ sub entryway {
 
     unless ($clef) {
       $tune = shift;                         # change tuning
+
+      unless ( Rodinia::boundary $tune ) {
+        my $span = Rodinia::CURB;
+        my $snip = substr( $tune, 0, $span ) . '..?';
+        my $errs = Rodinia::penlight( $snip, 91 );
+        print "\n\t$errs\n\n";
+        return 0;
+      }
     }
 
     if ( $tune eq 'search' and defined $_[0] ) {
@@ -33,7 +41,18 @@ sub entryway {
       }
     }
 
-    if ( @_ and Rodinia::boundary $tune ) {
+    elsif ( @_ and $_[0] eq 'gamut' ) {
+      my @arks = Gondwana::keynotes;
+
+      print "\n";
+      for (@arks) {
+        Rodinia::vestibule( $tune, $_ );
+        print "\n";
+      }
+      return 0;
+    }
+
+    elsif (@_) {
       print "\n";
 
       for (@_) {
@@ -56,6 +75,7 @@ sub entryway {
       print "\t\t$opus viola n0 j36\n\n";
       print "\t\t$opus viola: n0 j36\n\n";
       print "\t\t$opus search '^[jk]\\d([jk]\\d)?\$'\n\n";
+      print "\t\t$opus guitar gamut\n\n";
     }
   }
   else {
