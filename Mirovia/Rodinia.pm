@@ -179,7 +179,7 @@ sub entryway {
       }
     }
 
-    if ( $tune eq 'search' and defined $_[0] ) {
+    if ( @_ and $tune =~ /^\w*\?+$/ ) {
       my $span = CURB * 6;
 
       if ( length $_[0] <= $span ) {
@@ -217,13 +217,24 @@ sub entryway {
       }
     }
     else {
-      my $snip = penlight( 'Example:', 96 );
-      my $opus = "perl -w $0";
+      my $snip = penlight( 'Usage:', 96 );
+      my $name = "$0";
+      my @tips = (
+        "chmod u+x $name ",
+        "$name ",
+        "$name n0 j6 ",
+        "$name ? j6 ",
+        "$name cgdae n0 j3 j36 ",
+        "$name cgdae: n0 j3 j36 ",
+        "$name cgdae? 36\\|15 ",
+        "$name cgdae? '^[jk]\\d([jk]\\d)?\$' ",
+        "$name cgdae gamut | less -R ",
+      );
+
       print "\n\t$snip\n";
-      print "\t\t$opus viola n0 j36\n\n";
-      print "\t\t$opus viola: n0 j36\n\n";
-      print "\t\t$opus search '^[jk]\\d([jk]\\d)?\$'\n\n";
-      print "\t\t$opus guitar gamut\n\n";
+      for (@tips) {
+        print "\t\t$_\n\n";
+      }
     }
   }
   else {

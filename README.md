@@ -12,17 +12,23 @@ Morphology
 ### Usage
 command-line
 
-    perl -w pangaea.pl
+    chmod u+x ./pangaea.pl
 
-    perl -w pangaea.pl j3 k1
+    ./pangaea.pl
 
-    perl -w pangaea.pl cello j3 k1
+    ./pangaea.pl n0 j6
 
-    perl -w pangaea.pl cello: j3 j23
+    ./pangaea.pl ? j6
 
-    perl -w pangaea.pl search j23\|k12
+    ./pangaea.pl cgdae n0 j3 j36
 
-    perl -w pangaea.pl bass gamut
+    ./pangaea.pl cgdae: n0 j3 j36
+
+    ./pangaea.pl cgdae? 36\|15
+
+    ./pangaea.pl cgdae? '^[jk]\d([jk]\d)?$'
+
+    ./pangaea.pl cgdae gamut | less -R
 
 ---
 
