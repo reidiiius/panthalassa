@@ -12,23 +12,23 @@ Morphology
 ### Usage
 command-line
 
-    chmod u+x ./pangaea.pl
+    chmod u+x ./pangaea.pl 
 
-    ./pangaea.pl
+    ./pangaea.pl 
 
-    ./pangaea.pl n0 j6
+    ./pangaea.pl n0 j6 
 
-    ./pangaea.pl ? j6
+    ./pangaea.pl : j6 
 
-    ./pangaea.pl cgdae n0 j3 j36
+    ./pangaea.pl ? j6 
 
-    ./pangaea.pl cgdae: n0 j3 j36
+    ./pangaea.pl cgdae n0 j3 j36 
 
-    ./pangaea.pl cgdae? 36\|15
+    ./pangaea.pl cgdae: j3 j36 
 
-    ./pangaea.pl cgdae? '^[jk]\d([jk]\d)?$'
+    ./pangaea.pl cgdae? '^[jk]\d([jk]\d)?$' 
 
-    ./pangaea.pl cgdae gamut | less -R
+    ./pangaea.pl cgdae gamut | less -R 
 
 ---
 

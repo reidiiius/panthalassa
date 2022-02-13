@@ -22,6 +22,7 @@ sub caution {
   my $code = shift || 91;
   my $snip = substr( $word, 0, $span ) . ' ?';
   my $errs = penlight( $snip, $code );
+
   "\t$errs\n";
 }
 
@@ -56,7 +57,7 @@ sub vestibule {
     my $data = retrieve $sign;
     my $tune = lc( $_[0] );
 
-    if ( $tune =~ /\w+:$/ ) {
+    if ( $tune =~ /^\w+:$/a ) {
       $sign = Laurasia::invert($sign);
       $data = retrieve $sign;
       $tune = substr( $tune, 0, -1 );
@@ -119,12 +120,14 @@ sub vestibule {
     }
     else {
       my $alert = caution $tune;
+
       print "$alert\n";
       exit 0;
     }
   }
   else {
     my $alert = caution $sign;
+
     print $alert;
   }
 }
@@ -138,7 +141,7 @@ sub kleenex {
 
   print "\n";
   foreach my $argot (@altar) {
-    if ( $argot =~ m"$lingo" ) {
+    if ( $argot =~ m"$lingo"a ) {
       $accum = $accum . "\t$argot";
       $accum = $accum . "\n" if $cycle % $colum == 0;
       $cycle++;
@@ -165,21 +168,23 @@ sub dashboard {
 sub entryway {
 
   if (@_) {
-    my $tune  = 'beadgcf';           # default tuning
     my $clef  = validate( $_[0] );
     my $alert = 'initialization';
+    my $pegs  = 'beadgcf';           # default tuning
+    my $tune  = $pegs;
 
     unless ($clef) {
       $tune = shift;                 # change tuning
 
       unless ( boundary $tune ) {
         $alert = caution($tune);
+
         print "\n$alert\n";
         return 0;
       }
     }
 
-    if ( @_ and $tune =~ /^\w*\?+$/ ) {
+    if ( @_ and $tune =~ /^\w*\?+$/a ) {
       my $span = CURB * 6;
 
       if ( length $_[0] <= $span ) {
@@ -188,8 +193,28 @@ sub entryway {
       }
       else {
         $alert = caution( $_[0], $span );
+
         print "\n$alert\n";
         return 0;
+      }
+    }
+    elsif ( @_ and $tune =~ /^\:+$/a ) {
+      my $sign = 'i0';
+      $tune = $pegs;
+
+      print "\n";
+      for (@_) {
+        if ( boundary $_ ) {
+          $sign = Laurasia::invert($_);
+
+          vestibule( $tune, $sign );
+          print "\n";
+        }
+        else {
+          $alert = caution( $_, CURB );
+
+          print "\n$alert\n";
+        }
       }
     }
     elsif ( @_ and $_[0] eq 'gamut' ) {
@@ -204,7 +229,6 @@ sub entryway {
     }
     elsif (@_) {
       print "\n";
-
       for (@_) {
         if ( boundary $_ ) {
           vestibule( $tune, $_ );
@@ -212,6 +236,7 @@ sub entryway {
         }
         else {
           $alert = caution($_);
+
           print "$alert\n";
         }
       }
@@ -223,10 +248,10 @@ sub entryway {
         "chmod u+x $name ",
         "$name ",
         "$name n0 j6 ",
+        "$name : j6 ",
         "$name ? j6 ",
         "$name cgdae n0 j3 j36 ",
-        "$name cgdae: n0 j3 j36 ",
-        "$name cgdae? 36\\|15 ",
+        "$name cgdae: j3 j36 ",
         "$name cgdae? '^[jk]\\d([jk]\\d)?\$' ",
         "$name cgdae gamut | less -R ",
       );
