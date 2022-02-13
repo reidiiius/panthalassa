@@ -10,17 +10,16 @@ use Rodinia;
 sub entryway {
 
   if (@_) {
-    my $tune = 'eadgbe';                     # default tuning
-    my $clef = Rodinia::validate( $_[0] );
+    my $tune  = 'beadgcf';                    # default tuning
+    my $clef  = Rodinia::validate( $_[0] );
+    my $alert = 'initialization';
 
     unless ($clef) {
-      $tune = shift;                         # change tuning
+      $tune = shift;                          # change tuning
 
       unless ( Rodinia::boundary $tune ) {
-        my $span = Rodinia::CURB;
-        my $snip = substr( $tune, 0, $span ) . '..?';
-        my $errs = Rodinia::penlight( $snip, 91 );
-        print "\n\t$errs\n\n";
+        $alert = Rodinia::caution($tune);
+        print "\n$alert\n";
         return 0;
       }
     }
@@ -33,14 +32,11 @@ sub entryway {
         return 0;
       }
       else {
-        my $snip = substr( $_[0], 0, $span );
-        my $errs = Rodinia::penlight( $snip, 37 );
-        my $warn = Rodinia::penlight( "<-overflow:$span", 91 );
-        print "\n\t$errs$warn\n\n";
+        $alert = Rodinia::caution( $_[0], $span );
+        print "\n$alert\n";
         return 0;
       }
     }
-
     elsif ( @_ and $_[0] eq 'gamut' ) {
       my @arks = Gondwana::keynotes;
 
@@ -51,7 +47,6 @@ sub entryway {
       }
       return 0;
     }
-
     elsif (@_) {
       print "\n";
 
@@ -61,10 +56,8 @@ sub entryway {
           print "\n";
         }
         else {
-          my $span = Rodinia::CURB;
-          my $snip = substr( $_, 0, $span ) . '..?';
-          my $errs = Rodinia::penlight( $snip, 91 );
-          print "\t$errs\n\n";
+          $alert = Rodinia::caution($_);
+          print "$alert\n";
         }
       }
     }

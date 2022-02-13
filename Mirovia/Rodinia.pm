@@ -16,6 +16,15 @@ sub penlight {
   "${esc}$snip${cse}";
 }
 
+sub caution {
+  my $word = shift;
+  my $span = shift || CURB;
+  my $code = shift || 91;
+  my $snip = substr( $word, 0, $span ) . ' ?';
+  my $errs = penlight( $snip, $code );
+  "\t$errs\n";
+}
+
 sub boundary {
   my $word = shift;
   my ( $size, $span ) = ( length($word), CURB );
@@ -109,16 +118,14 @@ sub vestibule {
       Laurasia::fkbjdn(@args);
     }
     else {
-      my $snip = "$tune ?";
-      my $errs = penlight( $snip, 91 );
-      print "\t$errs\n\n";
+      my $alert = caution $tune;
+      print "$alert\n";
       exit 0;
     }
   }
   else {
-    my $snip = "$sign ?";
-    my $errs = penlight( $snip, 91 );
-    print "\t$errs\n";
+    my $alert = caution $sign;
+    print $alert;
   }
 }
 
