@@ -11,7 +11,7 @@ use constant CURB => 9;
 sub penlight {
   my $snip = shift;
   my $code = shift || 33;
-  my ( $esc, $cse ) = ( "\033[0;${code}m", "\033[0m" );
+  my ( $esc, $cse ) = ( "\e[0;${code}m", "\e[0m" );
 
   "${esc}$snip${cse}";
 }
@@ -66,8 +66,8 @@ sub vestibule {
     my @args = ( $tune, $sign, $data );
 
     if ( $tune eq 'bass'
-      or $tune =~ /^beadgc?/
-      or $tune =~ /^b?eadgc/
+      or $tune =~ /^beadgc?/a
+      or $tune =~ /^b?eadgc/a
       or $tune eq 'eadg'
       or $tune eq 'oud'
       or $tune eq 'p4' )
@@ -75,41 +75,41 @@ sub vestibule {
       Laurasia::beadgcf(@args);
     }
     elsif ( $tune eq 'a4'
-      or $tune =~ /^bfb/
-      or $tune =~ /[bd]5/
-      or $tune =~ /^fbf/
-      or $tune =~ /^tritone?/ )
+      or $tune =~ /^bfb/a
+      or $tune =~ /[bd]5/a
+      or $tune =~ /^fbf/a
+      or $tune =~ /^tritone?/a )
     {
       Laurasia::bfbfb(@args);
     }
-    elsif ( $tune =~ /^bouz.*/
+    elsif ( $tune =~ /^bouz.*/a
       or $tune eq 'cello'
-      or $tune =~ /^c?gdae?/
+      or $tune =~ /^c?gdae?/a
       or $tune eq 'fiddle'
       or $tune eq 'p5'
-      or $tune =~ /^mando.*/
-      or $tune =~ /^viol[ai].*/ )
+      or $tune =~ /^mando.*/a
+      or $tune =~ /^viol[ai].*/a )
     {
       Laurasia::cgdae(@args);
     }
     elsif ( $tune eq 'dadgad'
-      or $tune =~ /^celt.*/ )
+      or $tune =~ /^celt.*/a )
     {
       Laurasia::dadgad(@args);
     }
     elsif ( $tune eq 'banjo'
       or $tune eq 'dobro'
-      or $tune =~ /^d?gdgbd/
-      or $tune =~ /^open.*/
-      or $tune =~ /^slack.*/ )
+      or $tune =~ /^d?gdgbd/a
+      or $tune =~ /^open.*/a
+      or $tune =~ /^slack.*/a )
     {
       Laurasia::dgdgbd(@args);
     }
-    elsif ( $tune =~ /dgbe/
+    elsif ( $tune =~ /dgbe/a
       or $tune eq 'gamba'
-      or $tune =~ /gcea/
-      or $tune =~ /^gu?itar/
-      or $tune =~ /^uk[eu](le)?/ )
+      or $tune =~ /gcea/a
+      or $tune =~ /^gu?itar/a
+      or $tune =~ /^uk[eu](le)?/a )
     {
       Laurasia::eadgbe(@args);
     }
@@ -141,7 +141,7 @@ sub kleenex {
 
   print "\n";
   foreach my $argot (@altar) {
-    if ( $argot =~ m"$lingo"a ) {
+    if ( $argot =~ m{$lingo}a ) {
       $accum = $accum . "\t$argot";
       $accum = $accum . "\n" if $cycle % $colum == 0;
       $cycle++;
@@ -199,7 +199,7 @@ sub entryway {
       }
     }
     elsif ( @_ and $tune =~ /^\:+$/a ) {
-      my $sign = 'i0';
+      my $sign = 'initialize';
       $tune = $pegs;
 
       print "\n";
