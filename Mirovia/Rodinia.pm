@@ -62,7 +62,6 @@ sub vestibule {
       or $tune =~ /^beadgc?/a
       or $tune =~ /^b?eadgc/a
       or $tune eq 'eadg'
-      or $tune eq 'oud'
       or $tune eq 'p4' )
     {
       Laurasia::beadgcf(@args);
@@ -91,18 +90,16 @@ sub vestibule {
       Laurasia::dadgad(@args);
     }
     elsif ( $tune eq 'banjo'
-      or $tune eq 'dobro'
       or $tune =~ /^d?gdgbd/a
       or $tune =~ /^open.*/a
       or $tune =~ /^slack.*/a )
     {
       Laurasia::dgdgbd(@args);
     }
-    elsif ( $tune =~ /dgbe/a
-      or $tune eq 'gamba'
+    elsif ( $tune eq 'eadgbe'
+      or $tune =~ /dgbe/a
       or $tune =~ /gcea/a
-      or $tune =~ /^gu?itar/a
-      or $tune =~ /^uk[eu](le)?/a )
+      or $tune =~ /^gu?itar/a )
     {
       Laurasia::eadgbe(@args);
     }
@@ -162,7 +159,7 @@ sub entryway {
 
   if (@_) {
     my $clef  = validate( $_[0] );
-    my $alert = 'initialization';
+    my $alert = 'initialize';
     my $pegs  = 'beadgcf';           # default tuning
     my $tune  = $pegs;
 
@@ -182,13 +179,11 @@ sub entryway {
 
       if ( length $_[0] <= $span ) {
         &kleenex;
-        return 0;
       }
       else {
         $alert = caution( $_[0], $span );
 
         print "\n$alert\n";
-        return 0;
       }
     }
     elsif ( @_ and $tune =~ /^\w*\:$/a ) {
@@ -219,7 +214,6 @@ sub entryway {
         vestibule( $tune, $_ );
         print "\n";
       }
-      return 0;
     }
     elsif (@_) {
       print "\n";
