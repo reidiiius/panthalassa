@@ -24,7 +24,7 @@ command-line
 
     ./pangaea.pl cgdae n0 j3 j36 
 
-    ./pangaea.pl cgdae: j3 j36 
+    ./pangaea.pl cgdae: j3 j36 j236 
 
     ./pangaea.pl cgdae? '^[jk]\d([jk]\d)?$' 
 

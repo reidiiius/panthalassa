@@ -56,13 +56,6 @@ sub vestibule {
   if ( validate $sign ) {
     my $data = retrieve $sign;
     my $tune = lc( $_[0] );
-
-    if ( $tune =~ /^\w+:$/a ) {
-      $sign = Laurasia::invert($sign);
-      $data = retrieve $sign;
-      $tune = substr( $tune, 0, -1 );
-    }
-
     my @args = ( $tune, $sign, $data );
 
     if ( $tune eq 'bass'
@@ -184,7 +177,7 @@ sub entryway {
       }
     }
 
-    if ( @_ and $tune =~ /^\w*\?+$/a ) {
+    if ( @_ and $tune =~ /^\w*\?$/a ) {
       my $span = CURB * 6;
 
       if ( length $_[0] <= $span ) {
@@ -198,9 +191,10 @@ sub entryway {
         return 0;
       }
     }
-    elsif ( @_ and $tune =~ /^\:+$/a ) {
+    elsif ( @_ and $tune =~ /^\w*\:$/a ) {
       my $sign = 'initialize';
-      $tune = $pegs;
+      $tune = substr( $tune, 0, -1 );
+      $tune = $pegs unless $tune;
 
       print "\n";
       for (@_) {
@@ -213,7 +207,7 @@ sub entryway {
         else {
           $alert = caution( $_, CURB );
 
-          print "\n$alert\n";
+          print "$alert\n";
         }
       }
     }
@@ -251,7 +245,7 @@ sub entryway {
         "$name : j6 ",
         "$name ? j6 ",
         "$name cgdae n0 j3 j36 ",
-        "$name cgdae: j3 j36 ",
+        "$name cgdae: j3 j36 j236 ",
         "$name cgdae? '^[jk]\\d([jk]\\d)?\$' ",
         "$name cgdae gamut | less -R ",
       );

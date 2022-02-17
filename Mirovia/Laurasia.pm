@@ -56,52 +56,61 @@ sub pegBox {
 
 sub str_Bj {
   my $data = shift;
+
   pegBox( $data, 50, 10 );
 }
 
 sub str_Fn {
   my $data = shift;
+
   pegBox( $data, 25, 35 );
 }
 
 sub str_Cn {
   my $data = shift;
+
   pegBox( $data, 0, 60 );
 }
 
 sub str_Gn {
   my $data = shift;
+
   pegBox( $data, 35, 25 );
 }
 
 sub str_Dn {
   my $data = shift;
+
   pegBox( $data, 10, 50 );
 }
 
 sub str_An {
   my $data = shift;
+
   pegBox( $data, 45, 15 );
 }
 
 sub str_En {
   my $data = shift;
+
   pegBox( $data, 20, 40 );
 }
 
 sub str_Bn {
   my $data = shift;
+
   pegBox( $data, 55, 05 );
 }
 
 sub str_Fk {
   my $data = shift;
+
   pegBox( $data, 30, 30 );
 }
 
 sub wreath {
-  my ( $sign, $tune ) = ( $_[0], $_[1] );
-  my ( $esc, $cse ) = ( "\033[0;33m", "\033[0m" );
+  my ( $sign, $tune, $code ) = ( $_[0], $_[1], $_[2] || 33 );
+  my ( $esc, $cse ) = ( "\e[0;${code}m", "\e[0m" );
   my $crown = $sign . "-$tune" . '-i' . time;
 
   "\t$esc" . $crown . "$cse\n";
@@ -109,7 +118,7 @@ sub wreath {
 
 sub beadgcf {
   my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my $diadem = wreath( $sign, $tune );
+  my $diadem = wreath( $sign, $tune, 0 );
 
   print $diadem,
     str_Fn($data),
@@ -124,14 +133,14 @@ sub beadgcf {
 sub bfbfb {
   my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
   my ( $bn, $fn ) = ( str_Bn($data), str_Fn($data) );
-  my $diadem = wreath( $sign, $tune );
+  my $diadem = wreath( $sign, $tune, 0 );
 
   print $diadem, $bn, $fn, $bn, $fn, $bn;
 }
 
 sub cgdae {
   my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my $diadem = wreath( $sign, $tune );
+  my $diadem = wreath( $sign, $tune, 0 );
 
   print $diadem,
     str_En($data),
@@ -144,7 +153,7 @@ sub cgdae {
 sub dadgad {
   my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
   my ( $an, $dn, $gn ) = ( str_An($data), str_Dn($data), str_Gn($data) );
-  my $diadem = wreath( $sign, $tune );
+  my $diadem = wreath( $sign, $tune, 0 );
 
   print $diadem, $dn, $an, $gn, $dn, $an, $dn;
 }
@@ -152,7 +161,7 @@ sub dadgad {
 sub dgdgbd {
   my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
   my ( $gn, $bn, $dn ) = ( str_Gn($data), str_Bn($data), str_Dn($data) );
-  my $diadem = wreath( $sign, $tune );
+  my $diadem = wreath( $sign, $tune, 0 );
 
   print $diadem, $dn, $bn, $gn, $dn, $gn, $dn;
 }
@@ -163,7 +172,7 @@ sub eadgbe {
     str_Gn($data), str_Dn($data), str_An($data), str_En($data),
     str_Bn($data)
   );
-  my $diadem = wreath( $sign, $tune );
+  my $diadem = wreath( $sign, $tune, 0 );
 
   print $diadem, $en, $bn, $gn, $dn, $an, $en;
 }
@@ -171,7 +180,7 @@ sub eadgbe {
 sub fkbjdn {
   my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
   my ( $dn, $bj, $fk ) = ( str_Dn($data), str_Bj($data), str_Fk($data) );
-  my $diadem = wreath( $sign, $tune );
+  my $diadem = wreath( $sign, $tune, 0 );
 
   print $diadem, $dn, $bj, $fk, $dn, $bj, $fk;
 }

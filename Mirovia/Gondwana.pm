@@ -111,6 +111,7 @@ sub tacet {
 
 sub keynotes {
   my @arks = keys %Metalograph;
+
   sort @arks;
 }
 
