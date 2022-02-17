@@ -26,7 +26,7 @@ command-line
 
     ./pangaea.pl cgdae: j3 j36 j236 
 
-    ./pangaea.pl cgdae? '^[jk]\d([jk]\d)?$' 
+    ./pangaea.pl cgdae? '^([jk]\d)+$' 
 
     ./pangaea.pl cgdae gamut | less -R 
 

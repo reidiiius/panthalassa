@@ -246,7 +246,7 @@ sub entryway {
         "$name ? j6 ",
         "$name cgdae n0 j3 j36 ",
         "$name cgdae: j3 j36 j236 ",
-        "$name cgdae? '^[jk]\\d([jk]\\d)?\$' ",
+        "$name cgdae? '^([jk]\\d)+\$' ",
         "$name cgdae gamut | less -R ",
       );
 
