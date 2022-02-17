@@ -59,10 +59,10 @@ sub vestibule {
     my @args = ( $tune, $sign, $data );
 
     if ( $tune eq 'bass'
-      or $tune =~ /^beadgc?/a
-      or $tune =~ /^b?eadgc/a
       or $tune eq 'eadg'
-      or $tune eq 'p4' )
+      or $tune eq 'p4'
+      or $tune =~ /^beadgc?/a
+      or $tune =~ /^b?eadgc/a )
     {
       Laurasia::beadgcf(@args);
     }
@@ -74,11 +74,11 @@ sub vestibule {
     {
       Laurasia::bfbfb(@args);
     }
-    elsif ( $tune =~ /^bouz.*/a
-      or $tune eq 'cello'
-      or $tune =~ /^c?gdae?/a
+    elsif ( $tune eq 'cello'
       or $tune eq 'fiddle'
       or $tune eq 'p5'
+      or $tune =~ /^bouz.*/a
+      or $tune =~ /^c?gdae?/a
       or $tune =~ /^mando.*/a
       or $tune =~ /^viol[ai].*/a )
     {

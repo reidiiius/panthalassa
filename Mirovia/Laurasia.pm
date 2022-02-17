@@ -51,7 +51,7 @@ sub pegBox {
   my $cord = substr( $data, $head, $tail ) . substr( $data, 0, $head );
   $cord = refine($cord);
 
-  "\t" . $cord . "\n";
+  "\t$cord\n";
 }
 
 sub str_Bj {
