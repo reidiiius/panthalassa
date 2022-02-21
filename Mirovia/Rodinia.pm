@@ -16,7 +16,7 @@ sub penlight {
   "${esc}$snip${cse}";
 }
 
-sub scapula {
+sub chaplain {
   my $vine = shift;
   my $code = shift || 33;
 
@@ -134,7 +134,7 @@ sub vestibule {
 
 sub kleenex {
   my $lingo = shift;
-  my @altar = sort &Gondwana::gemstone;
+  my @altar = Gondwana::keynotes;
   my $colum = 8;
   my $cycle = 1;
   my $accum = '';
@@ -151,18 +151,43 @@ sub kleenex {
   print "\n" if --$cycle % $colum != 0;
 }
 
-sub dashboard {
-  my @menu = Gondwana::gemstone;
-  my $size = scalar(@menu) / 2;
-  my $item = 0;
+sub recycle {
+  my $pref = shift;
 
-  foreach (@menu) {
-    print "\n" if ( $item % 7 == 0 );
-    print "\n" if ( $item == $size );
-    print "\t$menu[$item]";
-    $item++;
+  if ( ref $pref ) {
+    my @menu = &{$pref};
+    my $size = scalar(@menu);
+    my $item = 0;
+
+    foreach (@menu) {
+      print "\n" if ( $item % 7 == 0 );
+      print "\t$menu[$item]";
+      $item++;
+    }
+    print "\n";
   }
-  print "\n\n";
+  else {
+    my $where = __FILE__ . ', line: ' . __LINE__;
+    my $about = "$where, Argument not reference";
+    my $alert = caution( $about, 56 );
+
+    print "\n$alert\n";
+    exit 0;
+  }
+}
+
+sub dashboard {
+  my $pref = undef;
+
+  $pref = \&Gondwana::sanguine;
+
+  recycle $pref;
+
+  $pref = \&Gondwana::viridian;
+
+  recycle $pref;
+
+  print "\n";
 }
 
 sub entryway {
@@ -185,7 +210,7 @@ sub entryway {
     }
 
     if ( @_ and $tune =~ /^\w*\?$/a ) {
-      my $span = CURB * 6;
+      my $span = 56;
 
       if ( length $_[0] <= $span ) {
         &kleenex;
@@ -225,7 +250,7 @@ sub entryway {
       print "\n";
       foreach $sign (@arks) {
         @star = vestibule( $tune, $sign );
-        $star[0] = scapula $star[0];
+        $star[0] = chaplain $star[0];
 
         foreach $crow (@star) {
           print $crow;
