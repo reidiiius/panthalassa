@@ -16,6 +16,16 @@ sub penlight {
   "${esc}$snip${cse}";
 }
 
+sub scapula {
+  my $vine = shift;
+  my $code = shift || 33;
+
+  $vine =~ s/\e\[0;${code}m//g;
+  $vine =~ s/\e\[0m//g;
+
+  $vine;
+}
+
 sub caution {
   my $word = shift;
   my $span = shift || CURB;
@@ -118,7 +128,7 @@ sub vestibule {
   else {
     my $alert = caution $sign;
 
-    print $alert;
+    $alert;
   }
 }
 
@@ -196,7 +206,7 @@ sub entryway {
         if ( boundary $_ ) {
           $sign = Laurasia::invert($_);
 
-          vestibule( $tune, $sign );
+          print vestibule( $tune, $sign );
           print "\n";
         }
         else {
@@ -208,10 +218,18 @@ sub entryway {
     }
     elsif ( @_ and $_[0] eq 'gamut' ) {
       my @arks = Gondwana::keynotes;
+      my @star = ();
+      my $sign = 'initialize';
+      my $crow = 'initialize';
 
       print "\n";
-      for (@arks) {
-        vestibule( $tune, $_ );
+      foreach $sign (@arks) {
+        @star = vestibule( $tune, $sign );
+        $star[0] = scapula $star[0];
+
+        foreach $crow (@star) {
+          print $crow;
+        }
         print "\n";
       }
     }
@@ -219,7 +237,7 @@ sub entryway {
       print "\n";
       for (@_) {
         if ( boundary $_ ) {
-          vestibule( $tune, $_ );
+          print vestibule( $tune, $_ );
           print "\n";
         }
         else {
@@ -241,7 +259,7 @@ sub entryway {
         "$name cgdae n0 j3 j36 ",
         "$name cgdae: j3 j36 j236 ",
         "$name cgdae? '^([jk]\\d)+\$' ",
-        "$name cgdae gamut | less -R ",
+        "$name cgdae gamut | less ",
       );
 
       print "\n\t$snip\n";

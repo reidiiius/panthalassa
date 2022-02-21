@@ -28,7 +28,7 @@ command-line
 
     ./pangaea.pl cgdae? '^([jk]\d)+$' 
 
-    ./pangaea.pl cgdae gamut | less -R 
+    ./pangaea.pl cgdae gamut | less 
 
 ---
 
