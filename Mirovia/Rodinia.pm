@@ -179,12 +179,13 @@ sub recycle {
 sub dashboard {
   my $pref = undef;
 
-  $pref = \&Gondwana::sanguine;
+  $pref = \&Gondwana::pickaxe;
+  recycle $pref;
 
+  $pref = \&Gondwana::sanguine;
   recycle $pref;
 
   $pref = \&Gondwana::viridian;
-
   recycle $pref;
 
   print "\n";

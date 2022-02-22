@@ -127,6 +127,8 @@ sub membership {
   ( defined $sign ) ? exists $Metalograph{$sign} : 0;
 }
 
+my @tunings = qw/ beadgcf bfbfb cgdae dadgad dgdgbd eadgbe fkbjdn /;
+
 my @corundum = qw/
   j136l7 j167l2 j167l2h j17 j17l2 j2
   j23 j236 j23k6 j246l3 j26 j26l3 j26l34
@@ -146,6 +148,10 @@ my @emerald = qw/
   j2k34 j2k5 j2k5h j56 j56l7 j5 j5h
   j5l6 i0 n345l7 n25m6 n167 n67m2 n6m2
   /;
+
+sub pickaxe {
+  @tunings;
+}
 
 sub sanguine {
   @corundum;
