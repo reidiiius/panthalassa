@@ -38,7 +38,8 @@ sub caution {
 
 sub boundary {
   my $word = shift;
-  my ( $size, $span ) = ( length($word), CURB );
+  my $span = shift || CURB;
+  my $size = length($word);
 
   ( $size <= $span );
 }
@@ -133,22 +134,47 @@ sub vestibule {
 }
 
 sub kleenex {
-  my $lingo = shift;
+  my $lingo = 'initialize';
+  my $limit = 56;
+  my $argot = 'initialize';
   my @altar = Gondwana::keynotes;
+  my $accum = q//;
+  my $cycle = 0;
   my $colum = 8;
-  my $cycle = 1;
-  my $accum = '';
+  my $alert = 'initialize';
 
-  print "\n";
-  foreach my $argot (@altar) {
-    if ( $argot =~ m{$lingo}a ) {
-      $accum = $accum . "\t$argot";
-      $accum = $accum . "\n" if $cycle % $colum == 0;
-      $cycle++;
+  foreach $lingo (@_) {
+    $accum = q//;
+    $cycle = 0;
+
+    if ( boundary( $lingo, $limit ) ) {
+      print "\n";
+      foreach $argot (@altar) {
+        if ( $argot =~ m{$lingo}a ) {
+          $accum = $accum . "\t$argot";
+          $accum = $accum . "\n" if ++$cycle % $colum == 0;
+        }
+      }
+
+      if ($accum) {
+        $accum = penlight $accum, 93;
+
+        print $accum;
+        print "\n" unless $cycle % $colum == 0;
+      }
+      else {
+        $alert = caution $lingo, $limit, 94;
+
+        print $alert;
+      }
+    }
+    else {
+      $alert = caution( $lingo, $limit );
+
+      print "\n$alert";
     }
   }
-  print( penlight( $accum, 93 ), "\n" ) if $accum;
-  print "\n" if --$cycle % $colum != 0;
+  print "\n";
 }
 
 sub recycle {
@@ -225,7 +251,7 @@ sub correlate {
         print "\n" unless $cycle % $colum == 0;
       }
       else {
-        $alert = caution $lingo;
+        $alert = caution $lingo, 0, 94;
 
         print "\n$alert";
       }
@@ -270,16 +296,7 @@ sub entryway {
       correlate @_;
     }
     elsif ( @_ and $tune =~ /^\w*\?$/a ) {
-      my $span = 56;
-
-      if ( length $_[0] <= $span ) {
-        &kleenex;
-      }
-      else {
-        $alert = caution( $_[0], $span );
-
-        print "\n$alert\n";
-      }
+      kleenex @_;
     }
     elsif ( @_ and $tune =~ /^\w*\:$/a ) {
       my $sign = 'initialize';
