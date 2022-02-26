@@ -191,6 +191,62 @@ sub dashboard {
   print "\n";
 }
 
+sub correlate {
+  my @altar = Gondwana::keynotes;
+  my @accum = ();
+  my $cycle = 0;
+  my $colum = 8;
+  my $lingo = 'initialize';
+  my $argot = 'initialize';
+  my $datum = 'initialize';
+  my $clave = 'initialize';
+  my $alert = 'initialize';
+
+  foreach $lingo (@_) {
+    @accum = ();
+    $cycle = 0;
+
+    if ( $lingo =~ /^[o-z]{2}$/a ) {
+      foreach $argot (@altar) {
+        $datum = Gondwana::acquire $argot;
+        $datum = Laurasia::refine $datum;
+
+        if ( $datum =~ m{$lingo}a ) {
+          $accum[ ++$#accum ] = $argot;
+        }
+      }
+
+      if (@accum) {
+        print "\n";
+        foreach $clave ( sort @accum ) {
+          print "\t$clave";
+          print "\n" if ++$cycle % $colum == 0;
+        }
+        print "\n" unless $cycle % $colum == 0;
+      }
+      else {
+        $alert = caution $lingo;
+
+        print "\n$alert";
+      }
+    }
+    elsif ( validate $lingo ) {
+      $datum = Gondwana::acquire $lingo;
+      $datum = Laurasia::refine $datum;
+      $datum =~ s/__ //g unless $lingo eq 'i0';
+      $datum = penlight( $datum, 93 );
+
+      print "\n\t$datum\n";
+    }
+    else {
+      $alert = caution $lingo;
+
+      print "\n$alert";
+    }
+  }
+  print "\n";
+}
+
 sub entryway {
 
   if (@_) {
@@ -210,7 +266,10 @@ sub entryway {
       }
     }
 
-    if ( @_ and $tune =~ /^\w*\?$/a ) {
+    if ( @_ and $tune =~ /^\w*\-$/a ) {
+      correlate @_;
+    }
+    elsif ( @_ and $tune =~ /^\w*\?$/a ) {
       my $span = 56;
 
       if ( length $_[0] <= $span ) {
@@ -282,9 +341,11 @@ sub entryway {
         "$name n0 j6 ",
         "$name : j6 ",
         "$name ? j6 ",
+        "$name - yq j6 ",
         "$name cgdae n0 j3 j36 ",
         "$name cgdae: j3 j36 j236 ",
         "$name cgdae? '^([jk]\\d)+\$' ",
+        "$name cgdae- wq n0 wu j2 ",
         "$name cgdae gamut | less ",
       );
 

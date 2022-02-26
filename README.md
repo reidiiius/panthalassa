@@ -22,11 +22,15 @@ command-line
 
     ./pangaea.pl ? j6 
 
+    ./pangaea.pl - yq j6 
+
     ./pangaea.pl cgdae n0 j3 j36 
 
     ./pangaea.pl cgdae: j3 j36 j236 
 
     ./pangaea.pl cgdae? '^([jk]\d)+$' 
+
+    ./pangaea.pl cgdae- wq n0 wu j2 
 
     ./pangaea.pl cgdae gamut | less 
 
