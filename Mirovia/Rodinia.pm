@@ -6,7 +6,8 @@ use strict;
 use Gondwana;
 use Laurasia;
 
-use constant CURB => 9;
+use constant CURB => 10;
+use constant CEIL => 56;
 
 sub penlight {
   my $snip = shift;
@@ -30,8 +31,8 @@ sub caution {
   my $word = shift;
   my $span = shift || CURB;
   my $code = shift || 91;
-  my $snip = substr( $word, 0, $span ) . ' ?';
-  my $errs = penlight( $snip, $code );
+  my $snip = substr( $word, 0, $span );
+  my $errs = penlight( "$snip ?", $code );
 
   "\t$errs\n";
 }
@@ -62,7 +63,8 @@ sub retrieve {
 }
 
 sub vestibule {
-  my $sign = lc( $_[1] );
+  my $sign  = lc( $_[1] );
+  my $alert = 'initialize';
 
   if ( validate $sign ) {
     my $data = retrieve $sign;
@@ -120,14 +122,14 @@ sub vestibule {
       Laurasia::fkbjdn(@args);
     }
     else {
-      my $alert = caution $tune;
+      $alert = caution($tune);
 
       print "$alert\n";
       exit 0;
     }
   }
   else {
-    my $alert = caution $sign;
+    $alert = caution($sign);
 
     $alert;
   }
@@ -135,7 +137,7 @@ sub vestibule {
 
 sub kleenex {
   my $lingo = 'initialize';
-  my $limit = 56;
+  my $limit = CEIL;
   my $argot = 'initialize';
   my @altar = Gondwana::keynotes;
   my $accum = q//;
@@ -151,8 +153,8 @@ sub kleenex {
       print "\n";
       foreach $argot (@altar) {
         if ( $argot =~ m{$lingo}a ) {
-          $accum = $accum . "\t$argot";
-          $accum = $accum . "\n" if ++$cycle % $colum == 0;
+          $accum .= "\t$argot";
+          $accum .= "\n" if ++$cycle % $colum == 0;
         }
       }
 
@@ -163,7 +165,7 @@ sub kleenex {
         print "\n" unless $cycle % $colum == 0;
       }
       else {
-        $alert = caution $lingo, $limit, 94;
+        $alert = caution( $lingo, $limit, 94 );
 
         print $alert;
       }
@@ -195,7 +197,7 @@ sub recycle {
   else {
     my $where = __FILE__ . ', line: ' . __LINE__;
     my $about = "$where, Argument not reference";
-    my $alert = caution( $about, 56 );
+    my $alert = caution( $about, CEIL );
 
     print "\n$alert\n";
     exit 0;
@@ -251,7 +253,7 @@ sub correlate {
         print "\n" unless $cycle % $colum == 0;
       }
       else {
-        $alert = caution $lingo, 0, 94;
+        $alert = caution( $lingo, 0, 94 );
 
         print "\n$alert";
       }
@@ -265,7 +267,7 @@ sub correlate {
       print "\n\t$datum\n";
     }
     else {
-      $alert = caution $lingo;
+      $alert = caution($lingo);
 
       print "\n$alert";
     }
@@ -312,7 +314,7 @@ sub entryway {
           print "\n";
         }
         else {
-          $alert = caution( $_, CURB );
+          $alert = caution($_);
 
           print "$alert\n";
         }
