@@ -40,9 +40,9 @@ sub caution {
 sub boundary {
   my $word = shift;
   my $span = shift || CURB;
-  my $size = length($word);
+  my $size = length $word;
 
-  ( $size <= $span );
+  $size <= $span;
 }
 
 sub validate {
@@ -51,24 +51,24 @@ sub validate {
   if ( defined $sign and boundary $sign ) {
     my $reps = qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/;
 
-    ( $sign =~ $reps and Gondwana::membership $sign );
+    $sign =~ $reps and Gondwana::membership $sign;
   }
 }
 
 sub retrieve {
   my $sign = shift;
-  my $data = Gondwana::acquire($sign);
+  my $data = Gondwana::acquire $sign;
 
-  ( defined $data ) ? $data : Gondwana::tacet;
+  defined $data ? $data : Gondwana::tacet;
 }
 
 sub vestibule {
-  my $sign  = lc( $_[1] );
+  my $sign  = lc $_[1];
   my $alert = 'initialize';
 
   if ( validate $sign ) {
     my $data = retrieve $sign;
-    my $tune = lc( $_[0] );
+    my $tune = lc $_[0];
     my @args = ( $tune, $sign, $data );
 
     if ( $tune eq 'bass'
@@ -77,7 +77,7 @@ sub vestibule {
       or $tune =~ /^beadgc?/a
       or $tune =~ /^b?eadgc/a )
     {
-      Laurasia::beadgcf(@args);
+      Laurasia::beadgcf @args;
     }
     elsif ( $tune eq 'a4'
       or $tune =~ /^bfb/a
@@ -85,7 +85,7 @@ sub vestibule {
       or $tune =~ /^fbf/a
       or $tune =~ /^tritone?/a )
     {
-      Laurasia::bfbfb(@args);
+      Laurasia::bfbfb @args;
     }
     elsif ( $tune eq 'cello'
       or $tune eq 'fiddle'
@@ -95,41 +95,41 @@ sub vestibule {
       or $tune =~ /^mando.*/a
       or $tune =~ /^viol[ai].*/a )
     {
-      Laurasia::cgdae(@args);
+      Laurasia::cgdae @args;
     }
     elsif ( $tune eq 'dadgad'
       or $tune =~ /^celt.*/a )
     {
-      Laurasia::dadgad(@args);
+      Laurasia::dadgad @args;
     }
     elsif ( $tune eq 'banjo'
       or $tune =~ /^d?gdgbd/a
       or $tune =~ /^open.*/a
       or $tune =~ /^slack.*/a )
     {
-      Laurasia::dgdgbd(@args);
+      Laurasia::dgdgbd @args;
     }
     elsif ( $tune eq 'eadgbe'
       or $tune =~ /dgbe/a
       or $tune =~ /gcea/a
       or $tune =~ /^gu?itar/a )
     {
-      Laurasia::eadgbe(@args);
+      Laurasia::eadgbe @args;
     }
     elsif ( $tune eq 'fkbjdn'
       or $tune eq 'm3' )
     {
-      Laurasia::fkbjdn(@args);
+      Laurasia::fkbjdn @args;
     }
     else {
-      $alert = caution($tune);
+      $alert = caution $tune;
 
       print "$alert\n";
       exit 0;
     }
   }
   else {
-    $alert = caution($sign);
+    $alert = caution $sign;
 
     $alert;
   }
@@ -152,14 +152,14 @@ sub kleenex {
     if ( boundary( $lingo, $limit ) ) {
       print "\n";
       foreach $argot (@altar) {
-        if ( $argot =~ m{$lingo}a ) {
+        if ( $argot =~ m{$lingo}ai ) {
           $accum .= "\t$argot";
           $accum .= "\n" if ++$cycle % $colum == 0;
         }
       }
 
       if ($accum) {
-        $accum = penlight $accum, 93;
+        $accum = penlight( $accum, 93 );
 
         print $accum;
         print "\n" unless $cycle % $colum == 0;
@@ -184,11 +184,11 @@ sub recycle {
 
   if ( ref $pref ) {
     my @menu = &{$pref};
-    my $size = scalar(@menu);
+    my $size = scalar @menu;
     my $item = 0;
 
     foreach (@menu) {
-      print "\n" if ( $item % 7 == 0 );
+      print "\n" if $item % 7 == 0;
       print "\t$menu[$item]";
       $item++;
     }
@@ -231,15 +231,16 @@ sub correlate {
   my $alert = 'initialize';
 
   foreach $lingo (@_) {
+    $lingo = lc $lingo;
     @accum = ();
     $cycle = 0;
 
-    if ( $lingo =~ /^[o-z]{2}$/a ) {
+    if ( $lingo =~ /^[o-z]{2}$/ai ) {
       foreach $argot (@altar) {
         $datum = Gondwana::acquire $argot;
         $datum = Laurasia::refine $datum;
 
-        if ( $datum =~ m{$lingo}a ) {
+        if ( $datum =~ m{$lingo}ai ) {
           $accum[ ++$#accum ] = $argot;
         }
       }
@@ -267,7 +268,7 @@ sub correlate {
       print "\n\t$datum\n";
     }
     else {
-      $alert = caution($lingo);
+      $alert = caution $lingo;
 
       print "\n$alert";
     }
@@ -278,16 +279,17 @@ sub correlate {
 sub entryway {
 
   if (@_) {
-    my $clef  = validate( $_[0] );
+    my $sign  = lc $_[0];
+    my $clef  = validate $sign;
     my $alert = 'initialize';
-    my $pegs  = 'beadgcf';           # default tuning
+    my $pegs  = 'beadgcf';        # default tuning
     my $tune  = $pegs;
 
     unless ($clef) {
-      $tune = shift;                 # change tuning
+      $tune = shift;              # change tuning
 
       unless ( boundary $tune ) {
-        $alert = caution($tune);
+        $alert = caution $tune;
 
         print "\n$alert\n";
         return 0;
@@ -301,29 +303,27 @@ sub entryway {
       kleenex @_;
     }
     elsif ( @_ and $tune =~ /^\w*\:$/a ) {
-      my $sign = 'initialize';
       $tune = substr( $tune, 0, -1 );
       $tune = $pegs unless $tune;
 
       print "\n";
       for (@_) {
         if ( boundary $_ ) {
-          $sign = Laurasia::invert($_);
+          $sign = Laurasia::invert "\L$_";
 
           print vestibule( $tune, $sign );
           print "\n";
         }
         else {
-          $alert = caution($_);
+          $alert = caution $_;
 
           print "$alert\n";
         }
       }
     }
-    elsif ( @_ and $_[0] eq 'gamut' ) {
+    elsif ( @_ and "\L$_[0]" eq 'gamut' ) {
       my @arks = Gondwana::keynotes;
       my @star = ();
-      my $sign = 'initialize';
       my $crow = 'initialize';
 
       print "\n";
@@ -345,7 +345,7 @@ sub entryway {
           print "\n";
         }
         else {
-          $alert = caution($_);
+          $alert = caution $_;
 
           print "$alert\n";
         }
@@ -354,6 +354,7 @@ sub entryway {
     else {
       my $snip = penlight( 'Usage:', 96 );
       my $name = "$0";
+      my $harp = 'cgdae';
       my @tips = (
         "chmod u+x $name ",
         "$name ",
@@ -361,11 +362,11 @@ sub entryway {
         "$name : j6 ",
         "$name ? j6 ",
         "$name - yq j6 ",
-        "$name cgdae n0 j3 j36 ",
-        "$name cgdae: j3 j36 j236 ",
-        "$name cgdae? '^([jk]\\d)+\$' ",
-        "$name cgdae- wq n0 wu j2 ",
-        "$name cgdae gamut | less ",
+        "$name $harp n0 j3 j36 ",
+        "$name $harp: j3 j36 j236 ",
+        "$name $harp? '^([jk]\\d)+\$' ",
+        "$name $harp- wq n0 wu j2 ",
+        "$name $harp gamut | less ",
       );
 
       print "\n\t$snip\n";
