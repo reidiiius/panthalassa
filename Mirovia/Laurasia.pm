@@ -3,8 +3,46 @@ package Laurasia;
 use warnings;
 use strict;
 
+use constant CURB => 10;
+
+sub penlight {
+  my $snip = shift;
+  my $code = shift || 33;
+  my ( $esc, $cse ) = ( "\e[0;${code}m", "\e[0m" );
+
+  "${esc}$snip${cse}";
+}
+
+sub chaplain {
+  my $vine = shift;
+  my $code = shift || 33;
+
+  $vine =~ s/\e\[0;${code}m//g;
+  $vine =~ s/\e\[0m//g;
+
+  $vine;
+}
+
+sub caution {
+  my $word = shift;
+  my $span = shift || CURB;
+  my $code = shift || 91;
+  my $snip = substr( $word, 0, $span );
+  my $errs = penlight( "$snip ?", $code );
+
+  "\t$errs\n";
+}
+
+sub boundary {
+  my $word = shift;
+  my $span = shift || CURB;
+  my $size = length $word;
+
+  $size <= $span;
+}
+
 sub invert {
-  my $yarn = shift;
+  my $yarn = lc shift;
   my $span = length($yarn);
   my $wire = $yarn;
 
@@ -20,7 +58,7 @@ sub invert {
 
   my $size = length($wire);
 
-  ( $size == $span and $wire ne $yarn ) ? $wire : $yarn;
+  $size == $span and $wire ne $yarn ? $wire : $yarn;
 }
 
 sub refine {
@@ -43,7 +81,7 @@ sub refine {
 
   my $size = length($wire);
 
-  ( $wire ne $yarn and $size >= 24 and $size <= 72 ) ? $wire : $yarn;
+  $wire ne $yarn and $size >= 24 and $size <= 72 ? $wire : $yarn;
 }
 
 sub pegBox {
@@ -54,129 +92,35 @@ sub pegBox {
   "\t$cord\n";
 }
 
-sub str_Bj {
-  my $data = shift;
-
-  pegBox( $data, 50, 10 );
-}
-
-sub str_Fn {
-  my $data = shift;
-
-  pegBox( $data, 25, 35 );
-}
-
-sub str_Cn {
-  my $data = shift;
-
-  pegBox( $data, 0, 60 );
-}
-
-sub str_Gn {
-  my $data = shift;
-
-  pegBox( $data, 35, 25 );
-}
-
-sub str_Dn {
-  my $data = shift;
-
-  pegBox( $data, 10, 50 );
-}
-
-sub str_An {
-  my $data = shift;
-
-  pegBox( $data, 45, 15 );
-}
-
-sub str_En {
-  my $data = shift;
-
-  pegBox( $data, 20, 40 );
-}
-
-sub str_Bn {
-  my $data = shift;
-
-  pegBox( $data, 55, 05 );
-}
-
-sub str_Fk {
-  my $data = shift;
-
-  pegBox( $data, 30, 30 );
-}
-
 sub wreath {
   my ( $sign, $tune, $code ) = ( $_[0], $_[1], $_[2] || 33 );
-  my ( $esc, $cse ) = ( "\e[0;${code}m", "\e[0m" );
-  my $crown = $sign . "-$tune" . '-i' . time;
+  my $crown = penlight( "$sign-$tune-i$^T", $code );
 
-  "\t$esc" . $crown . "$cse\n";
+  "\t$crown\n";
 }
 
-sub beadgcf {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my $diadem = wreath( $sign, $tune, 0 );
-
-  (
-    $diadem,       str_Fn($data), str_Cn($data), str_Gn($data),
-    str_Dn($data), str_An($data), str_En($data), str_Bn($data)
+sub examples {
+  my $snip = penlight( 'Usage:', 96 );
+  my $name = "$0";
+  my $harp = 'cgdae';
+  my @tips = (
+    "chmod u+x $name ",
+    "$name ",
+    "$name n0 j6 ",
+    "$name : j6 ",
+    "$name ? j6 ",
+    "$name - yq j6 ",
+    "$name $harp n0 j3 j36 ",
+    "$name $harp: j3 j36 j236 ",
+    "$name $harp? '^([jk]\\d)+\$' ",
+    "$name $harp- wq n0 wu j2 ",
+    "$name $harp gamut | less ",
   );
-}
 
-sub bfbfb {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my ( $bn, $fn ) = ( str_Bn($data), str_Fn($data) );
-  my $diadem = wreath( $sign, $tune, 0 );
-
-  ( $diadem, $bn, $fn, $bn, $fn, $bn );
-}
-
-sub cgdae {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my $diadem = wreath( $sign, $tune, 0 );
-
-  (
-    $diadem,       str_En($data), str_An($data), str_Dn($data),
-    str_Gn($data), str_Cn($data)
-  );
-}
-
-sub dadgad {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my ( $an, $dn, $gn ) = ( str_An($data), str_Dn($data), str_Gn($data) );
-  my $diadem = wreath( $sign, $tune, 0 );
-
-  ( $diadem, $dn, $an, $gn, $dn, $an, $dn );
-}
-
-sub dgdgbd {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my ( $gn, $bn, $dn ) = ( str_Gn($data), str_Bn($data), str_Dn($data) );
-  my $diadem = wreath( $sign, $tune, 0 );
-
-  ( $diadem, $dn, $bn, $gn, $dn, $gn, $dn );
-}
-
-sub eadgbe {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my ( $gn, $dn, $an, $en, $bn ) = (
-    str_Gn($data), str_Dn($data), str_An($data), str_En($data),
-    str_Bn($data)
-  );
-  my $diadem = wreath( $sign, $tune, 0 );
-
-  ( $diadem, $en, $bn, $gn, $dn, $an, $en );
-}
-
-sub fkbjdn {
-  my ( $tune, $sign, $data ) = ( $_[0], $_[1], $_[2] );
-  my ( $dn, $bj, $fk ) = ( str_Dn($data), str_Bj($data), str_Fk($data) );
-  my $diadem = wreath( $sign, $tune, 0 );
-
-  ( $diadem, $dn, $bj, $fk, $dn, $bj, $fk );
+  print "\n\t$snip\n";
+  for (@tips) {
+    print "\t\t$_\n\n";
+  }
 }
 
 1;

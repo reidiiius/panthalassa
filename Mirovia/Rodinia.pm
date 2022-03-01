@@ -6,49 +6,12 @@ use strict;
 use Gondwana;
 use Laurasia;
 
-use constant CURB => 10;
 use constant CEIL => 56;
-
-sub penlight {
-  my $snip = shift;
-  my $code = shift || 33;
-  my ( $esc, $cse ) = ( "\e[0;${code}m", "\e[0m" );
-
-  "${esc}$snip${cse}";
-}
-
-sub chaplain {
-  my $vine = shift;
-  my $code = shift || 33;
-
-  $vine =~ s/\e\[0;${code}m//g;
-  $vine =~ s/\e\[0m//g;
-
-  $vine;
-}
-
-sub caution {
-  my $word = shift;
-  my $span = shift || CURB;
-  my $code = shift || 91;
-  my $snip = substr( $word, 0, $span );
-  my $errs = penlight( "$snip ?", $code );
-
-  "\t$errs\n";
-}
-
-sub boundary {
-  my $word = shift;
-  my $span = shift || CURB;
-  my $size = length $word;
-
-  $size <= $span;
-}
 
 sub validate {
   my $sign = shift;
 
-  if ( defined $sign and boundary $sign ) {
+  if ( defined $sign and Laurasia::boundary $sign ) {
     my $reps = qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/;
 
     $sign =~ $reps and Gondwana::membership $sign;
@@ -62,6 +25,40 @@ sub retrieve {
   defined $data ? $data : Gondwana::tacet;
 }
 
+sub wrenches {
+  my $harp = shift;
+  my $crow = Gondwana::hedgerow $harp;
+
+  defined $crow ? $crow : 'cn';
+}
+
+sub stockade {
+  my $tone = shift;
+  my $data = shift;
+  my @fork = Gondwana::tension $tone;
+  my $head = $fork[0];
+  my $tail = $fork[1];
+
+  Laurasia::pegBox( $data, $head, $tail );
+}
+
+sub compose {
+  my $harp = shift || 'unison';
+  my $sign = shift || 'i0';
+  my $data = shift;
+  my $crow = wrenches $harp;
+  my @arks = split( $", $crow );
+  my @lout = ();
+  my $i    = 0;
+
+  $lout[ $i++ ] = Laurasia::wreath( $sign, $harp );
+  foreach my $tone ( reverse @arks ) {
+    $lout[ $i++ ] = stockade( $tone, $data );
+  }
+
+  @lout;
+}
+
 sub vestibule {
   my $sign  = lc $_[1];
   my $alert = 'initialize';
@@ -71,65 +68,36 @@ sub vestibule {
     my $tune = lc $_[0];
     my @args = ( $tune, $sign, $data );
 
-    if ( $tune eq 'bass'
-      or $tune eq 'eadg'
-      or $tune eq 'p4'
-      or $tune =~ /^beadgc?/a
-      or $tune =~ /^b?eadgc/a )
-    {
-      Laurasia::beadgcf @args;
+    if ( $tune eq 'beadgcf' ) {
+      compose @args;
     }
-    elsif ( $tune eq 'a4'
-      or $tune =~ /^bfb/a
-      or $tune =~ /[bd]5/a
-      or $tune =~ /^fbf/a
-      or $tune =~ /^tritone?/a )
-    {
-      Laurasia::bfbfb @args;
+    elsif ( $tune eq 'bfbfb' ) {
+      compose @args;
     }
-    elsif ( $tune eq 'cello'
-      or $tune eq 'fiddle'
-      or $tune eq 'p5'
-      or $tune =~ /^bouz.*/a
-      or $tune =~ /^c?gdae?/a
-      or $tune =~ /^mando.*/a
-      or $tune =~ /^viol[ai].*/a )
-    {
-      Laurasia::cgdae @args;
+    elsif ( $tune eq 'cgdae' ) {
+      compose @args;
     }
-    elsif ( $tune eq 'dadgad'
-      or $tune =~ /^celt.*/a )
-    {
-      Laurasia::dadgad @args;
+    elsif ( $tune eq 'dadgad' ) {
+      compose @args;
     }
-    elsif ( $tune eq 'banjo'
-      or $tune =~ /^d?gdgbd/a
-      or $tune =~ /^open.*/a
-      or $tune =~ /^slack.*/a )
-    {
-      Laurasia::dgdgbd @args;
+    elsif ( $tune eq 'dgdgbd' ) {
+      compose @args;
     }
-    elsif ( $tune eq 'eadgbe'
-      or $tune =~ /dgbe/a
-      or $tune =~ /gcea/a
-      or $tune =~ /^gu?itar/a )
-    {
-      Laurasia::eadgbe @args;
+    elsif ( $tune eq 'eadgbe' ) {
+      compose @args;
     }
-    elsif ( $tune eq 'fkbjdn'
-      or $tune eq 'm3' )
-    {
-      Laurasia::fkbjdn @args;
+    elsif ( $tune eq 'fkbjdn' ) {
+      compose @args;
     }
     else {
-      $alert = caution $tune;
+      $alert = Laurasia::caution $tune;
 
       print "$alert\n";
       exit 0;
     }
   }
   else {
-    $alert = caution $sign;
+    $alert = Laurasia::caution $sign;
 
     $alert;
   }
@@ -149,7 +117,7 @@ sub kleenex {
     $accum = q//;
     $cycle = 0;
 
-    if ( boundary( $lingo, $limit ) ) {
+    if ( Laurasia::boundary( $lingo, $limit ) ) {
       print "\n";
       foreach $argot (@altar) {
         if ( $argot =~ m{$lingo}ai ) {
@@ -159,19 +127,19 @@ sub kleenex {
       }
 
       if ($accum) {
-        $accum = penlight( $accum, 93 );
+        $accum = Laurasia::penlight( $accum, 93 );
 
         print $accum;
         print "\n" unless $cycle % $colum == 0;
       }
       else {
-        $alert = caution( $lingo, $limit, 94 );
+        $alert = Laurasia::caution( $lingo, $limit, 94 );
 
         print $alert;
       }
     }
     else {
-      $alert = caution( $lingo, $limit );
+      $alert = Laurasia::caution( $lingo, $limit );
 
       print "\n$alert";
     }
@@ -197,7 +165,7 @@ sub recycle {
   else {
     my $where = __FILE__ . ', line: ' . __LINE__;
     my $about = "$where, Argument not reference";
-    my $alert = caution( $about, CEIL );
+    my $alert = Laurasia::caution( $about, CEIL );
 
     print "\n$alert\n";
     exit 0;
@@ -254,7 +222,7 @@ sub correlate {
         print "\n" unless $cycle % $colum == 0;
       }
       else {
-        $alert = caution( $lingo, 0, 94 );
+        $alert = Laurasia::caution( $lingo, 0, 94 );
 
         print "\n$alert";
       }
@@ -263,12 +231,12 @@ sub correlate {
       $datum = Gondwana::acquire $lingo;
       $datum = Laurasia::refine $datum;
       $datum =~ s/__ //g unless $lingo eq 'i0';
-      $datum = penlight( $datum, 93 );
+      $datum = Laurasia::penlight( $datum, 93 );
 
       print "\n\t$datum\n";
     }
     else {
-      $alert = caution $lingo;
+      $alert = Laurasia::caution $lingo;
 
       print "\n$alert";
     }
@@ -288,8 +256,8 @@ sub entryway {
     unless ($clef) {
       $tune = shift;              # change tuning
 
-      unless ( boundary $tune ) {
-        $alert = caution $tune;
+      unless ( Laurasia::boundary $tune ) {
+        $alert = Laurasia::caution $tune;
 
         print "\n$alert\n";
         return 0;
@@ -308,14 +276,14 @@ sub entryway {
 
       print "\n";
       for (@_) {
-        if ( boundary $_ ) {
+        if ( Laurasia::boundary $_ ) {
           $sign = Laurasia::invert "\L$_";
 
           print vestibule( $tune, $sign );
           print "\n";
         }
         else {
-          $alert = caution $_;
+          $alert = Laurasia::caution $_;
 
           print "$alert\n";
         }
@@ -329,7 +297,7 @@ sub entryway {
       print "\n";
       foreach $sign (@arks) {
         @star = vestibule( $tune, $sign );
-        $star[0] = chaplain $star[0];
+        $star[0] = Laurasia::chaplain $star[0];
 
         foreach $crow (@star) {
           print $crow;
@@ -340,39 +308,19 @@ sub entryway {
     elsif (@_) {
       print "\n";
       for (@_) {
-        if ( boundary $_ ) {
+        if ( Laurasia::boundary $_ ) {
           print vestibule( $tune, $_ );
           print "\n";
         }
         else {
-          $alert = caution $_;
+          $alert = Laurasia::caution $_;
 
           print "$alert\n";
         }
       }
     }
     else {
-      my $snip = penlight( 'Usage:', 96 );
-      my $name = "$0";
-      my $harp = 'cgdae';
-      my @tips = (
-        "chmod u+x $name ",
-        "$name ",
-        "$name n0 j6 ",
-        "$name : j6 ",
-        "$name ? j6 ",
-        "$name - yq j6 ",
-        "$name $harp n0 j3 j36 ",
-        "$name $harp: j3 j36 j236 ",
-        "$name $harp? '^([jk]\\d)+\$' ",
-        "$name $harp- wq n0 wu j2 ",
-        "$name $harp gamut | less ",
-      );
-
-      print "\n\t$snip\n";
-      for (@tips) {
-        print "\t\t$_\n\n";
-      }
+      Laurasia::examples;
     }
   }
   else {
