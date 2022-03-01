@@ -60,25 +60,14 @@ sub vestibule {
     my $tune = lc $_[0];
     my @args = ( $tune, $sign, $data );
 
-    if ( $tune eq 'beadgcf' ) {
-      compose @args;
-    }
-    elsif ( $tune eq 'bfbfb' ) {
-      compose @args;
-    }
-    elsif ( $tune eq 'cgdae' ) {
-      compose @args;
-    }
-    elsif ( $tune eq 'dadgad' ) {
-      compose @args;
-    }
-    elsif ( $tune eq 'dgdgbd' ) {
-      compose @args;
-    }
-    elsif ( $tune eq 'eadgbe' ) {
-      compose @args;
-    }
-    elsif ( $tune eq 'fkbjdn' ) {
+    if ( $tune eq 'beadgcf'
+      or $tune eq 'bfbfb'
+      or $tune eq 'cgdae'
+      or $tune eq 'dadgad'
+      or $tune eq 'dgdgbd'
+      or $tune eq 'eadgbe'
+      or $tune eq 'fkbjdn' )
+    {
       compose @args;
     }
     else {
