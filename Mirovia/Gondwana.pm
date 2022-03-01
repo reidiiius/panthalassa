@@ -23,8 +23,9 @@ my %matrices = (
 sub hedgerow {
   my $harp = shift;
   my $crow = $matrices{$harp};
+  my @arms = split( $", $crow );
 
-  $crow;
+  @arms;
 }
 
 my %chromium = (

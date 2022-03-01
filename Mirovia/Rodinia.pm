@@ -25,13 +25,6 @@ sub retrieve {
   defined $data ? $data : Gondwana::tacet;
 }
 
-sub wrenches {
-  my $harp = shift;
-  my $crow = Gondwana::hedgerow $harp;
-
-  defined $crow ? $crow : 'cn';
-}
-
 sub stockade {
   my $tone = shift;
   my $data = shift;
@@ -45,15 +38,14 @@ sub stockade {
 sub compose {
   my $harp = shift || 'unison';
   my $sign = shift || 'i0';
-  my $data = shift;
-  my $crow = wrenches $harp;
-  my @arks = split( $", $crow );
+  my $data = shift || Gondwana::tacet;
+  my @arms = Gondwana::hedgerow $harp;
   my @lout = ();
-  my $i    = 0;
+  my $item = 0;
 
-  $lout[ $i++ ] = Laurasia::wreath( $sign, $harp );
-  foreach my $tone ( reverse @arks ) {
-    $lout[ $i++ ] = stockade( $tone, $data );
+  $lout[ $item++ ] = Laurasia::wreath( $sign, $harp );
+  foreach my $tone ( reverse @arms ) {
+    $lout[ $item++ ] = stockade( $tone, $data );
   }
 
   @lout;
