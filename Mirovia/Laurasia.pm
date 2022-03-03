@@ -4,6 +4,7 @@ use warnings;
 use strict;
 
 use constant CURB => 10;
+use constant CEIL => 56;
 
 sub penlight {
   my $snip = shift;
@@ -31,6 +32,16 @@ sub caution {
   my $errs = penlight( "$snip ?", $code );
 
   "\t$errs\n";
+}
+
+sub anomaly {
+  my $filet = shift;
+  my $aline = shift;
+  my $catch = shift || 'conditional';
+  my $about = "$filet, line: $aline, $catch";
+  my $alert = caution( $about, CEIL );
+
+  $alert;
 }
 
 sub boundary {

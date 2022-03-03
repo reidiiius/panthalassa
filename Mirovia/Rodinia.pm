@@ -6,8 +6,6 @@ use strict;
 use Gondwana;
 use Laurasia;
 
-use constant CEIL => 56;
-
 sub validate {
   my $sign = shift;
 
@@ -59,23 +57,26 @@ sub vestibule {
     my $data = retrieve $sign;
     my $tune = lc $_[0];
     my @args = ( $tune, $sign, $data );
+    my @arts = Gondwana::wrenches;
 
-    if ( $tune eq 'beadgcf'
-      or $tune eq 'bfbfb'
-      or $tune eq 'cgdae'
-      or $tune eq 'dadgad'
-      or $tune eq 'dgdgbd'
-      or $tune eq 'eadgbe'
-      or $tune eq 'fkbjdn' )
-    {
-      compose @args;
+    if ( scalar @arts ) {
+      foreach my $item (@arts) {
+        if ( $tune eq $item ) {
+          return compose @args;
+        }
+      }
     }
     else {
-      $alert = Laurasia::caution $tune;
+      my $throw = 'Array is empty';
+      my $alert = Laurasia::anomaly( __FILE__, __LINE__, $throw );
 
       print "$alert\n";
       exit 0;
     }
+    $alert = Laurasia::caution $tune;
+
+    print "$alert\n";
+    exit 0;
   }
   else {
     $alert = Laurasia::caution $sign;
@@ -86,7 +87,7 @@ sub vestibule {
 
 sub kleenex {
   my $lingo = 'initialize';
-  my $limit = CEIL;
+  my $limit = Laurasia::CEIL;
   my $argot = 'initialize';
   my @altar = Gondwana::keynotes;
   my $accum = q//;
@@ -144,9 +145,8 @@ sub recycle {
     print "\n";
   }
   else {
-    my $where = __FILE__ . ', line: ' . __LINE__;
-    my $about = "$where, Argument not reference";
-    my $alert = Laurasia::caution( $about, CEIL );
+    my $throw = 'Argument not reference';
+    my $alert = Laurasia::anomaly( __FILE__, __LINE__, $throw );
 
     print "\n$alert\n";
     exit 0;
