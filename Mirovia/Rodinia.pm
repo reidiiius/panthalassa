@@ -34,7 +34,7 @@ sub stockade {
 }
 
 sub compose {
-  my $harp = shift || 'unison';
+  my $harp = shift || 'bfbfb';
   my $sign = shift || 'i0';
   my $data = shift || Gondwana::tacet;
   my @arms = Gondwana::hedgerow $harp;
@@ -57,10 +57,10 @@ sub vestibule {
     my $data = retrieve $sign;
     my $tune = lc $_[0];
     my @args = ( $tune, $sign, $data );
-    my @arts = Gondwana::wrenches;
+    my @gear = Gondwana::pickaxe;
 
-    if ( scalar @arts ) {
-      foreach my $item (@arts) {
+    if ( scalar @gear ) {
+      foreach my $item (@gear) {
         if ( $tune eq $item ) {
           return compose @args;
         }
@@ -129,7 +129,7 @@ sub kleenex {
   print "\n";
 }
 
-sub recycle {
+sub prefab {
   my $pref = shift;
 
   if ( ref $pref ) {
@@ -157,13 +157,13 @@ sub dashboard {
   my $pref = undef;
 
   $pref = \&Gondwana::pickaxe;
-  recycle $pref;
+  prefab $pref;
 
   $pref = \&Gondwana::sanguine;
-  recycle $pref;
+  prefab $pref;
 
   $pref = \&Gondwana::viridian;
-  recycle $pref;
+  prefab $pref;
 
   print "\n";
 }

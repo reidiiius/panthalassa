@@ -3,12 +3,6 @@ package Gondwana;
 use warnings;
 use strict;
 
-my @tunings = qw/ beadgcf bfbfb cgdae dadgad dgdgbd eadgbe fkbjdn /;
-
-sub pickaxe {
-  @tunings;
-}
-
 my %matrices = (
   beadgcf => 'bn en an dn gn cn fn',
   bfbfb   => 'bn fn bn fn bn',
@@ -17,7 +11,6 @@ my %matrices = (
   dgdgbd  => 'dn gn dn gn bn dn',
   eadgbe  => 'en an dn gn bn en',
   fkbjdn  => 'fk bj dn fk bj dn',
-  unison  => 'cn',
 );
 
 sub hedgerow {
@@ -28,10 +21,10 @@ sub hedgerow {
   @arms;
 }
 
-sub wrenches {
-  my @arts = keys %matrices;
+sub pickaxe {
+  my @gear = keys %matrices;
 
-  sort @arts;
+  sort @gear;
 }
 
 my %chromium = (
