@@ -60,8 +60,8 @@ sub vestibule {
     my @gear = Gondwana::pickaxe;
 
     if ( scalar @gear ) {
-      foreach my $item (@gear) {
-        if ( $tune eq $item ) {
+      foreach my $harp (@gear) {
+        if ( $tune eq $harp ) {
           return compose @args;
         }
       }
@@ -129,7 +129,7 @@ sub kleenex {
   print "\n";
 }
 
-sub prefab {
+sub prefable {
   my $pref = shift;
 
   if ( ref $pref ) {
@@ -157,13 +157,13 @@ sub dashboard {
   my $pref = undef;
 
   $pref = \&Gondwana::pickaxe;
-  prefab $pref;
+  prefable $pref;
 
   $pref = \&Gondwana::sanguine;
-  prefab $pref;
+  prefable $pref;
 
   $pref = \&Gondwana::viridian;
-  prefab $pref;
+  prefable $pref;
 
   print "\n";
 }
