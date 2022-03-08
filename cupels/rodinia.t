@@ -4,7 +4,7 @@ use diagnostics;
 use warnings;
 use strict;
 
-use Test::Simple tests => 10;
+use Test::More;
 
 use lib './Mirovia';
 use Rodinia;
@@ -131,23 +131,36 @@ print "\n";
   $size = length $data;
   $desc = "retrieve returns a string of $size characters";
 
-  ok( $size, $desc );
+  is( $size, 60, $desc );
 
   print "\t-> '$data'\n\n";
 }
 
 {
-  my $desc = 'validate returns a boolean';
+  my $desc;
   my $bool;
   my $clef;
   my $sign = 'j3k56m4';
+  my $fake = q//;
 
   # takes a string argument and returns a boolean
   $clef = Rodinia::validate $sign;
   $bool = $clef ? 'True' : 'False';
+  $desc = "validate returns $bool";
 
   ok( $clef, $desc );
 
   print "\t-> $bool\n\n";
+
+  $sign = 'forgery';
+  $clef = Rodinia::validate $sign;
+  $bool = $clef ? 'True' : 'False';
+  $desc = "validate returns $bool";
+
+  is( $clef, $fake, $desc );
+
+  print "\t-> $bool\n\n";
 }
+
+done_testing();
 

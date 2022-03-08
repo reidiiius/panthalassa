@@ -4,7 +4,7 @@ use diagnostics;
 use warnings;
 use strict;
 
-use Test::Simple tests => 12;
+use Test::More;
 
 use lib './Mirovia';
 use Gondwana;
@@ -44,7 +44,7 @@ print "\n";
   $size = length $wire;
   $desc = "acquire returns a string of $size characters";
 
-  ok( $size eq 60, $desc );
+  is( $size, 60, $desc );
   print "\t-> '$wire'\n\n";
 
   $sign = undef;
@@ -161,4 +161,6 @@ print "\n";
   ok( @arms, $desc );
   print "\t-> @arms\n\n"
 }
+
+done_testing();
 
