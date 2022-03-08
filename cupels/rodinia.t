@@ -92,7 +92,7 @@ print "\n";
   my @lout;
   my @args = ( 'beadgcf', 'i0', Gondwana::tacet );
 
-  # takes a list of strings and returns a list od strings
+  # takes a list of strings and returns a list of strings
   @lout = Rodinia::compose @args;
   $size = scalar @lout;
   $desc = "compose returns a list of $size strings";
