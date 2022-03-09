@@ -13,23 +13,24 @@ print "\n";
 
 {
   my $bool;
+  my $pole;
   my $sign;
   my $desc = 'membership returns a boolean';
 
   # takes a string argument and returns a boolean
   $sign = 'i0';
   $bool = Gondwana::membership $sign;
-  $bool = $bool ? 'True' : 'False';
+  $pole = $bool ? 'True' : 'False';
 
-  ok( $bool eq 'True', $desc );
-  print "\targument passed: '$sign'\n\t-> $bool\n\n";
+  ok( $bool, $desc );
+  print "\targument passed: '$sign'\n\t-> $pole\n\n";
 
   $sign = 'h2';
   $bool = Gondwana::membership $sign;
-  $bool = $bool ? 'True' : 'False';
+  $pole = $bool ? 'True' : 'False';
 
-  ok( $bool eq 'False', $desc );
-  print "\targument passed: '$sign'\n\t-> $bool\n\n";
+  ok( !$bool, $desc );
+  print "\targument passed: '$sign'\n\t-> $pole\n\n";
 }
 
 {
@@ -51,7 +52,7 @@ print "\n";
   $wire = Gondwana::acquire $sign;
   $size = length $wire;
 
-  ok( $size eq 60, $desc );
+  is( $size, 60, $desc );
   print "\t-> '$wire'\n\n";
 }
 
@@ -65,7 +66,7 @@ print "\n";
   $size = length $cord;
   $desc = "tacet returns a string of $size characters";
 
-  ok( $size eq 60, $desc );
+  is( $size, 60, $desc );
   print "\t-> '$cord'\n\n";
 }
 

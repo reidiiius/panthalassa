@@ -91,7 +91,8 @@ print "\n";
   my $size;
   my $sign = 'n0';
   my $tune = 'beadgcf';
-  my @args = ( $tune, $sign, Gondwana::acquire $sign );
+  my $data = Gondwana::acquire $sign;
+  my @args = ( $tune, $sign, $data );
   my @lout;
 
   # takes a list of strings and returns a list of strings
@@ -106,7 +107,7 @@ print "\n";
   @args = undef;
   @lout = Rodinia::compose @args;
   $size = scalar @lout;
-  $desc = "compose returns a list of $size strings";
+  $desc = "compose returns a list of $size strings by default";
 
   is( @lout, $size, $desc );
 
@@ -126,7 +127,7 @@ print "\n";
   $size = length $cord;
   $desc = "stockade returns a formatted string of $size characters";
 
-  ok( $cord, $desc );
+  ok( $size, $desc );
 
   print "\t-> $cord\n";
 }
