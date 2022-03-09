@@ -22,14 +22,14 @@ print "\n";
   $bool = $bool ? 'True' : 'False';
 
   ok( $bool eq 'True', $desc );
-  print "\t-> $bool\n\n";
+  print "\targument passed: '$sign'\n\t-> $bool\n\n";
 
-  $sign = undef;
+  $sign = 'h2';
   $bool = Gondwana::membership $sign;
   $bool = $bool ? 'True' : 'False';
 
   ok( $bool eq 'False', $desc );
-  print "\t-> $bool\n\n";
+  print "\targument passed: '$sign'\n\t-> $bool\n\n";
 }
 
 {
@@ -56,20 +56,6 @@ print "\n";
 }
 
 {
-  my @arks;
-  my $size;
-  my $desc;
-
-  # returns a list of strings
-  @arks = Gondwana::keynotes;
-  $size = scalar @arks;
-  $desc = "keynotes returns a list of $size strings";
-
-  ok( $size, $desc );
-  print "\t-> @arks\n\n";
-}
-
-{
   my $cord;
   my $size;
   my $desc;
@@ -81,6 +67,20 @@ print "\n";
 
   ok( $size eq 60, $desc );
   print "\t-> '$cord'\n\n";
+}
+
+{
+  my @arks;
+  my $size;
+  my $desc;
+
+  # returns a list of strings
+  @arks = Gondwana::keynotes;
+  $size = scalar @arks;
+  $desc = "keynotes returns a list of $size strings";
+
+  ok( $size, $desc );
+  print "\t-> @arks\n\n";
 }
 
 {
@@ -162,5 +162,5 @@ print "\n";
   print "\t-> @arms\n\n"
 }
 
-done_testing();
+done_testing;
 

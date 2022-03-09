@@ -89,15 +89,26 @@ print "\n";
 {
   my $desc;
   my $size;
+  my $sign = 'n0';
+  my $tune = 'beadgcf';
+  my @args = ( $tune, $sign, Gondwana::acquire $sign );
   my @lout;
-  my @args = ( 'beadgcf', 'i0', Gondwana::tacet );
 
   # takes a list of strings and returns a list of strings
   @lout = Rodinia::compose @args;
   $size = scalar @lout;
   $desc = "compose returns a list of $size strings";
 
-  ok( $size, $desc );
+  is( @lout, $size, $desc );
+
+  print "\n@lout\n";
+
+  @args = undef;
+  @lout = Rodinia::compose @args;
+  $size = scalar @lout;
+  $desc = "compose returns a list of $size strings";
+
+  is( @lout, $size, $desc );
 
   print "\n@lout\n";
 }
@@ -113,9 +124,9 @@ print "\n";
   # takes two string arguments and returns a string
   $cord = Rodinia::stockade( $tone, $data );
   $size = length $cord;
-  $desc = "stockade returns a string of $size characters";
+  $desc = "stockade returns a formatted string of $size characters";
 
-  ok( $size, $desc );
+  ok( $cord, $desc );
 
   print "\t-> $cord\n";
 }
@@ -139,28 +150,28 @@ print "\n";
 {
   my $desc;
   my $bool;
-  my $clef;
+  my $pole;
   my $sign = 'j3k56m4';
   my $fake = q//;
 
   # takes a string argument and returns a boolean
-  $clef = Rodinia::validate $sign;
-  $bool = $clef ? 'True' : 'False';
-  $desc = "validate returns $bool";
+  $bool = Rodinia::validate $sign;
+  $pole = $bool ? 'True' : 'False';
+  $desc = "validate returns a boolean";
 
-  ok( $clef, $desc );
+  ok( $bool, $desc );
 
-  print "\t-> $bool\n\n";
+  print "\targument passed: '$sign'\n\t-> $pole\n\n";
 
   $sign = 'forgery';
-  $clef = Rodinia::validate $sign;
-  $bool = $clef ? 'True' : 'False';
-  $desc = "validate returns $bool";
+  $bool = Rodinia::validate $sign;
+  $pole = $bool ? 'True' : 'False';
+  $desc = "validate returns a boolean";
 
-  is( $clef, $fake, $desc );
+  is( $bool, $fake, $desc );
 
-  print "\t-> $bool\n\n";
+  print "\targument passed: '$sign'\n\t-> $pole\n\n";
 }
 
-done_testing();
+done_testing;
 

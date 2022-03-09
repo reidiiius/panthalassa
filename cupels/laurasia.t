@@ -23,21 +23,6 @@ print "\n";
 }
 
 {
-  my $desc = 'wreath returns an ANSI escaped string';
-  my $bool;
-  my $crown;
-  my ( $sign, $tune, $code ) = ( 'i0', 'bfbfb', 33 );
-
-  # takes three scalar arguments and returns a string
-  $crown = Laurasia::wreath( $sign, $tune, $code );
-  $bool  = $crown =~ /\e\[/a;
-
-  ok( $bool, $desc );
-
-  print "\t-> $crown\n";
-}
-
-{
   my $desc;
   my $size;
   my $cord;
@@ -46,7 +31,7 @@ print "\n";
   # takes three scalar arguments and returns a string
   $cord = Laurasia::pegBox( $data, $head, $tail );
   $size = length $cord;
-  $desc = "pegbox returns a string of $size characters";
+  $desc = "pegbox returns a formatted string of $size characters";
 
   ok( $size, $desc );
 
@@ -86,21 +71,29 @@ print "\n";
 }
 
 {
-  my ( $desc, $head, $tail );
+  my $desc = 'boundary returns a boolean';
   my $word = '0123456789';
   my $span = Laurasia::CURB;
   my $bool;
+  my $pole;
 
   # takes two scalar arguments and returns a boolean
   $bool = Laurasia::boundary( $word, $span );
-  $bool = $bool ? 'True' : 'False';
-  $head = "boundary returns $bool if passed string\n";
-  $tail = "\tlength is less than or equal to $span";
-  $desc = $head . $tail;
+  $pole = $bool ? 'True' : 'False';
 
   ok( $bool, $desc );
 
-  print "\t-> $bool\n\n";
+  print "\tlength of '$word' is less than or equal to 10?\n";
+  print "\t-> $pole\n\n";
+
+  $word = '0123456789A';
+  $bool = Laurasia::boundary( $word, $span );
+  $pole = $bool ? 'True' : 'False';
+
+  ok( !$bool, $desc );
+
+  print "\tlength of '$word' is less than or equal to 10?\n";
+  print "\t-> $pole\n\n";
 }
 
 {
@@ -121,7 +114,7 @@ print "\n";
 }
 
 {
-  my $desc = 'caution returns an ANSI escaped string';
+  my $desc = 'caution returns a formatted ANSI escaped string';
   my $bool;
   my $word = "$^O $^V";
   my $span = Laurasia::CURB;
@@ -135,6 +128,21 @@ print "\n";
   ok( $bool, $desc );
 
   print "\t-> $errs\n";
+}
+
+{
+  my $desc = 'wreath returns a formatted ANSI escaped string';
+  my $bool;
+  my $crown;
+  my ( $sign, $tune, $code ) = ( 'i0', 'bfbfb', 33 );
+
+  # takes three scalar arguments and returns a string
+  $crown = Laurasia::wreath( $sign, $tune, $code );
+  $bool  = $crown =~ /\e\[/a;
+
+  ok( $bool, $desc );
+
+  print "\t-> $crown\n";
 }
 
 {
@@ -156,7 +164,7 @@ print "\n";
   my $desc = 'penlight returns an ANSI escaped string';
   my $bool;
   my $snip = 'The quick brown fox jumps over the lazy dog.';
-  my $code = 33;
+  my $code = 93;
 
   # takes two scalar arguments and returns a string
   $snip = Laurasia::penlight( $snip, $code );
@@ -167,5 +175,5 @@ print "\n";
   print "\t-> $snip\n\n";
 }
 
-done_testing();
+done_testing;
 
