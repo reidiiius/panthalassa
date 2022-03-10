@@ -75,14 +75,25 @@ print "\n";
   my @arks;
   my $size;
   my $desc;
+  my $reps = qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/;
+  my $errs = q//;
 
-  # returns a list of strings
+  # returns a sorted list of strings
   @arks = Gondwana::keynotes;
   $size = scalar @arks;
-  $desc = "keynotes returns a list of $size strings";
+  $desc = "keynotes returns a sorted list of $size strings";
 
   ok( $size, $desc );
   print "\t-> @arks\n\n";
+
+  foreach my $item (@arks) {
+    if ( $item !~ m{$reps} ) {
+      $errs .= "$item ";
+    }
+  }
+
+  ok( !$errs, 'regular expression matching validation for keynotes' );
+  print $errs ? "\t-> $errs\n\n" : "\n";
 }
 
 {
@@ -120,7 +131,6 @@ print "\n";
   my ( $size, $span, $ndex, $errs ) = ( 0, 0, 0, 0 );
   my $accu = q//;
 
-  @arks = sort @arks;
   @star = sort @star;
   $size = scalar @arks;
   $span = scalar @star;
@@ -167,10 +177,10 @@ print "\n";
   my $size;
   my $desc;
 
-  # returns a list of strings
+  # returns a sorted list of strings
   @gear = Gondwana::pickaxe;
   $size = scalar @gear;
-  $desc = "pickaxe returns a list of $size strings";
+  $desc = "pickaxe returns a sorted list of $size strings";
 
   ok( @gear, $desc );
   print "\t-> @gear\n\n";
