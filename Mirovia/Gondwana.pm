@@ -87,6 +87,12 @@ sub viridian {
   @emerald;
 }
 
+sub regulus {
+  my $reps = qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/;
+
+  $reps;
+}
+
 my %Metalograph = (
   j2      => 'HgHg PuFe ____ ____ CuNp PbAu ____ AuPb ____ AgUr ____ FePu ',
   j2h     => 'HgCu PuMn ____ ____ CuHg PbFe ____ AuAg ____ AgAu ____ FePb ',

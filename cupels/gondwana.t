@@ -72,22 +72,17 @@ print "\n";
 }
 
 {
-  my @arks;
-  my $size;
-  my $desc;
-  my $reps = qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/;
+  my @arks = Gondwana::keynotes;
+  my $size = scalar @arks;
+  my $desc = "keynotes returns a sorted list of $size strings";
+  my $reps = Gondwana::regulus;
   my $errs = q//;
-
-  # returns a sorted list of strings
-  @arks = Gondwana::keynotes;
-  $size = scalar @arks;
-  $desc = "keynotes returns a sorted list of $size strings";
 
   ok( $size, $desc );
   print "\t-> @arks\n\n";
 
   foreach my $item (@arks) {
-    if ( $item !~ m{$reps} ) {
+    if ( $item !~ m{$reps}a ) {
       $errs .= "$item ";
     }
   }
