@@ -51,6 +51,7 @@ print "\n";
   $sign = undef;
   $wire = Gondwana::acquire $sign;
   $size = length $wire;
+  $desc = "acquire returns a string of $size characters by default";
 
   is( $size, 60, $desc );
   print "\t-> '$wire'\n\n";
@@ -110,6 +111,33 @@ print "\n";
 
   ok( $size, $desc );
   print "\t-> @arks\n\n";
+}
+
+{
+  my $desc = 'comparison of sanguine plus viridian to keynotes';
+  my @arks = Gondwana::keynotes;
+  my @star = ( Gondwana::sanguine, Gondwana::viridian );
+  my ( $size, $span, $ndex, $errs ) = ( 0, 0, 0, 0 );
+  my $accu = q//;
+
+  @arks = sort @arks;
+  @star = sort @star;
+  $size = scalar @arks;
+  $span = scalar @star;
+
+  ok( $size == $span, "quantity $desc" );
+  print "\n";
+
+  for ( $ndex = 0 ; $ndex < $size ; $ndex++ ) {
+    if ( $arks[$ndex] ne $star[$ndex] ) {
+      $accu .= "\t$arks[$ndex]\t<diff>\t$star[$ndex]\n";
+      $errs++;
+    }
+  }
+  print "$accu\n" if $errs;
+
+  is( $errs, 0, "quality $desc" );
+  print "\n";
 }
 
 {
