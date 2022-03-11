@@ -87,6 +87,15 @@ sub viridian {
   @emerald;
 }
 
+sub lapidary {
+  my @opal = ();
+
+  push( @opal, @corundum );
+  push( @opal, @emerald );
+
+  sort @opal;
+}
+
 sub regulus {
   my $reps = qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/;
 

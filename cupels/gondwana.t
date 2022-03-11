@@ -92,6 +92,26 @@ print "\n";
 }
 
 {
+  my @star = Gondwana::lapidary;
+  my $size = scalar @star;
+  my $desc = "lapidary returns a sorted list of $size strings";
+  my $reps = Gondwana::regulus;
+  my $errs = q//;
+
+  ok( $size, $desc );
+  print "\t-> @star\n\n";
+
+  foreach my $item (@star) {
+    if ( $item !~ m{$reps}a ) {
+      $errs .= "$item ";
+    }
+  }
+
+  ok( !$errs, 'regular expression matching validation for lapidary' );
+  print $errs ? "\t-> $errs\n\n" : "\n";
+}
+
+{
   my @arks;
   my $size;
   my $desc;
@@ -120,13 +140,12 @@ print "\n";
 }
 
 {
-  my $desc = 'comparison of sanguine plus viridian to keynotes';
+  my $desc = 'comparison of keynotes and lapidary';
   my @arks = Gondwana::keynotes;
-  my @star = ( Gondwana::sanguine, Gondwana::viridian );
+  my @star = Gondwana::lapidary;
   my ( $size, $span, $ndex, $errs ) = ( 0, 0, 0, 0 );
   my $accu = q//;
 
-  @star = sort @star;
   $size = scalar @arks;
   $span = scalar @star;
 
