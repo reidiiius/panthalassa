@@ -15,7 +15,7 @@ my %matrices = (
 
 sub hedgerow {
   my $harp = shift;
-  my $crow = $matrices{$harp};
+  my $crow = $matrices{$harp} || q//;
   my @arms = split( $", $crow );
 
   @arms;
@@ -50,6 +50,12 @@ my %chromium = (
   an => [ 45, 15 ],
   aj => [ 40, 20 ],
 );
+
+sub machine {
+  my @arts = keys %chromium;
+
+  @arts;
+}
 
 sub tension {
   my $tone = shift;
