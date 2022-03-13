@@ -33,39 +33,35 @@ print "\n";
 }
 
 {
-  my $sign;
+  my $desc = "acquire returns a string of 60 characters";
+  my @arks = Gondwana::keynotes;
   my $wire;
   my $size;
-  my $desc;
+  my $accu = q//;
+  my $errs = 0;
 
-  $sign = 'n0';
-  $wire = Gondwana::acquire $sign;
-  $size = length $wire;
-  $desc = "acquire returns a string of $size characters";
+  foreach my $sign (@arks) {
+    $wire = Gondwana::acquire $sign;
+    $size = length $wire;
 
-  is( $size, 60, $desc );
-  print "\t-> '$wire'\n\n";
+    if ( $size != 60 ) {
+      $accu .= "\t$sign => '$wire',\n";
+      $errs++;
+    }
+  }
 
-  $sign = undef;
-  $wire = Gondwana::acquire $sign;
-  $size = length $wire;
-  $desc = "acquire returns a string of $size characters by default";
-
-  is( $size, 60, $desc );
-  print "\t-> '$wire'\n\n";
+  ok( !$errs, $desc );
+  print $errs ? "$accu\n" : "\n";
 }
 
 {
-  my $cord;
-  my $size;
-  my $desc;
+  my $desc = "tacet returns a string of 60 characters";
+  my $wire = Gondwana::tacet;
+  my $size = length $wire;
+  my $bool = $size == 60;
 
-  $cord = Gondwana::tacet;
-  $size = length $cord;
-  $desc = "tacet returns a string of $size characters";
-
-  is( $size, 60, $desc );
-  print "\t-> '$cord'\n\n";
+  ok( $bool, $desc );
+  print $bool ? "\n" : "\t$size -> '$wire'\n\n";
 }
 
 sub mismatch {
@@ -73,14 +69,13 @@ sub mismatch {
   my @arks = &{$pref};
   my $name = shift || 'process';
   my $size = scalar @arks;
-  my $desc = "$name returns a sorted list of $size strings";
+  my $zero = $size % 2;
+  my $desc = "$name returns a sorted balanced list of strings";
   my $reps = Gondwana::regulus;
   my $errs = q//;
 
-  ok( $size, $desc );
-
-  # print "\t-> @arks\n\n";
-  print "\n";
+  is( $zero, 0, $desc );
+  print $zero ? "\t-> @arks\n\n" : "\n";
 
   foreach my $item (@arks) {
     if ( $item !~ m{$reps}a ) {
