@@ -12,19 +12,16 @@ use Gondwana;
 print "\n";
 
 {
-  my $bool;
-  my $pole;
-  my $sign;
   my $desc = 'membership returns a boolean';
-
-  $sign = 'i0';
-  $bool = Gondwana::membership $sign;
-  $pole = $bool ? 'True' : 'False';
+  my @star = Gondwana::viridian;
+  my $sign = $star[43];
+  my $bool = Gondwana::membership $sign;
+  my $pole = $bool ? 'True' : 'False';
 
   ok( $bool, $desc );
   print "\targument passed: '$sign'\n\t-> $pole\n\n";
 
-  $sign = 'h2';
+  $sign = 'i7';
   $bool = Gondwana::membership $sign;
   $pole = $bool ? 'True' : 'False';
 
@@ -35,10 +32,10 @@ print "\n";
 {
   my $desc = "acquire returns a string of 60 characters";
   my @arks = Gondwana::keynotes;
-  my $wire;
-  my $size;
   my $accu = q//;
   my $errs = 0;
+  my $wire = q//;
+  my $size = 0;
 
   foreach my $sign (@arks) {
     $wire = Gondwana::acquire $sign;
@@ -132,10 +129,10 @@ mismatch( \&Gondwana::lapidary, 'lapidary' );
 
 {
   my @arts = Gondwana::machine;
-  my @fork;
+  my @fork = ();
   my $size = scalar @arts;
   my $desc = "machine returns a list of 21 strings";
-  my $summ;
+  my $summ = 0;
   my $pair = 0;
   my $errs = 0;
 
@@ -162,11 +159,8 @@ mismatch( \&Gondwana::lapidary, 'lapidary' );
 }
 
 {
-  my @gear;
-  my $desc;
-
-  @gear = Gondwana::pickaxe;
-  $desc = "pickaxe returns a sorted list of strings";
+  my @gear = Gondwana::pickaxe;
+  my $desc = "pickaxe returns a sorted list of strings";
 
   ok( @gear, $desc );
   print "\t-> @gear\n\n";
@@ -175,9 +169,9 @@ mismatch( \&Gondwana::lapidary, 'lapidary' );
 {
   my $desc = "hedgerow returns a list of strings";
   my @gear = Gondwana::pickaxe;
-  my @arms;
-  my $size;
-  my $errs;
+  my @arms = ();
+  my $size = 0;
+  my $errs = 0;
 
   foreach my $harp (@gear) {
     @arms = Gondwana::hedgerow $harp;

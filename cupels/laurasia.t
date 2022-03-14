@@ -18,22 +18,21 @@ print "\n";
 
   ok( $bool, $desc );
 
-  # prints strings to stdout
   Laurasia::examples;
 }
 
 {
-  my $desc;
-  my $size;
   my $span = 38;
-  my $cord = Gondwana::acquire 'n0';
-  my @fork = Gondwana::tension 'fn';
-  my ( $data, $head, $tail ) = ( $cord, @fork );
-
-  # takes three scalar arguments and returns a string
-  $cord = Laurasia::pegBox( $data, $head, $tail );
-  $size = length $cord;
-  $desc = "pegbox returns a formatted string of $span characters";
+  my $desc = "pegbox returns a formatted string of $span characters";
+  my @star = Gondwana::sanguine;
+  my $sign = $star[43];
+  my $vine = Gondwana::acquire $sign;
+  my @arts = sort &Gondwana::machine;
+  my $tone = $arts[17];
+  my @fork = Gondwana::tension $tone;
+  my ( $data, $head, $tail ) = ( $vine, @fork );
+  my $cord = Laurasia::pegBox( $data, $head, $tail );
+  my $size = length $cord;
 
   is( $size, $span, $desc );
 
@@ -46,30 +45,24 @@ print "\n";
   $desc = 'and terminated with newline character';
 
   is( $tail, --$size, $desc );
-
   print "\t-> $cord\n";
 }
 
 {
-  my $desc;
-  my $size;
   my $span = 36;
-  my $bool;
-  my $wire;
-  my $yarn = Gondwana::acquire 'n0';
-
-  # takes a string argument and returns a string
-  $wire = Laurasia::refine $yarn;
-  $size = length $wire;
-  $desc = "refine returns a string of $span characters";
+  my $desc = "refine returns a string of $span characters";
+  my @star = Gondwana::sanguine;
+  my $sign = $star[43];
+  my $yarn = Gondwana::acquire $sign;
+  my $wire = Laurasia::refine $yarn;
+  my $size = length $wire;
+  my $bool = $yarn cmp $wire;
 
   is( $size, $span, $desc );
 
-  $bool = $yarn cmp $wire;
   $desc = 'refine returns the string transformed';
 
   ok( $bool, $desc );
-
   print "\t-> '$wire'\n\n";
 }
 
@@ -94,7 +87,6 @@ print "\n";
   $desc = 'invert returns the string transformed';
 
   ok( $bool, $desc );
-
   print "\t$yarn -> $wire\n\n";
 }
 
@@ -102,15 +94,10 @@ print "\n";
   my $desc = 'boundary returns a boolean';
   my $word = '0123456789';
   my $span = Laurasia::CURB;
-  my $bool;
-  my $pole;
-
-  # takes two scalar arguments and returns a boolean
-  $bool = Laurasia::boundary( $word, $span );
-  $pole = $bool ? 'True' : 'False';
+  my $bool = Laurasia::boundary( $word, $span );
+  my $pole = $bool ? 'True' : 'False';
 
   ok( $bool, $desc );
-
   print "\tlength of '$word' is less than or equal to 10?\n";
   print "\t-> $pole\n\n";
 
@@ -119,7 +106,6 @@ print "\n";
   $pole = $bool ? 'True' : 'False';
 
   ok( !$bool, $desc );
-
   print "\tlength of '$word' is less than or equal to 10?\n";
   print "\t-> $pole\n\n";
 }
@@ -129,16 +115,11 @@ print "\n";
   my $filet = __FILE__;
   my $aline = __LINE__;
   my $catch = 'conditional';
-  my $alert;
-  my $bool;
-
-  # takes three scalar arguments and returns a string
-  $alert = Laurasia::anomaly( $filet, $aline, $catch );
-  $bool  = $alert =~ /\e\[/a;
+  my $alert = Laurasia::anomaly( $filet, $aline, $catch );
+  my $bool  = $alert =~ /\e\[/a;
 
   ok( $bool, $desc );
-
-  print "\t->$alert\n";
+  print "\t-> $alert\n";
 }
 
 {
@@ -146,15 +127,10 @@ print "\n";
   my $word = "$^O $^X $^V $0";
   my $span = Laurasia::CEIL;
   my $code = 92;
-  my $size;
-  my $errs;
-  my $bool;
+  my $errs = Laurasia::caution( $word, $span, $code );
+  my $size = length $errs;
+  my $bool = $errs =~ /\e\[/a;
   my ( $head, $tail );
-
-  # takes three scalar arguments and returns a string
-  $errs = Laurasia::caution( $word, $span, $code );
-  $size = length $errs;
-  $bool = $errs =~ /\e\[/a;
 
   ok( $bool, $desc );
 
@@ -167,66 +143,59 @@ print "\n";
   $desc = 'and terminated with newline character';
 
   is( $tail, --$size, $desc );
-
   print "\t-> $errs\n";
 }
 
 {
   my $desc = 'wreath returns a formatted ANSI escaped string';
-  my $bool;
-  my $size;
-  my $crown;
+  my @star = Gondwana::viridian;
+  my $sign = $star[43];
+  my @gear = Gondwana::pickaxe;
+  my $tune = $gear[1];
+  my $code = 33;
+  my $vine = Laurasia::wreath( $sign, $tune, $code );
+  my $size = length $vine;
+  my $bool = $vine =~ /\e\[/a;
   my ( $head, $tail );
-  my ( $sign, $tune, $code ) = ( 'i0', 'bfbfb', 33 );
-
-  # takes three scalar arguments and returns a string
-  $crown = Laurasia::wreath( $sign, $tune, $code );
-  $size  = length $crown;
-  $bool  = $crown =~ /\e\[/a;
 
   ok( $bool, $desc );
 
-  $head = index( $crown, "\t" );
+  $head = index( $vine, "\t" );
   $desc = 'string is prefixed with tab character';
 
   is( $head, 0, $desc );
 
-  $tail = index( $crown, "\n" );
+  $tail = index( $vine, "\n" );
   $desc = 'and terminated with newline character';
 
   is( $tail, --$size, $desc );
-
-  print "\t-> $crown\n";
+  print "\t-> $vine\n";
 }
 
 {
   my $desc = 'chaplain returns an unescaped ANSI string';
-  my $bool;
+  my @star = Gondwana::viridian;
+  my $sign = $star[43];
+  my @gear = Gondwana::pickaxe;
+  my $tune = $gear[1];
   my $code = 33;
-  my $vine = Laurasia::wreath( 'i0', 'bfbfb', $code );
-
-  # takes two scalar arguments and returns a string
-  $vine = Laurasia::chaplain( $vine, $code );
-  $bool = $vine !~ /\e\[/a;
+  my $yarn = Laurasia::wreath( $sign, $tune, $code );
+  my $vine = Laurasia::chaplain( $yarn, $code );
+  my $bool = $vine !~ /\e\[/a;
 
   ok( $bool, $desc );
-
   print "\t-> $vine\n";
 }
 
 {
   my $desc = 'penlight returns an ANSI escaped string';
-  my $bool;
   my $snip = join( $", Gondwana::pickaxe );
   my $code = 93;
-
-  # takes two scalar arguments and returns a string
-  $snip = Laurasia::penlight( $snip, $code );
-  $bool = $snip =~ /\e\[/a;
+  my $vine = Laurasia::penlight( $snip, $code );
+  my $bool = $vine =~ /\e\[/a;
 
   ok( $bool, $desc );
-
-  print "\t-> $snip\n\n";
+  print "\t-> $vine\n\n";
 }
 
 done_testing;
