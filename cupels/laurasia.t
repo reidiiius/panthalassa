@@ -25,15 +25,26 @@ print "\n";
 {
   my $desc;
   my $size;
-  my $cord;
-  my ( $data, $head, $tail ) = ( Gondwana::tacet, 0, 60 );
+  my $cord = Gondwana::acquire 'n0';
+  my @fork = Gondwana::tension 'fn';
+  my ( $data, $head, $tail ) = ( $cord, @fork );
 
   # takes three scalar arguments and returns a string
   $cord = Laurasia::pegBox( $data, $head, $tail );
   $size = length $cord;
-  $desc = "pegbox returns a formatted string of $size characters";
+  $desc = 'pegbox returns a formatted string of 38 characters';
 
-  ok( $size, $desc );
+  is( $size, 38, $desc );
+
+  $head = index( $cord, "\t" );
+  $desc = 'string is prefixed with tab character';
+
+  is( $head, 0, $desc );
+
+  $tail = index( $cord, "\n" );
+  $desc = 'and terminated with newline character';
+
+  is( $tail, 37, $desc );
 
   print "\t-> $cord\n";
 }
@@ -41,33 +52,48 @@ print "\n";
 {
   my $desc;
   my $size;
+  my $bool;
   my $wire;
   my $yarn = Gondwana::acquire 'n0';
 
   # takes a string argument and returns a string
   $wire = Laurasia::refine $yarn;
   $size = length $wire;
-  $desc = "refine returns a string of $size characters";
+  $bool = $yarn cmp $wire;
+  $desc = 'refine returns a string of 36 characters';
 
   is( $size, 36, $desc );
 
-  print "\t-> $wire\n\n";
+  $desc = 'refine returns the string transformed';
+
+  ok( $bool, $desc );
+
+  print "\t-> '$wire'\n\n";
 }
 
 {
-  my $desc;
-  my $size;
-  my $wire;
+  my $desc = 'invert takes an alphanumeric argument';
+  my $bool;
   my $yarn = 'j2k56l6';
+  my $wire = Laurasia::invert $yarn;
+  my $take = length $yarn;
+  my $give = length $wire;
 
-  # takes a string argument and returns a string
-  $wire = Laurasia::invert $yarn;
-  $size = length $wire;
-  $desc = "invert returns a string of $size characters";
+  $bool = $yarn =~ /\w+/a;
 
-  ok( $size, $desc );
+  ok( $bool, $desc );
 
-  print "\t-> $wire\n\n";
+  $bool = $take == $give;
+  $desc = 'invert returns a string of equal length';
+
+  ok( $bool, $desc );
+
+  $bool = $yarn cmp $wire;
+  $desc = 'invert returns the string transformed';
+
+  ok( $bool, $desc );
+
+  print "\t$yarn -> $wire\n\n";
 }
 
 {
@@ -97,12 +123,12 @@ print "\n";
 }
 
 {
-  my $desc = 'anomaly returns an ANSI escaped string';
-  my $bool;
+  my $desc  = 'anomaly returns an ANSI escaped string';
   my $filet = __FILE__;
   my $aline = __LINE__;
   my $catch = 'conditional';
   my $alert;
+  my $bool;
 
   # takes three scalar arguments and returns a string
   $alert = Laurasia::anomaly( $filet, $aline, $catch );
@@ -115,17 +141,30 @@ print "\n";
 
 {
   my $desc = 'caution returns a formatted ANSI escaped string';
-  my $bool;
-  my $word = "$^O $^V";
-  my $span = Laurasia::CURB;
-  my $code = 91;
+  my $word = "$^O $^X $^V $0";
+  my $span = Laurasia::CEIL;
+  my $code = 92;
+  my $size;
   my $errs;
+  my $bool;
+  my ( $head, $tail );
 
   # takes three scalar arguments and returns a string
   $errs = Laurasia::caution( $word, $span, $code );
+  $size = length $errs;
   $bool = $errs =~ /\e\[/a;
 
   ok( $bool, $desc );
+
+  $head = index( $errs, "\t" );
+  $desc = 'string is prefixed with tab character';
+
+  is( $head, 0, $desc );
+
+  $tail = index( $errs, "\n" );
+  $desc = 'and terminated with newline character';
+
+  is( $tail, --$size, $desc );
 
   print "\t-> $errs\n";
 }
@@ -133,14 +172,27 @@ print "\n";
 {
   my $desc = 'wreath returns a formatted ANSI escaped string';
   my $bool;
+  my $size;
   my $crown;
+  my ( $head, $tail );
   my ( $sign, $tune, $code ) = ( 'i0', 'bfbfb', 33 );
 
   # takes three scalar arguments and returns a string
   $crown = Laurasia::wreath( $sign, $tune, $code );
+  $size  = length $crown;
   $bool  = $crown =~ /\e\[/a;
 
   ok( $bool, $desc );
+
+  $head = index( $crown, "\t" );
+  $desc = 'string is prefixed with tab character';
+
+  is( $head, 0, $desc );
+
+  $tail = index( $crown, "\n" );
+  $desc = 'and terminated with newline character';
+
+  is( $tail, --$size, $desc );
 
   print "\t-> $crown\n";
 }
