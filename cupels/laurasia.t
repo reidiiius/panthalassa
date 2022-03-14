@@ -25,6 +25,7 @@ print "\n";
 {
   my $desc;
   my $size;
+  my $span = 38;
   my $cord = Gondwana::acquire 'n0';
   my @fork = Gondwana::tension 'fn';
   my ( $data, $head, $tail ) = ( $cord, @fork );
@@ -32,9 +33,9 @@ print "\n";
   # takes three scalar arguments and returns a string
   $cord = Laurasia::pegBox( $data, $head, $tail );
   $size = length $cord;
-  $desc = 'pegbox returns a formatted string of 38 characters';
+  $desc = "pegbox returns a formatted string of $span characters";
 
-  is( $size, 38, $desc );
+  is( $size, $span, $desc );
 
   $head = index( $cord, "\t" );
   $desc = 'string is prefixed with tab character';
@@ -44,7 +45,7 @@ print "\n";
   $tail = index( $cord, "\n" );
   $desc = 'and terminated with newline character';
 
-  is( $tail, 37, $desc );
+  is( $tail, --$span, $desc );
 
   print "\t-> $cord\n";
 }
@@ -52,6 +53,7 @@ print "\n";
 {
   my $desc;
   my $size;
+  my $span = 36;
   my $bool;
   my $wire;
   my $yarn = Gondwana::acquire 'n0';
@@ -60,9 +62,9 @@ print "\n";
   $wire = Laurasia::refine $yarn;
   $size = length $wire;
   $bool = $yarn cmp $wire;
-  $desc = 'refine returns a string of 36 characters';
+  $desc = "refine returns a string of $span characters";
 
-  is( $size, 36, $desc );
+  is( $size, $span, $desc );
 
   $desc = 'refine returns the string transformed';
 
@@ -74,7 +76,7 @@ print "\n";
 {
   my $desc = 'invert takes an alphanumeric argument';
   my $bool;
-  my $yarn = 'j2k56l6';
+  my $yarn = 'j2k56m4';
   my $wire = Laurasia::invert $yarn;
   my $take = length $yarn;
   my $give = length $wire;
