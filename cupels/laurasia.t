@@ -45,7 +45,7 @@ print "\n";
   $tail = index( $cord, "\n" );
   $desc = 'and terminated with newline character';
 
-  is( $tail, --$span, $desc );
+  is( $tail, --$size, $desc );
 
   print "\t-> $cord\n";
 }
@@ -61,11 +61,11 @@ print "\n";
   # takes a string argument and returns a string
   $wire = Laurasia::refine $yarn;
   $size = length $wire;
-  $bool = $yarn cmp $wire;
   $desc = "refine returns a string of $span characters";
 
   is( $size, $span, $desc );
 
+  $bool = $yarn cmp $wire;
   $desc = 'refine returns the string transformed';
 
   ok( $bool, $desc );
@@ -75,13 +75,13 @@ print "\n";
 
 {
   my $desc = 'invert takes an alphanumeric argument';
-  my $bool;
-  my $yarn = 'j2k56m4';
+  my @star = Gondwana::sanguine;
+  my $yarn = $star[15];
   my $wire = Laurasia::invert $yarn;
   my $take = length $yarn;
   my $give = length $wire;
-
-  $bool = $yarn =~ /\w+/a;
+  my $reps = Gondwana::regulus;
+  my $bool = $yarn =~ m{$reps}a;
 
   ok( $bool, $desc );
 
@@ -217,7 +217,7 @@ print "\n";
 {
   my $desc = 'penlight returns an ANSI escaped string';
   my $bool;
-  my $snip = 'The quick brown fox jumps over the lazy dog.';
+  my $snip = join( $", Gondwana::pickaxe );
   my $code = 93;
 
   # takes two scalar arguments and returns a string
