@@ -22,7 +22,8 @@ print "\n";
 }
 
 {
-  my $span = 38;
+  my $bool = Laurasia::BARE;
+  my $span = $bool ? 62 : 38;
   my $desc = "pegbox returns a formatted string of $span characters";
   my @star = Gondwana::sanguine;
   my $sign = $star[43];

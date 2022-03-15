@@ -167,6 +167,7 @@ sub dashboard {
 }
 
 sub correlate {
+  my $metal = Laurasia::BARE;
   my @altar = Gondwana::keynotes;
   my @accum = ();
   my $cycle = 0;
@@ -178,16 +179,16 @@ sub correlate {
   my $alert = 'initialize';
 
   foreach $lingo (@_) {
-    $lingo = lc $lingo;
+    $lingo = lc $lingo unless $metal;
     @accum = ();
     $cycle = 0;
 
-    if ( $lingo =~ /^[o-z]{2}$/ai ) {
+    if ( $lingo =~ /^([A-Z][a-z]|[o-z]){2}$/a ) {
       foreach $argot (@altar) {
         $datum = Gondwana::acquire $argot;
-        $datum = Laurasia::refine $datum;
+        $datum = Laurasia::refine $datum unless $metal;
 
-        if ( $datum =~ m{$lingo}ai ) {
+        if ( $datum =~ m{$lingo}a ) {
           $accum[ ++$#accum ] = $argot;
         }
       }
@@ -208,8 +209,8 @@ sub correlate {
     }
     elsif ( validate $lingo ) {
       $datum = Gondwana::acquire $lingo;
-      $datum = Laurasia::refine $datum;
-      $datum =~ s/__ //g unless $lingo eq 'i0';
+      $datum = Laurasia::refine $datum unless $metal;
+      $datum =~ s/_+\s//g unless $lingo eq 'i0';
       $datum = Laurasia::penlight( $datum, 93 );
 
       print "\n\t$datum\n";

@@ -3,6 +3,7 @@ package Laurasia;
 use warnings;
 use strict;
 
+use constant BARE => 0;
 use constant CURB => 10;
 use constant CEIL => 56;
 
@@ -98,7 +99,7 @@ sub refine {
 sub pegBox {
   my ( $data, $head, $tail ) = ( $_[0], $_[1], $_[2] );
   my $cord = substr( $data, $head, $tail ) . substr( $data, 0, $head );
-  $cord = refine($cord);
+  $cord = refine($cord) unless BARE;
 
   "\t$cord\n";
 }

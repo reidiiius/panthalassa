@@ -107,18 +107,19 @@ print "\n";
 }
 
 {
-  my $size = 38;
-  my $desc = "stockade returns a formatted string of $size characters";
+  my $bool = Laurasia::BARE;
+  my $span = $bool ? 62 : 38;
+  my $desc = "stockade returns a formatted string of $span characters";
   my @star = Gondwana::sanguine;
   my $sign = $star[43];
   my $data = Gondwana::acquire $sign;
   my @arts = sort &Gondwana::machine;
   my $tone = $arts[17];
   my $cord = Rodinia::stockade( $tone, $data );
-  my $span = length $cord;
+  my $size = length $cord;
   my ( $head, $tail );
 
-  is( $span, $size, $desc );
+  is( $size, $span, $desc );
 
   $head = index( $cord, "\t" );
   $desc = 'string is prefixed with tab character';
@@ -133,14 +134,14 @@ print "\n";
 }
 
 {
-  my $size = 60;
-  my $desc = "retrieve returns a string of $size characters";
+  my $span = 60;
+  my $desc = "retrieve returns a string of $span characters";
   my @star = Gondwana::sanguine;
   my $sign = $star[43];
   my $data = Gondwana::acquire $sign;
-  my $span = length $data;
+  my $size = length $data;
 
-  is( $span, $size, $desc );
+  is( $size, $span, $desc );
   print "\t-> '$data'\n\n";
 }
 
