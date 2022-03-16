@@ -44,7 +44,8 @@ print "\n";
   my @star = Gondwana::lapidary;
   my $sign = $star[87];
   my $yarn = Gondwana::acquire $sign;
-  my $wire = Laurasia::refine $yarn;
+  my $cord = Laurasia::refine $yarn;
+  my $wire = Laurasia::BARE ? $yarn : $cord;
   my @toke = split( $", $wire );
   my @args = ( $sign, $toke[2] );
 

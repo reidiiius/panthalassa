@@ -167,11 +167,11 @@ sub dashboard {
 }
 
 sub correlate {
-  my $metal = Laurasia::BARE;
   my @altar = Gondwana::keynotes;
   my @accum = ();
   my $cycle = 0;
   my $colum = 8;
+  my $metal = Laurasia::BARE;
   my $lingo = 'initialize';
   my $argot = 'initialize';
   my $datum = 'initialize';
