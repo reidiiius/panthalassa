@@ -27,8 +27,9 @@ sub stockade {
   my @fork = Gondwana::tension $tone;
   my $head = $fork[0];
   my $tail = $fork[1];
+  my $cord = Laurasia::pegBox( $data, $head, $tail );
 
-  Laurasia::pegBox( $data, $head, $tail );
+  $cord;
 }
 
 sub compose {
@@ -73,7 +74,7 @@ sub vestibule {
     }
     $alert = Laurasia::caution $tune;
 
-    print "$alert\n";
+    print "\t$alert\n\n";
     exit 0;
   }
   else {
@@ -115,13 +116,13 @@ sub kleenex {
       else {
         $alert = Laurasia::caution( $lingo, $limit, 94 );
 
-        print $alert;
+        print "\t$alert\n";
       }
     }
     else {
       $alert = Laurasia::caution( $lingo, $limit );
 
-      print "\n$alert";
+      print "\n\t$alert\n";
     }
   }
   print "\n";
@@ -204,7 +205,7 @@ sub correlate {
       else {
         $alert = Laurasia::caution( $lingo, 0, 94 );
 
-        print "\n$alert";
+        print "\n\t$alert\n";
       }
     }
     elsif ( validate $lingo ) {
@@ -218,7 +219,7 @@ sub correlate {
     else {
       $alert = Laurasia::caution $lingo;
 
-      print "\n$alert";
+      print "\n\t$alert\n";
     }
   }
   print "\n";
@@ -232,6 +233,7 @@ sub entryway {
     my $alert = 'initialize';
     my $pegs  = 'beadgcf';        # default tuning
     my $tune  = $pegs;
+    my @star  = ();
 
     unless ($clef) {
       $tune = shift;              # change tuning
@@ -258,29 +260,30 @@ sub entryway {
       for (@_) {
         if ( Laurasia::boundary $_ ) {
           $sign = Laurasia::invert "\L$_";
+          @star = vestibule( $tune, $sign );
 
-          print vestibule( $tune, $sign );
+          foreach my $crow (@star) {
+            print "\t$crow\n";
+          }
           print "\n";
         }
         else {
           $alert = Laurasia::caution $_;
 
-          print "$alert\n";
+          print "\t$alert\n\n";
         }
       }
     }
     elsif ( @_ and "\L$_[0]" eq 'gamut' ) {
       my @arks = Gondwana::keynotes;
-      my @star = ();
-      my $crow = 'initialize';
 
       print "\n";
       foreach $sign (@arks) {
         @star = vestibule( $tune, $sign );
         $star[0] = Laurasia::chaplain $star[0];
 
-        foreach $crow (@star) {
-          print $crow;
+        foreach my $crow (@star) {
+          print "\t$crow\n";
         }
         print "\n";
       }
@@ -289,13 +292,17 @@ sub entryway {
       print "\n";
       for (@_) {
         if ( Laurasia::boundary $_ ) {
-          print vestibule( $tune, $_ );
+          @star = vestibule( $tune, $_ );
+
+          foreach my $crow (@star) {
+            print "\t$crow\n";
+          }
           print "\n";
         }
         else {
           $alert = Laurasia::caution $_;
 
-          print "$alert\n";
+          print "\t$alert\n\n";
         }
       }
     }

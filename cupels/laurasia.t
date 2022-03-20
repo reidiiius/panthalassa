@@ -23,30 +23,20 @@ print "\n";
 
 {
   my $bool = Laurasia::BARE;
-  my $span = $bool ? 62 : 38;
-  my $desc = "pegbox returns a formatted string of $span characters";
+  my $span = $bool ? 60 : 36;
+  my $desc = "pegbox returns a string of $span characters";
   my @star = Gondwana::sanguine;
   my $sign = $star[43];
-  my $vine = Gondwana::acquire $sign;
+  my $data = Gondwana::acquire $sign;
   my @arts = sort &Gondwana::machine;
   my $tone = $arts[17];
   my @fork = Gondwana::tension $tone;
-  my ( $data, $head, $tail ) = ( $vine, @fork );
+  my ( $head, $tail ) = @fork;
   my $cord = Laurasia::pegBox( $data, $head, $tail );
   my $size = length $cord;
 
   is( $size, $span, $desc );
-
-  $head = index( $cord, "\t" );
-  $desc = 'string is prefixed with tab character';
-
-  is( $head, 0, $desc );
-
-  $tail = index( $cord, "\n" );
-  $desc = 'and terminated with newline character';
-
-  is( $tail, --$size, $desc );
-  print "\t-> $cord\n";
+  print "\t-> '$cord'\n\n";
 }
 
 {
@@ -120,35 +110,24 @@ print "\n";
   my $bool  = $alert =~ /\e\[/a;
 
   ok( $bool, $desc );
-  print "\t-> $alert\n";
+  print "\t-> $alert\n\n";
 }
 
 {
-  my $desc = 'caution returns a formatted ANSI escaped string';
+  my $desc = 'caution returns an ANSI escaped string';
   my $word = "$^O $^X $^V $0";
   my $span = Laurasia::CEIL;
   my $code = 92;
   my $errs = Laurasia::caution( $word, $span, $code );
   my $size = length $errs;
   my $bool = $errs =~ /\e\[/a;
-  my ( $head, $tail );
 
   ok( $bool, $desc );
-
-  $head = index( $errs, "\t" );
-  $desc = 'string is prefixed with tab character';
-
-  is( $head, 0, $desc );
-
-  $tail = index( $errs, "\n" );
-  $desc = 'and terminated with newline character';
-
-  is( $tail, --$size, $desc );
-  print "\t-> $errs\n";
+  print "\t-> $errs\n\n";
 }
 
 {
-  my $desc = 'wreath returns a formatted ANSI escaped string';
+  my $desc = 'wreath returns an ANSI escaped string';
   my @star = Gondwana::viridian;
   my $sign = $star[43];
   my @gear = Gondwana::pickaxe;
@@ -157,20 +136,9 @@ print "\n";
   my $vine = Laurasia::wreath( $sign, $tune, $code );
   my $size = length $vine;
   my $bool = $vine =~ /\e\[/a;
-  my ( $head, $tail );
 
   ok( $bool, $desc );
-
-  $head = index( $vine, "\t" );
-  $desc = 'string is prefixed with tab character';
-
-  is( $head, 0, $desc );
-
-  $tail = index( $vine, "\n" );
-  $desc = 'and terminated with newline character';
-
-  is( $tail, --$size, $desc );
-  print "\t-> $vine\n";
+  print "\t-> $vine\n\n";
 }
 
 {
@@ -185,7 +153,7 @@ print "\n";
   my $bool = $vine !~ /\e\[/a;
 
   ok( $bool, $desc );
-  print "\t-> $vine\n";
+  print "\t-> $vine\n\n";
 }
 
 {

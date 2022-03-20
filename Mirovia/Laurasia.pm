@@ -32,7 +32,7 @@ sub caution {
   my $snip = substr( $word, 0, $span );
   my $errs = penlight( "$snip ?", $code );
 
-  "\t$errs\n";
+  $errs;
 }
 
 sub anomaly {
@@ -99,16 +99,16 @@ sub refine {
 sub pegBox {
   my ( $data, $head, $tail ) = ( $_[0], $_[1], $_[2] );
   my $cord = substr( $data, $head, $tail ) . substr( $data, 0, $head );
-  $cord = refine($cord) unless BARE;
+  $cord = refine $cord unless BARE;
 
-  "\t$cord\n";
+  $cord;
 }
 
 sub wreath {
   my ( $sign, $tune, $code ) = ( $_[0], $_[1], $_[2] || 33 );
   my $crown = penlight( "$sign-$tune-i$^T", $code );
 
-  "\t$crown\n";
+  $crown;
 }
 
 sub examples {

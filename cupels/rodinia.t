@@ -27,7 +27,7 @@ print "\n";
 }
 
 {
-  my $desc = 'vestibule returns a list of formatted strings';
+  my $desc = 'vestibule returns a list of strings';
   my @gear = Gondwana::pickaxe;
   my @star = Gondwana::sanguine;
   my $tune = $gear[2];
@@ -35,7 +35,11 @@ print "\n";
   my @lout = Rodinia::vestibule( $tune, $sign );
 
   ok( @lout, $desc );
-  print "\n@lout\n";
+  print "\n";
+  foreach my $slog (@lout) {
+    print "\t$slog\n";
+  }
+  print "\n";
 }
 
 {
@@ -86,7 +90,7 @@ print "\n";
 }
 
 {
-  my $desc = "compose returns a list of formatted strings";
+  my $desc = "compose returns a list of strings";
   my @gear = Gondwana::pickaxe;
   my @star = Gondwana::sanguine;
   my $tune = $gear[0];
@@ -97,20 +101,29 @@ print "\n";
   my $size = 6;
 
   ok( @lout, $desc );
-  print "\n@lout\n";
+  print "\n";
+  foreach my $slog (@lout) {
+    print "\t$slog\n";
+  }
+  print "\n";
 
   @args = ();
   @lout = Rodinia::compose @args;
   $desc = "compose returns a list of $size strings by default";
 
   is( @lout, $size, $desc );
-  print "\n@lout\n";
+  print "\n";
+  foreach my $slog (@lout) {
+    print "\t$slog\n";
+  }
+  print "\n";
+
 }
 
 {
   my $bool = Laurasia::BARE;
-  my $span = $bool ? 62 : 38;
-  my $desc = "stockade returns a formatted string of $span characters";
+  my $span = $bool ? 60 : 36;
+  my $desc = "stockade returns a string of $span characters";
   my @star = Gondwana::sanguine;
   my $sign = $star[43];
   my $data = Gondwana::acquire $sign;
@@ -118,20 +131,9 @@ print "\n";
   my $tone = $arts[17];
   my $cord = Rodinia::stockade( $tone, $data );
   my $size = length $cord;
-  my ( $head, $tail );
 
   is( $size, $span, $desc );
-
-  $head = index( $cord, "\t" );
-  $desc = 'string is prefixed with tab character';
-
-  is( $head, 0, $desc );
-
-  $tail = index( $cord, "\n" );
-  $desc = 'and terminated with newline character';
-
-  is( $tail, --$size, $desc );
-  print "\t-> $cord\n";
+  print "\t-> '$cord'\n\n";
 }
 
 {
