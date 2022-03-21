@@ -8,17 +8,24 @@ use Laurasia;
 
 sub validate {
   my $sign = shift;
+  my $bool = Laurasia::boundary $sign;
+  my ( $reps, $kind, $club );
 
-  if ( defined $sign and Laurasia::boundary $sign ) {
-    $sign =~ Gondwana::regulus and Gondwana::membership $sign;
+  if ($bool) {
+    $reps = Gondwana::regulus;
+    $kind = ( $sign =~ /$reps/ai );
+    $club = Gondwana::membership $sign;
+    $bool = ( $kind and $club );
   }
+
+  return $bool;
 }
 
 sub retrieve {
   my $sign = shift;
   my $data = Gondwana::acquire $sign;
 
-  defined $data ? $data : Gondwana::tacet;
+  return $data;
 }
 
 sub stockade {
@@ -29,7 +36,7 @@ sub stockade {
   my $tail = $fork[1];
   my $cord = Laurasia::pegBox( $data, $head, $tail );
 
-  $cord;
+  return $cord;
 }
 
 sub compose {
@@ -45,42 +52,51 @@ sub compose {
     $lout[ $item++ ] = stockade( $tone, $data );
   }
 
-  @lout;
+  return @lout;
 }
 
 sub vestibule {
-  my $sign  = lc $_[1];
-  my $alert = 'initialize';
+  my ( $tune, $sign ) = @_;
+  my $flaw = 'initialize';
+
+  $tune = lc $tune if defined $tune;
+  $sign = lc $sign if defined $sign;
 
   if ( validate $sign ) {
     my $data = retrieve $sign;
-    my $tune = lc $_[0];
     my @args = ( $tune, $sign, $data );
     my @gear = Gondwana::pickaxe;
+    my @star = ();
 
-    if ( scalar @gear ) {
+    if (@gear) {
       foreach my $harp (@gear) {
         if ( $tune eq $harp ) {
-          return compose @args;
+          @star = compose @args;
         }
+      }
+
+      if (@star) {
+        return @star;
+      }
+      else {
+        $flaw = Laurasia::caution $tune;
+
+        print "\t$flaw\n\n";
+        exit 0;
       }
     }
     else {
-      my $throw = 'Array is empty';
-      my $alert = Laurasia::anomaly( __FILE__, __LINE__, $throw );
+      $flaw = 'Array is empty';
+      $flaw = Laurasia::anomaly( __FILE__, __LINE__, $flaw );
 
-      print "$alert\n";
+      print "\t$flaw\n\n";
       exit 0;
     }
-    $alert = Laurasia::caution $tune;
-
-    print "\t$alert\n\n";
-    exit 0;
   }
   else {
-    $alert = Laurasia::caution $sign;
+    $flaw = Laurasia::caution $sign;
 
-    $alert;
+    return $flaw;
   }
 }
 
@@ -130,8 +146,9 @@ sub kleenex {
 
 sub prefable {
   my $pref = shift;
+  my $flaw = 'initialize';
 
-  if ( ref $pref ) {
+  if ( ref $pref ne q// ) {
     my @menu = &{$pref};
     my $size = scalar @menu;
     my $item = 0;
@@ -144,10 +161,10 @@ sub prefable {
     print "\n";
   }
   else {
-    my $throw = 'Argument not reference';
-    my $alert = Laurasia::anomaly( __FILE__, __LINE__, $throw );
+    $flaw = 'Argument not reference';
+    $flaw = Laurasia::anomaly( __FILE__, __LINE__, $flaw );
 
-    print "\n$alert\n";
+    print "\n\t$flaw\n\n";
     exit 0;
   }
 }
@@ -226,40 +243,41 @@ sub correlate {
 }
 
 sub entryway {
+  my @args = @_;
 
-  if (@_) {
-    my $sign  = lc $_[0];
-    my $clef  = validate $sign;
-    my $alert = 'initialize';
-    my $pegs  = 'beadgcf';        # default tuning
-    my $tune  = $pegs;
-    my @star  = ();
+  if (@args) {
+    my $sign = lc $args[0];
+    my $clef = validate $sign;
+    my $flaw = 'initialize';
+    my $pegs = 'beadgcf';        # default tuning
+    my $tune = $pegs;
+    my @star = ();
 
     unless ($clef) {
-      $tune = shift;              # change tuning
+      $tune = shift @args;       # change tuning
 
       unless ( Laurasia::boundary $tune ) {
-        $alert = Laurasia::caution $tune;
+        $flaw = Laurasia::caution $tune;
 
-        print "\n$alert\n";
+        print "\n$flaw\n";
         return 0;
       }
     }
 
-    if ( @_ and $tune =~ /^\w*\-$/a ) {
-      correlate @_;
+    if ( @args and $tune =~ /^\w*\-$/a ) {
+      correlate @args;
     }
-    elsif ( @_ and $tune =~ /^\w*\?$/a ) {
-      kleenex @_;
+    elsif ( @args and $tune =~ /^\w*\?$/a ) {
+      kleenex @args;
     }
-    elsif ( @_ and $tune =~ /^\w*\:$/a ) {
+    elsif ( @args and $tune =~ /^\w*\:$/a ) {
       $tune = substr( $tune, 0, -1 );
       $tune = $pegs unless $tune;
 
       print "\n";
-      for (@_) {
-        if ( Laurasia::boundary $_ ) {
-          $sign = Laurasia::invert "\L$_";
+      foreach my $item (@args) {
+        if ( Laurasia::boundary $item ) {
+          $sign = Laurasia::invert "\L$item";
           @star = vestibule( $tune, $sign );
 
           foreach my $crow (@star) {
@@ -268,13 +286,13 @@ sub entryway {
           print "\n";
         }
         else {
-          $alert = Laurasia::caution $_;
+          $flaw = Laurasia::caution $item;
 
-          print "\t$alert\n\n";
+          print "\t$flaw\n\n";
         }
       }
     }
-    elsif ( @_ and "\L$_[0]" eq 'gamut' ) {
+    elsif ( @args and "\L$args[0]" eq 'gamut' ) {
       my @arks = Gondwana::keynotes;
 
       print "\n";
@@ -288,11 +306,11 @@ sub entryway {
         print "\n";
       }
     }
-    elsif (@_) {
+    elsif (@args) {
       print "\n";
-      for (@_) {
-        if ( Laurasia::boundary $_ ) {
-          @star = vestibule( $tune, $_ );
+      foreach $sign (@args) {
+        if ( Laurasia::boundary $sign ) {
+          @star = vestibule( $tune, $sign );
 
           foreach my $crow (@star) {
             print "\t$crow\n";
@@ -300,9 +318,9 @@ sub entryway {
           print "\n";
         }
         else {
-          $alert = Laurasia::caution $_;
+          $flaw = Laurasia::caution $sign;
 
-          print "\t$alert\n\n";
+          print "\t$flaw\n\n";
         }
       }
     }
