@@ -18,16 +18,17 @@ sub hedgerow {
   my $crow = $matrices{$harp} || q//;
   my @arms = split( $", $crow );
 
-  @arms;
+  return @arms;
 }
 
 sub pickaxe {
-  my @gear = keys %matrices;
+  my @temp = keys %matrices;
+  my @gear = sort @temp;
 
-  sort @gear;
+  return @gear;
 }
 
-my %chromium = (
+my %chromia = (
   gk => [ 40, 20 ],
   gn => [ 35, 25 ],
   gj => [ 30, 30 ],
@@ -52,17 +53,17 @@ my %chromium = (
 );
 
 sub machine {
-  my @arts = keys %chromium;
+  my @arts = keys %chromia;
 
-  @arts;
+  return @arts;
 }
 
 sub tension {
   my $tone = shift;
-  my $aref = $chromium{$tone};
+  my $aref = $chromia{$tone};
   my @fork = @{$aref};
 
-  @fork;
+  return @fork;
 }
 
 my @corundum = qw/
@@ -86,29 +87,30 @@ my @emerald = qw/
   /;
 
 sub sanguine {
-  @corundum;
+  return @corundum;
 }
 
 sub viridian {
-  @emerald;
+  return @emerald;
 }
 
 sub lapidary {
-  my @opal = ();
+  my ( @opal, @gems );
 
   push( @opal, @corundum );
   push( @opal, @emerald );
+  @gems = sort @opal;
 
-  sort @opal;
+  return @gems;
 }
 
 sub regulus {
   my $reps = qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/;
 
-  $reps;
+  return $reps;
 }
 
-my %Metalograph = (
+my %metalograph = (
   j2      => 'HgHg PuFe ____ ____ CuNp PbAu ____ AuPb ____ AgUr ____ FePu ',
   j2h     => 'HgCu PuMn ____ ____ CuHg PbFe ____ AuAg ____ AgAu ____ FePb ',
   j3      => 'HgSn ____ SnHg UrFe ____ PbAg ____ AuAu ____ AgPb ____ FeUr ',
@@ -208,28 +210,33 @@ my %Metalograph = (
   k2j56l7 => 'NpCu ____ ____ FePu HgHg PuFe SnTi ____ CuNp PbAu ____ ____ ',
 );
 
-$Metalograph{i0} = &tacet;
+$metalograph{i0} = &tacet;
 
 sub tacet {
-  '____ ' x 12;
+  my $mute = '____ ' x 12;
+
+  return $mute;
 }
 
 sub keynotes {
-  my @arks = keys %Metalograph;
+  my @arks = keys %metalograph;
+  my @star = sort @arks;
 
-  sort @arks;
+  return @star;
 }
 
 sub acquire {
-  my $sign = shift;
+  my $sign = shift || 'i0';
+  my $rope = $metalograph{$sign};
 
-  defined $sign ? $Metalograph{$sign} : tacet;
+  return $rope;
 }
 
 sub membership {
   my $sign = shift;
+  my $flag = ( exists $metalograph{$sign} );
 
-  defined $sign ? exists $Metalograph{$sign} : 0;
+  return $flag;
 }
 
 1;
