@@ -47,7 +47,7 @@ print "\n";
   my $yarn = Gondwana::acquire $sign;
   my $wire = Laurasia::refine $yarn;
   my $size = length $wire;
-  my $bool = $yarn cmp $wire;
+  my $bool = ( $yarn cmp $wire );
 
   is( $size, $span, $desc );
 
@@ -65,16 +65,16 @@ print "\n";
   my $take = length $yarn;
   my $give = length $wire;
   my $reps = Gondwana::regulus;
-  my $bool = $yarn =~ m{$reps}a;
+  my $bool = ( $yarn =~ m{$reps}a );
 
   ok( $bool, $desc );
 
-  $bool = $take == $give;
+  $bool = ( $take == $give );
   $desc = 'invert returns a string of equal length';
 
   ok( $bool, $desc );
 
-  $bool = $yarn cmp $wire;
+  $bool = ( $yarn cmp $wire );
   $desc = 'invert returns the string transformed';
 
   ok( $bool, $desc );
@@ -102,25 +102,25 @@ print "\n";
 }
 
 {
-  my $desc  = 'anomaly returns an ANSI escaped string';
-  my $filet = __FILE__;
-  my $aline = __LINE__;
-  my $catch = 'conditional';
-  my $alert = Laurasia::anomaly( $filet, $aline, $catch );
-  my $bool  = $alert =~ /\e\[/a;
+  my $desc = 'anomaly returns an ANSI escaped string';
+  my $file = __FILE__;
+  my $line = __LINE__;
+  my $grab = 'conditional';
+  my $flaw = Laurasia::anomaly( $file, $line, $grab );
+  my $bool = ( $flaw =~ /\e\[/a );
 
   ok( $bool, $desc );
-  print "\t-> $alert\n\n";
+  print "\t-> $flaw\n\n";
 }
 
 {
   my $desc = 'caution returns an ANSI escaped string';
   my $word = "$^O $^X $^V $0";
   my $span = Laurasia::CEIL;
-  my $code = 92;
+  my $code = Laurasia::ANSI + 61;
   my $errs = Laurasia::caution( $word, $span, $code );
   my $size = length $errs;
-  my $bool = $errs =~ /\e\[/a;
+  my $bool = ( $errs =~ /\e\[/a );
 
   ok( $bool, $desc );
   print "\t-> $errs\n\n";
@@ -132,10 +132,10 @@ print "\n";
   my $sign = $star[43];
   my @gear = Gondwana::pickaxe;
   my $tune = $gear[1];
-  my $code = 33;
+  my $code = Laurasia::ANSI;
   my $vine = Laurasia::wreath( $sign, $tune, $code );
   my $size = length $vine;
-  my $bool = $vine =~ /\e\[/a;
+  my $bool = ( $vine =~ /\e\[/a );
 
   ok( $bool, $desc );
   print "\t-> $vine\n\n";
@@ -147,10 +147,10 @@ print "\n";
   my $sign = $star[43];
   my @gear = Gondwana::pickaxe;
   my $tune = $gear[1];
-  my $code = 33;
+  my $code = Laurasia::ANSI;
   my $yarn = Laurasia::wreath( $sign, $tune, $code );
   my $vine = Laurasia::chaplain( $yarn, $code );
-  my $bool = $vine !~ /\e\[/a;
+  my $bool = ( $vine !~ /\e\[/a );
 
   ok( $bool, $desc );
   print "\t-> $vine\n\n";
@@ -159,9 +159,9 @@ print "\n";
 {
   my $desc = 'penlight returns an ANSI escaped string';
   my $snip = join( $", Gondwana::pickaxe );
-  my $code = 93;
+  my $code = Laurasia::ANSI + 60;
   my $vine = Laurasia::penlight( $snip, $code );
-  my $bool = $vine =~ /\e\[/a;
+  my $bool = ( $vine =~ /\e\[/a );
 
   ok( $bool, $desc );
   print "\t-> $vine\n\n";

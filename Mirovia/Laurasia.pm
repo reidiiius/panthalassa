@@ -3,26 +3,30 @@ package Laurasia;
 use warnings;
 use strict;
 
-use constant BARE => 0;
-use constant CURB => 10;
-use constant CEIL => 56;
+use constant {
+  ANSI => 33,
+  BARE => 0,
+  CEIL => 56,
+  CURB => 10,
+};
 
 sub penlight {
   my $snip = shift;
-  my $code = shift || 33;
+  my $code = shift || ANSI;
   my ( $esc, $cse ) = ( "\e[0;${code}m", "\e[0m" );
+  my $glow = $esc . $snip . $cse;
 
-  "${esc}$snip${cse}";
+  return $glow;
 }
 
 sub chaplain {
   my $vine = shift;
-  my $code = shift || 33;
+  my $code = shift || ANSI;
 
   $vine =~ s/\e\[0;${code}m//g;
   $vine =~ s/\e\[0m//g;
 
-  $vine;
+  return $vine;
 }
 
 sub caution {
@@ -32,30 +36,32 @@ sub caution {
   my $snip = substr( $word, 0, $span );
   my $errs = penlight( "$snip ?", $code );
 
-  $errs;
+  return $errs;
 }
 
 sub anomaly {
-  my $filet = shift;
-  my $aline = shift;
-  my $catch = shift || 'conditional';
-  my $about = "$filet, line: $aline, $catch";
-  my $alert = caution( $about, CEIL );
+  my $file = shift;
+  my $line = shift;
+  my $grab = shift || 'conditional';
+  my $info = "$file, line: $line, $grab";
+  my $flaw = caution( $info, CEIL );
 
-  $alert;
+  return $flaw;
 }
 
 sub boundary {
   my $word = shift;
   my $span = shift || CURB;
   my $size = length $word;
+  my $bout = ( $size <= $span );
 
-  $size <= $span;
+  return $bout;
 }
 
 sub invert {
   my $yarn = lc shift;
-  my $span = length($yarn);
+  my $span = length $yarn;
+  my ( $size, $wide, $diff, $sign );
   my $wire = $yarn;
 
   $wire =~ y/jklm134567/kjml317654/;
@@ -68,13 +74,17 @@ sub invert {
   $wire =~ s/31/13/;
   $wire =~ s/21/12/;
 
-  my $size = length($wire);
+  $size = length $wire;
+  $wide = ( $size == $span );
+  $diff = ( $wire ne $yarn );
+  $sign = ( $wide and $diff ) ? $wire : $yarn;
 
-  $size == $span and $wire ne $yarn ? $wire : $yarn;
+  return $sign;
 }
 
 sub refine {
   my $yarn = shift;
+  my ( $size, $wide, $diff, $cord );
   my $wire = $yarn;
 
   $wire =~ s/Ti/o/g;
@@ -91,24 +101,32 @@ sub refine {
   $wire =~ s/Pu/z/g;
   $wire =~ s/__/_/g;
 
-  my $size = length($wire);
+  $size = length $wire;
+  $wide = ( $size >= 24 and $size <= 72 );
+  $diff = ( $wire ne $yarn );
+  $cord = ( $wide and $diff ) ? $wire : $yarn;
 
-  $wire ne $yarn and $size >= 24 and $size <= 72 ? $wire : $yarn;
+  return $cord;
 }
 
 sub pegBox {
-  my ( $data, $head, $tail ) = ( $_[0], $_[1], $_[2] );
-  my $cord = substr( $data, $head, $tail ) . substr( $data, 0, $head );
+  my ( $data, $head, $tail, $zero ) = ( @_, 0 );
+  my $hemp = substr( $data, $head, $tail );
+  my $flax = substr( $data, $zero, $head );
+  my $cord = $hemp . $flax;
+
   $cord = refine $cord unless BARE;
 
-  $cord;
+  return $cord;
 }
 
 sub wreath {
-  my ( $sign, $tune, $code ) = ( $_[0], $_[1], $_[2] || 33 );
-  my $crown = penlight( "$sign-$tune-i$^T", $code );
+  my $sign = shift;
+  my $tune = shift;
+  my $code = shift || ANSI;
+  my $glow = penlight( "$sign-$tune-i$^T", $code );
 
-  $crown;
+  return $glow;
 }
 
 sub examples {
@@ -130,8 +148,8 @@ sub examples {
   );
 
   print "\n\t$snip\n";
-  for (@tips) {
-    print "\t\t$_\n\n";
+  foreach my $help (@tips) {
+    print "\t\t$help\n\n";
   }
 }
 
