@@ -66,7 +66,7 @@ sub mismatch {
   my @arks = &{$pref};
   my $name = shift || 'process';
   my $size = scalar @arks;
-  my $zero = ( $size % 2 ) ;
+  my $zero = ( $size % 2 );
   my $desc = "$name returns a sorted balanced list of strings";
   my $reps = Gondwana::regulus;
   my $errs = q//;
