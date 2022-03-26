@@ -129,6 +129,39 @@ sub wreath {
   return $glow;
 }
 
+sub lattice {
+  foreach my $crow (@_) {
+    print "\t$crow\n";
+  }
+  print "\n";
+}
+
+sub prefable {
+  my $pref = shift;
+  my $flaw = 'initialize';
+
+  if ( ref $pref ne q// ) {
+    my @menu = &{$pref};
+    my $size = scalar @menu;
+    my $item = 0;
+
+    while ( $item < $size ) {
+      print "\n" if $item % 7 == 0;
+      print "\t$menu[$item]";
+    }
+    continue {
+      $item++;
+    }
+  }
+  else {
+    $flaw = 'Argument not reference';
+    $flaw = anomaly( __FILE__, __LINE__, $flaw );
+
+    print "\n\t$flaw";
+  }
+  print "\n";
+}
+
 sub examples {
   my $snip = penlight( 'Usage:', 96 );
   my $name = "$0";

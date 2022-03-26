@@ -22,6 +22,17 @@ print "\n";
 }
 
 {
+  my $desc = 'prefable defined';
+  my $bool = defined &Laurasia::prefable;
+  my $pref = \&Gondwana::machine;
+
+  ok( $bool, $desc );
+
+  Laurasia::prefable $pref;
+  print "\n";
+}
+
+{
   my $bool = Laurasia::BARE;
   my $span = $bool ? 60 : 36;
   my $desc = "pegbox returns a string of $span characters";

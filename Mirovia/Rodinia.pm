@@ -6,6 +6,16 @@ use strict;
 use Gondwana;
 use Laurasia;
 
+sub dashboard {
+  my @refs =
+    ( \&Gondwana::pickaxe, \&Gondwana::sanguine, \&Gondwana::viridian );
+
+  foreach my $pref (@refs) {
+    Laurasia::prefable $pref;
+  }
+  print "\n";
+}
+
 sub validate {
   my $sign = shift;
   my $bool = Laurasia::boundary $sign;
@@ -100,13 +110,45 @@ sub vestibule {
   }
 }
 
+sub reflector {
+  my @args = @_;
+  my $tune = shift @args;
+  my $sign = 'initialize';
+  my $flaw = 'initialize';
+  my @star = ();
+
+  if (@args) {
+    print "\n";
+    foreach my $item (@args) {
+      if ( Laurasia::boundary $item ) {
+        $sign = Laurasia::invert "\L$item";
+        @star = vestibule( $tune, $sign );
+
+        Laurasia::lattice @star;
+      }
+      else {
+        $flaw = Laurasia::caution $item;
+
+        print "\t$flaw\n\n";
+      }
+    }
+    return 1;
+  }
+  else {
+    $flaw = 'Array is empty';
+    $flaw = Laurasia::anomaly( __FILE__, __LINE__, $flaw );
+
+    print "\n\t$flaw\n\n";
+    return 0;
+  }
+}
+
 sub kleenex {
   my $lingo = 'initialize';
   my $limit = Laurasia::CEIL;
   my $argot = 'initialize';
   my @altar = Gondwana::keynotes;
-  my $accum = q//;
-  my $cycle = 0;
+  my ( $accum, $cycle );
   my $colum = 8;
   my $alert = 'initialize';
 
@@ -115,7 +157,6 @@ sub kleenex {
     $cycle = 0;
 
     if ( Laurasia::boundary( $lingo, $limit ) ) {
-      print "\n";
       foreach $argot (@altar) {
         if ( $argot =~ m{$lingo}ai ) {
           $accum .= "\t$argot";
@@ -126,13 +167,13 @@ sub kleenex {
       if ($accum) {
         $accum = Laurasia::penlight( $accum, 93 );
 
-        print $accum;
+        print "\n$accum";
         print "\n" unless $cycle % $colum == 0;
       }
       else {
         $alert = Laurasia::caution( $lingo, $limit, 94 );
 
-        print "\t$alert\n";
+        print "\n\t$alert\n";
       }
     }
     else {
@@ -144,52 +185,13 @@ sub kleenex {
   print "\n";
 }
 
-sub prefable {
-  my $pref = shift;
-  my $flaw = 'initialize';
-
-  if ( ref $pref ne q// ) {
-    my @menu = &{$pref};
-    my $size = scalar @menu;
-    my $item = 0;
-
-    foreach (@menu) {
-      print "\n" if $item % 7 == 0;
-      print "\t$menu[$item]";
-      $item++;
-    }
-    print "\n";
-  }
-  else {
-    $flaw = 'Argument not reference';
-    $flaw = Laurasia::anomaly( __FILE__, __LINE__, $flaw );
-
-    print "\n\t$flaw\n\n";
-    exit 0;
-  }
-}
-
-sub dashboard {
-  my $pref = undef;
-
-  $pref = \&Gondwana::pickaxe;
-  prefable $pref;
-
-  $pref = \&Gondwana::sanguine;
-  prefable $pref;
-
-  $pref = \&Gondwana::viridian;
-  prefable $pref;
-
-  print "\n";
-}
-
 sub correlate {
   my @altar = Gondwana::keynotes;
   my @accum = ();
   my $cycle = 0;
   my $colum = 8;
   my $metal = Laurasia::BARE;
+  my $tonal = Gondwana::monotone;
   my $lingo = 'initialize';
   my $argot = 'initialize';
   my $datum = 'initialize';
@@ -201,7 +203,7 @@ sub correlate {
     @accum = ();
     $cycle = 0;
 
-    if ( $lingo =~ /^([A-Z][a-z]|[o-z]){2}$/a ) {
+    if ( $lingo =~ m{$tonal}a ) {
       foreach $argot (@altar) {
         $datum = Gondwana::acquire $argot;
         $datum = Laurasia::refine $datum unless $metal;
@@ -259,7 +261,7 @@ sub entryway {
       unless ( Laurasia::boundary $tune ) {
         $flaw = Laurasia::caution $tune;
 
-        print "\n$flaw\n";
+        print "\n\t$flaw\n\n";
         return 0;
       }
     }
@@ -273,24 +275,9 @@ sub entryway {
     elsif ( @args and $tune =~ /^\w*\:$/a ) {
       $tune = substr( $tune, 0, -1 );
       $tune = $pegs unless $tune;
+      unshift( @args, $tune );
 
-      print "\n";
-      foreach my $item (@args) {
-        if ( Laurasia::boundary $item ) {
-          $sign = Laurasia::invert "\L$item";
-          @star = vestibule( $tune, $sign );
-
-          foreach my $crow (@star) {
-            print "\t$crow\n";
-          }
-          print "\n";
-        }
-        else {
-          $flaw = Laurasia::caution $item;
-
-          print "\t$flaw\n\n";
-        }
-      }
+      reflector @args;
     }
     elsif ( @args and "\L$args[0]" eq 'gamut' ) {
       my @arks = Gondwana::keynotes;
@@ -300,10 +287,7 @@ sub entryway {
         @star = vestibule( $tune, $sign );
         $star[0] = Laurasia::chaplain $star[0];
 
-        foreach my $crow (@star) {
-          print "\t$crow\n";
-        }
-        print "\n";
+        Laurasia::lattice @star;
       }
     }
     elsif (@args) {
@@ -312,10 +296,7 @@ sub entryway {
         if ( Laurasia::boundary $sign ) {
           @star = vestibule( $tune, $sign );
 
-          foreach my $crow (@star) {
-            print "\t$crow\n";
-          }
-          print "\n";
+          Laurasia::lattice @star;
         }
         else {
           $flaw = Laurasia::caution $sign;

@@ -61,6 +61,20 @@ print "\n";
   print $bool ? "\n" : "\t$size -> '$wire'\n\n";
 }
 
+{
+  my ( $desc, $bool );
+  $desc = 'regulus defined';
+  $bool = defined &Gondwana::regulus;
+
+  ok( $bool, $desc );
+
+  $desc = 'monotone defined';
+  $bool = defined &Gondwana::monotone;
+
+  ok( $bool, $desc );
+  print "\n";
+}
+
 sub mismatch {
   my $pref = shift;
   my @arks = &{$pref};

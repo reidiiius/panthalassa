@@ -104,6 +104,12 @@ sub lapidary {
   return @gems;
 }
 
+sub monotone {
+  my $reps = qr/^([A-Z][a-z]|[o-z]){2}$/;
+
+  return $reps;
+}
+
 sub regulus {
   my $reps = qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/;
 
@@ -219,10 +225,10 @@ sub tacet {
 }
 
 sub keynotes {
-  my @arks = keys %metalograph;
-  my @star = sort @arks;
+  my @temp = keys %metalograph;
+  my @arks = sort @temp;
 
-  return @star;
+  return @arks;
 }
 
 sub acquire {

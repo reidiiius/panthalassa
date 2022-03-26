@@ -23,7 +23,7 @@ print "\n";
 
   ok( $bool, $desc );
 
-  Rodinia::entryway(@args);
+  Rodinia::entryway @args;
 }
 
 {
@@ -40,6 +40,20 @@ print "\n";
     print "\t$slog\n";
   }
   print "\n";
+}
+
+{
+  my $desc = 'reflector defined';
+  my $bool = defined &Rodinia::reflector;
+  my @gear = Gondwana::pickaxe;
+  my @star = Gondwana::sanguine;
+  my $tune = $gear[-1];
+  my $sign = $star[25];
+  my @args = ( $tune, $sign );
+
+  ok( $bool, $desc );
+
+  Rodinia::reflector @args;
 }
 
 {
@@ -76,17 +90,6 @@ print "\n";
   ok( $bool, $desc );
 
   Rodinia::dashboard;
-}
-
-{
-  my $desc = 'prefable defined';
-  my $bool = defined &Rodinia::prefable;
-  my $pref = \&Gondwana::machine;
-
-  ok( $bool, $desc );
-
-  Rodinia::prefable $pref;
-  print "\n";
 }
 
 {
