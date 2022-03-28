@@ -6,7 +6,7 @@ use strict;
 use constant {
   ANSI => 33,
   BARE => 0,
-  CEIL => 56,
+  CEIL => 72,
   CURB => 10,
 };
 
@@ -40,13 +40,17 @@ sub caution {
 }
 
 sub anomaly {
-  my $file = shift;
-  my $line = shift;
-  my $grab = shift || 'conditional';
-  my $info = "$file, line: $line, $grab";
-  my $flaw = caution( $info, CEIL );
+  my @args = @_;
+  my ( $name, $file, $line ) = caller;
+  my ( $flaw, $grab, $info );
 
-  return $flaw;
+  $file = $args[0] || $file;
+  $line = $args[1] || $line;
+  $flaw = $args[2] || 'unknown';
+  $grab = "$name, $file, $line, $flaw";
+  $info = caution( $grab, CEIL );
+
+  return $info;
 }
 
 sub boundary {
@@ -102,7 +106,7 @@ sub refine {
   $wire =~ s/__/_/g;
 
   $size = length $wire;
-  $wide = ( $size >= 24 and $size <= 72 );
+  $wide = ( $size >= 24 and $size <= CEIL );
   $diff = ( $wire ne $yarn );
   $cord = ( $wide and $diff ) ? $wire : $yarn;
 
@@ -130,15 +134,23 @@ sub wreath {
 }
 
 sub lattice {
-  foreach my $crow (@_) {
-    print "\t$crow\n";
+  if (@_) {
+    foreach my $crow (@_) {
+      print "\t$crow\n";
+    }
+    print "\n";
   }
-  print "\n";
+  else {
+    my $flaw = 'Argument list is empty';
+    my $info = anomaly( q//, q//, $flaw );
+
+    print {*STDERR} "\n\t$info\n\n";
+    return 0;
+  }
 }
 
 sub prefable {
   my $pref = shift;
-  my $flaw = 'initialize';
 
   if ( ref $pref ne q// ) {
     my @menu = &{$pref};
@@ -154,10 +166,13 @@ sub prefable {
     }
   }
   else {
-    $flaw = 'Argument not reference';
-    $flaw = anomaly( __FILE__, __LINE__, $flaw );
+    my $file = __FILE__;
+    my $line = __LINE__;
+    my $flaw = 'Argument not reference';
+    my $info = anomaly( $file, $line, $flaw );
 
-    print "\n\t$flaw";
+    print {*STDERR} "\n\t$info\n";
+    return 0;
   }
   print "\n";
 }
@@ -184,6 +199,8 @@ sub examples {
   foreach my $help (@tips) {
     print "\t\t$help\n\n";
   }
+
+  return 1 unless $@;
 }
 
 1;

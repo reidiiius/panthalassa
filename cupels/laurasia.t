@@ -18,7 +18,11 @@ print "\n";
 
   ok( $bool, $desc );
 
-  Laurasia::examples;
+  $desc = 'example success returns true';
+  $bool = Laurasia::examples;
+
+  ok( $bool, $desc );
+  print "\n";
 }
 
 {
@@ -28,8 +32,60 @@ print "\n";
 
   ok( $bool, $desc );
 
-  Laurasia::prefable $pref;
+  $desc = 'prefable success returns true';
+  $bool = Laurasia::prefable $pref;
+
   print "\n";
+  ok( $bool, $desc );
+
+  $desc = 'prefable failure returns false';
+  $bool = Laurasia::prefable 42;
+
+  print "\n";
+  ok( !$bool, $desc );
+  print "\n";
+}
+
+{
+  my $desc = 'lattice defined';
+  my $bool = defined &Laurasia::lattice;
+  my $yarn = Gondwana::tacet;
+  my $cord = Laurasia::refine $yarn;
+  my @args = ( $cord, $cord, $cord );
+
+  ok( $bool, $desc );
+
+  $desc = 'lattice success returns true';
+  $bool = Laurasia::lattice @args;
+
+  ok( $bool, $desc );
+
+  @args = ();
+  $desc = 'lattice failure returns false';
+  $bool = Laurasia::lattice @args;
+
+  ok( !$bool, $desc );
+  print "\n";
+}
+
+{
+  my $desc = 'wreath defined';
+  my $bool = defined &Laurasia::wreath;
+  my @star = Gondwana::viridian;
+  my $sign = $star[43];
+  my @gear = Gondwana::pickaxe;
+  my $tune = $gear[1];
+  my $code = Laurasia::ANSI;
+  my $vine = Laurasia::wreath( $sign, $tune, $code );
+  my $size = length $vine;
+
+  ok( $bool, $desc );
+
+  $desc = 'wreath returns an ANSI escaped string';
+  $bool = ( $vine =~ /\e\[/a );
+
+  ok( $bool, $desc );
+  print "\t-> $vine\n\n";
 }
 
 {
@@ -114,14 +170,23 @@ print "\n";
 
 {
   my $desc = 'anomaly returns an ANSI escaped string';
+  my @path = split( '/', $0 );
+  my $root = $path[0];
   my $file = __FILE__;
   my $line = __LINE__;
-  my $grab = 'conditional';
-  my $flaw = Laurasia::anomaly( $file, $line, $grab );
-  my $bool = ( $flaw =~ /\e\[/a );
+  my $flaw = 'conditional';
+  my $info = Laurasia::anomaly( $file, $line, $flaw );
+  my $bool = ( $info =~ /\e\[/a );
 
   ok( $bool, $desc );
-  print "\t-> $flaw\n\n";
+  print "\t-> $info\n\n";
+
+  $desc = 'anomaly returns default trace values';
+  $info = Laurasia::anomaly;
+  $bool = ( $info =~ /$root/a );
+
+  ok( $bool, $desc );
+  print "\t-> $info\n\n";
 }
 
 {
@@ -135,21 +200,6 @@ print "\n";
 
   ok( $bool, $desc );
   print "\t-> $errs\n\n";
-}
-
-{
-  my $desc = 'wreath returns an ANSI escaped string';
-  my @star = Gondwana::viridian;
-  my $sign = $star[43];
-  my @gear = Gondwana::pickaxe;
-  my $tune = $gear[1];
-  my $code = Laurasia::ANSI;
-  my $vine = Laurasia::wreath( $sign, $tune, $code );
-  my $size = length $vine;
-  my $bool = ( $vine =~ /\e\[/a );
-
-  ok( $bool, $desc );
-  print "\t-> $vine\n\n";
 }
 
 {
