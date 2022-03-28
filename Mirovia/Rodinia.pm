@@ -121,7 +121,7 @@ sub reflector {
     print "\n";
     foreach my $item (@args) {
       if ( Laurasia::boundary $item ) {
-        $sign = Laurasia::invert "\L$item";
+        $sign = Laurasia::invert $item;
         @star = vestibule( $tune, $sign );
 
         Laurasia::lattice @star;

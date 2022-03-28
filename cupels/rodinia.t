@@ -53,7 +53,17 @@ print "\n";
 
   ok( $bool, $desc );
 
-  Rodinia::reflector @args;
+  $desc = 'reflector success returns true';
+  $bool = Rodinia::reflector @args;
+
+  ok( $bool, $desc );
+
+  @args = ();
+  $desc = 'reflector failure returns false';
+  $bool = Rodinia::reflector @args;
+
+  ok( !$bool, $desc );
+  print "\n";
 }
 
 {
