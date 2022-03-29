@@ -22,7 +22,7 @@ sub validate {
   my ( $reps, $kind, $club );
 
   if ($bool) {
-    $reps = Gondwana::regulus;
+    $reps = Gondwana::regulus 'clefs';
     $kind = ( $sign =~ /$reps/ai );
     $club = Gondwana::membership $sign;
     $bool = ( $kind and $club );
@@ -42,8 +42,7 @@ sub stockade {
   my $tone = shift;
   my $data = shift;
   my @fork = Gondwana::tension $tone;
-  my $head = $fork[0];
-  my $tail = $fork[1];
+  my ( $head, $tail ) = @fork;
   my $cord = Laurasia::pegBox( $data, $head, $tail );
 
   return $cord;
@@ -191,7 +190,7 @@ sub correlate {
   my $cycle = 0;
   my $colum = 8;
   my $metal = Laurasia::BARE;
-  my $tonal = Gondwana::monotone;
+  my $regal = Gondwana::regulus 'tonal';
   my $lingo = 'initialize';
   my $argot = 'initialize';
   my $datum = 'initialize';
@@ -203,7 +202,7 @@ sub correlate {
     @accum = ();
     $cycle = 0;
 
-    if ( $lingo =~ m{$tonal}a ) {
+    if ( $lingo =~ m{$regal}a ) {
       foreach $argot (@altar) {
         $datum = Gondwana::acquire $argot;
         $datum = Laurasia::refine $datum unless $metal;

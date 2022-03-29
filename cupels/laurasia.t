@@ -131,7 +131,7 @@ print "\n";
   my $wire = Laurasia::invert $yarn;
   my $take = length $yarn;
   my $give = length $wire;
-  my $reps = Gondwana::regulus;
+  my $reps = Gondwana::regulus 'clefs';
   my $bool = ( $yarn =~ m{$reps}a );
 
   ok( $bool, $desc );

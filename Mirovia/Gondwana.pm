@@ -104,14 +104,17 @@ sub lapidary {
   return @gems;
 }
 
-sub monotone {
-  my $reps = qr/^([A-Z][a-z]|[o-z]){2}$/;
-
-  return $reps;
-}
+my %patterns = (
+  allow => qr/\A\w+\z/,
+  clefs => qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/,
+  tonal => qr/^([A-Z][a-z]|[o-z]){2}$/,
+  zilch => qr/\A\z/,
+);
 
 sub regulus {
-  my $reps = qr/^([i|j|k|n][0-7]{1,3}){1,2}([l|m][1-7]{1,2})?[h|i]?$/;
+  my $kind = shift || 'allow';
+  my $flag = ( exists $patterns{$kind} );
+  my $reps = $flag ? $patterns{$kind} : $patterns{zilch};
 
   return $reps;
 }

@@ -68,8 +68,8 @@ print "\n";
 
   ok( $bool, $desc );
 
-  $desc = 'monotone defined';
-  $bool = defined &Gondwana::monotone;
+  $desc = 'regulus default returns true';
+  $bool = Gondwana::regulus;
 
   ok( $bool, $desc );
   print "\n";
@@ -82,7 +82,7 @@ sub mismatch {
   my $size = scalar @arks;
   my $zero = ( $size % 2 );
   my $desc = "$name returns a sorted balanced list of strings";
-  my $reps = Gondwana::regulus;
+  my $reps = Gondwana::regulus 'clefs';
   my $errs = q//;
 
   is( $zero, 0, $desc );
