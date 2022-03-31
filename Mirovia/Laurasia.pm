@@ -40,15 +40,10 @@ sub caution {
 }
 
 sub anomaly {
-  my @args = @_;
+  my $flaw = shift || 'unknown';
   my ( $name, $file, $line ) = caller;
-  my ( $flaw, $grab, $info );
-
-  $file = $args[0] || $file;
-  $line = $args[1] || $line;
-  $flaw = $args[2] || 'unknown';
-  $grab = "$name, $file, $line, $flaw";
-  $info = caution( $grab, CEIL );
+  my $grab = "$name, $file, $line, $flaw";
+  my $info = caution( $grab, CEIL );
 
   return $info;
 }
@@ -142,7 +137,7 @@ sub lattice {
   }
   else {
     my $flaw = 'Argument list is empty';
-    my $info = anomaly( q//, q//, $flaw );
+    my $info = anomaly $flaw;
 
     print {*STDERR} "\n\t$info\n\n";
     return 0;
@@ -166,10 +161,8 @@ sub prefable {
     }
   }
   else {
-    my $file = __FILE__;
-    my $line = __LINE__;
     my $flaw = 'Argument not reference';
-    my $info = anomaly( $file, $line, $flaw );
+    my $info = anomaly $flaw;
 
     print {*STDERR} "\n\t$info\n";
     return 0;
@@ -179,7 +172,8 @@ sub prefable {
 
 sub examples {
   my $snip = penlight( 'Usage:', 96 );
-  my $name = "$0";
+  my @temp = split( '/', "$0" );
+  my $name = $temp[-1];
   my $harp = 'cgdae';
   my @tips = (
     "chmod u+x $name ",

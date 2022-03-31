@@ -170,12 +170,10 @@ print "\n";
 
 {
   my $desc = 'anomaly returns an ANSI escaped string';
-  my @path = split( '/', $0 );
+  my @path = split( '/', "$0" );
   my $root = $path[0];
-  my $file = __FILE__;
-  my $line = __LINE__;
   my $flaw = 'conditional';
-  my $info = Laurasia::anomaly( $file, $line, $flaw );
+  my $info = Laurasia::anomaly $flaw;
   my $bool = ( $info =~ /\e\[/a );
 
   ok( $bool, $desc );

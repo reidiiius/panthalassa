@@ -66,7 +66,7 @@ sub compose {
 
 sub vestibule {
   my ( $tune, $sign ) = @_;
-  my $flaw = 'initialize';
+  my ( $flaw, $info );
 
   $tune = lc $tune if defined $tune;
   $sign = lc $sign if defined $sign;
@@ -96,9 +96,9 @@ sub vestibule {
     }
     else {
       $flaw = 'Array is empty';
-      $flaw = Laurasia::anomaly( __FILE__, __LINE__, $flaw );
+      $info = Laurasia::anomaly $flaw;
 
-      print "\t$flaw\n\n";
+      print {*STDERR} "\t$info\n\n";
       exit 0;
     }
   }
@@ -113,7 +113,6 @@ sub reflector {
   my @args = @_;
   my $tune = shift @args;
   my $sign = 'initialize';
-  my $flaw = 'initialize';
   my @star = ();
 
   if (@args) {
@@ -126,7 +125,7 @@ sub reflector {
         Laurasia::lattice @star;
       }
       else {
-        $flaw = Laurasia::caution $item;
+        my $flaw = Laurasia::caution $item;
 
         print "\t$flaw\n\n";
       }
@@ -134,10 +133,10 @@ sub reflector {
     return 1;
   }
   else {
-    $flaw = 'Array is empty';
-    $flaw = Laurasia::anomaly( __FILE__, __LINE__, $flaw );
+    my $flaw = 'Array is empty';
+    my $info = Laurasia::anomaly $flaw;
 
-    print "\n\t$flaw\n\n";
+    print {*STDERR} "\n\t$info\n\n";
     return 0;
   }
 }
