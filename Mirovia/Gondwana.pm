@@ -14,11 +14,17 @@ my %matrices = (
 );
 
 sub hedgerow {
-  my $harp = shift;
-  my $crow = $matrices{$harp} || q//;
-  my @arms = split( $", $crow );
+  my $harp = shift || q//;
 
-  return @arms;
+  if ( exists $matrices{$harp} ) {
+    my $crow = $matrices{$harp};
+    my @arms = split( $", $crow );
+
+    return @arms;
+  }
+  else {
+    return ();
+  }
 }
 
 sub pickaxe {
@@ -59,11 +65,23 @@ sub machine {
 }
 
 sub tension {
-  my $tone = shift;
-  my $aref = $chromia{$tone};
-  my @fork = @{$aref};
+  my $tone = shift || q//;
 
-  return @fork;
+  if ( exists $chromia{$tone} ) {
+    my $aref = $chromia{$tone};
+
+    if ( ref $aref eq 'ARRAY' ) {
+      my @fork = @{$aref};
+
+      return @fork;
+    }
+    else {
+      die "\tValue not array reference,\n\taborted";
+    }
+  }
+  else {
+    return ();
+  }
 }
 
 my @corundum = qw/
@@ -242,7 +260,7 @@ sub acquire {
 }
 
 sub membership {
-  my $sign = shift;
+  my $sign = shift || q//;
   my $flag = ( exists $metalograph{$sign} );
 
   return $flag;

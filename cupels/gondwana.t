@@ -27,15 +27,26 @@ print "\n";
 
   ok( !$bool, $desc );
   print "\targument passed: '$sign'\n\t-> $pole\n\n";
+
+  $desc = 'membership returns false by default';
+  $bool = Gondwana::membership;
+
+  ok( !$bool, $desc );
+  print "\n";
 }
 
 {
-  my $desc = "acquire returns a string of 60 characters";
+  my $desc = "acquire returns a string by default";
   my @arks = Gondwana::keynotes;
   my $accu = q//;
   my $errs = 0;
-  my $wire = q//;
-  my $size = 0;
+  my $wire = Gondwana::acquire;
+  my $size = length $wire;
+
+  is( $size, 60, $desc );
+  print "\t-> $wire\n\n" if $size;
+
+  $desc = "acquire returns a string of 60 characters";
 
   foreach my $sign (@arks) {
     $wire = Gondwana::acquire $sign;
@@ -170,6 +181,13 @@ mismatch( \&Gondwana::lapidary, 'lapidary' );
 
   ok( !$errs, $desc );
   print "\n";
+
+  $desc = "tension returns an empty list by default";
+  @fork = Gondwana::tension;
+  $size = scalar @fork;
+
+  ok( !$size, $desc );
+  print "\n";
 }
 
 {
@@ -195,6 +213,13 @@ mismatch( \&Gondwana::lapidary, 'lapidary' );
 
   ok( !$errs, $desc );
   print $errs ? "\n" : "\t-> @arms\n\n";
+
+  $desc = "hedgerow returns an empty list by default";
+  @arms = Gondwana::hedgerow;
+  $size = scalar @arms;
+
+  ok( !$size, $desc );
+  print "\n";
 }
 
 done_testing;
