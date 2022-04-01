@@ -39,8 +39,8 @@ sub retrieve {
 }
 
 sub stockade {
-  my $tone = shift;
-  my $data = shift;
+  my ( $tone, $sign ) = @_;
+  my $data = retrieve $sign;
   my @fork = Gondwana::tension $tone;
   my ( $head, $tail ) = @fork;
   my $cord = Laurasia::pegBox( $data, $head, $tail );
@@ -49,19 +49,29 @@ sub stockade {
 }
 
 sub compose {
-  my $harp = shift || 'bfbfb';
+  my $tune = shift || 'bfbfb';
   my $sign = shift || 'i0';
-  my $data = shift || Gondwana::tacet;
-  my @arms = Gondwana::hedgerow $harp;
-  my @lout = ();
-  my $item = 0;
+  my @arms = Gondwana::hedgerow $tune;
 
-  $lout[ $item++ ] = Laurasia::wreath( $sign, $harp );
-  foreach my $tone ( reverse @arms ) {
-    $lout[ $item++ ] = stockade( $tone, $data );
+  if (@arms) {
+    my @mars = reverse @arms;
+    my @lout = ();
+    my $item = 0;
+
+    $lout[ $item++ ] = Laurasia::wreath( $sign, $tune );
+
+    foreach my $note (@mars) {
+      $lout[ $item++ ] = stockade( $note, $sign );
+    }
+
+    return @lout;
   }
+  else {
+    my $flaw = 'Array is empty';
+    my $info = Laurasia::anomaly $flaw;
 
-  return @lout;
+    die "\t$info\n\n";
+  }
 }
 
 sub vestibule {
@@ -72,15 +82,14 @@ sub vestibule {
   $sign = lc $sign if defined $sign;
 
   if ( validate $sign ) {
-    my $data = retrieve $sign;
-    my @args = ( $tune, $sign, $data );
     my @gear = Gondwana::pickaxe;
-    my @star = ();
 
     if (@gear) {
+      my @star = ();
+
       foreach my $harp (@gear) {
         if ( $tune eq $harp ) {
-          @star = compose @args;
+          @star = compose( $tune, $sign );
         }
       }
 

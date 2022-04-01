@@ -108,8 +108,7 @@ print "\n";
   my @star = Gondwana::sanguine;
   my $tune = $gear[0];
   my $sign = $star[43];
-  my $data = Gondwana::acquire $sign;
-  my @args = ( $tune, $sign, $data );
+  my @args = ( $tune, $sign );
   my @lout = Rodinia::compose @args;
   my $size = 6;
 
@@ -139,10 +138,9 @@ print "\n";
   my $desc = "stockade returns a string of $span characters";
   my @star = Gondwana::sanguine;
   my $sign = $star[43];
-  my $data = Gondwana::acquire $sign;
   my @arts = sort &Gondwana::machine;
   my $tone = $arts[17];
-  my $cord = Rodinia::stockade( $tone, $data );
+  my $cord = Rodinia::stockade( $tone, $sign );
   my $size = length $cord;
 
   is( $size, $span, $desc );
