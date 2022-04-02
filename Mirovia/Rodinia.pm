@@ -150,32 +150,48 @@ sub reflector {
   }
 }
 
-sub kleenex {
-  my $lingo = 'initialize';
-  my $limit = Laurasia::CEIL;
-  my $argot = 'initialize';
-  my @altar = Gondwana::keynotes;
-  my ( $accum, $cycle );
-  my $colum = 8;
-  my $alert = 'initialize';
+sub whiskey {
+  my $lingo = shift || q//;
 
-  foreach $lingo (@_) {
+  if ($lingo) {
+    my @altar = Gondwana::keynotes;
+    my $accum = q//;
+    my $cycle = 0;
+    my $colum = 8;
+
+    foreach my $argot (@altar) {
+      if ( $argot =~ m{$lingo}ai ) {
+        $accum .= "\t$argot";
+        $accum .= "\n" if ++$cycle % $colum == 0;
+      }
+    }
+
+    $accum .= "\n" unless $cycle % $colum == 0;
+
+    return $accum;
+  }
+  else {
+    my $flaw = 'Argument string is empty';
+    my $info = Laurasia::anomaly $flaw;
+
+    die "\n\t$info\n\n";
+  }
+}
+
+sub kleenex {
+  my $limit = Laurasia::CEIL;
+  my ( $accum, $shine, $alert );
+
+  foreach my $lingo (@_) {
     $accum = q//;
-    $cycle = 0;
 
     if ( Laurasia::boundary( $lingo, $limit ) ) {
-      foreach $argot (@altar) {
-        if ( $argot =~ m{$lingo}ai ) {
-          $accum .= "\t$argot";
-          $accum .= "\n" if ++$cycle % $colum == 0;
-        }
-      }
+      $accum = whiskey $lingo;
 
       if ($accum) {
-        $accum = Laurasia::penlight( $accum, 93 );
+        $shine = Laurasia::penlight( $accum, 93 );
 
-        print "\n$accum";
-        print "\n" unless $cycle % $colum == 0;
+        print "\n$shine";
       }
       else {
         $alert = Laurasia::caution( $lingo, $limit, 94 );
@@ -192,58 +208,81 @@ sub kleenex {
   print "\n";
 }
 
+sub passkey {
+  my $lingo = shift || 'i0';
+  my $datum = Gondwana::acquire $lingo;
+  my $metal = Laurasia::BARE;
+  my $twine = $datum;
+
+  $twine = Laurasia::refine $datum unless $metal;
+  $twine =~ s/_+\s//g unless $lingo eq 'i0';
+  $datum = Laurasia::penlight( $twine, 93 );
+
+  print "\n\t$datum\n";
+}
+
+sub collect {
+  my $lingo = shift || q//;
+
+  if ($lingo) {
+    my @altar = Gondwana::keynotes;
+    my $datum = 'initialize';
+    my $metal = Laurasia::BARE;
+    my @accum = ();
+
+    foreach my $argot (@altar) {
+      $datum = Gondwana::acquire $argot;
+      $datum = Laurasia::refine $datum unless $metal;
+
+      if ( $datum =~ m{$lingo}a ) {
+        $accum[ ++$#accum ] = $argot;
+      }
+    }
+
+    return @accum;
+  }
+
+  return ();
+}
+
+sub dialect {
+  my $lingo = shift || 'nil';
+  my @accum = collect $lingo;
+
+  if (@accum) {
+    my @cigar = sort @accum;
+    my $cycle = 0;
+    my $colum = 8;
+
+    print "\n";
+    foreach my $clave (@cigar) {
+      print "\t$clave";
+      print "\n" if ++$cycle % $colum == 0;
+    }
+    print "\n" unless $cycle % $colum == 0;
+  }
+  else {
+    my $alert = Laurasia::caution( $lingo, 0, 94 );
+
+    print "\n\t$alert\n";
+  }
+}
+
 sub correlate {
-  my @altar = Gondwana::keynotes;
-  my @accum = ();
-  my $cycle = 0;
-  my $colum = 8;
   my $metal = Laurasia::BARE;
   my $regal = Gondwana::regulus 'tonal';
-  my $lingo = 'initialize';
-  my $argot = 'initialize';
-  my $datum = 'initialize';
-  my $clave = 'initialize';
-  my $alert = 'initialize';
 
-  foreach $lingo (@_) {
+  foreach my $lingo (@_) {
     $lingo = lc $lingo unless $metal;
-    @accum = ();
-    $cycle = 0;
 
     if ( $lingo =~ m{$regal}a ) {
-      foreach $argot (@altar) {
-        $datum = Gondwana::acquire $argot;
-        $datum = Laurasia::refine $datum unless $metal;
-
-        if ( $datum =~ m{$lingo}a ) {
-          $accum[ ++$#accum ] = $argot;
-        }
-      }
-
-      if (@accum) {
-        print "\n";
-        foreach $clave ( sort @accum ) {
-          print "\t$clave";
-          print "\n" if ++$cycle % $colum == 0;
-        }
-        print "\n" unless $cycle % $colum == 0;
-      }
-      else {
-        $alert = Laurasia::caution( $lingo, 0, 94 );
-
-        print "\n\t$alert\n";
-      }
+      dialect $lingo;
     }
     elsif ( validate $lingo ) {
-      $datum = Gondwana::acquire $lingo;
-      $datum = Laurasia::refine $datum unless $metal;
-      $datum =~ s/_+\s//g unless $lingo eq 'i0';
-      $datum = Laurasia::penlight( $datum, 93 );
-
-      print "\n\t$datum\n";
+      passkey $lingo;
     }
     else {
-      $alert = Laurasia::caution $lingo;
+      my $alert = Laurasia::caution $lingo;
 
       print "\n\t$alert\n";
     }

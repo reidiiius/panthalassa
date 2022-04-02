@@ -83,6 +83,40 @@ print "\n";
 }
 
 {
+  my $desc = 'dialect defined';
+  my $bool = defined &Rodinia::dialect;
+
+  ok( $bool, $desc );
+
+  my $tone = Laurasia::BARE ? 'HgSn' : 'tv';
+
+  Rodinia::dialect $tone;
+  print "\n";
+}
+
+{
+  my $desc = 'collect defined';
+  my $bool = defined &Rodinia::collect;
+
+  ok( $bool, $desc );
+
+  my $tone = Laurasia::BARE ? 'HgSn' : 'tv';
+  my @lout = Rodinia::collect $tone;
+
+  print "\n\t@lout\n\n";
+}
+
+{
+  my $desc = 'passkey defined';
+  my $bool = defined &Rodinia::passkey;
+
+  ok( $bool, $desc );
+
+  Rodinia::passkey 'j3';
+  print "\n";
+}
+
+{
   my $desc = 'kleenex defined';
   my $bool = defined &Rodinia::kleenex;
   my @star = Gondwana::keynotes;
@@ -91,6 +125,17 @@ print "\n";
   ok( $bool, $desc );
 
   Rodinia::kleenex @args;
+}
+
+{
+  my $desc = 'whiskey defined';
+  my $bool = defined &Rodinia::whiskey;
+
+  ok( $bool, $desc );
+
+  my $tape = Rodinia::whiskey '^([jk]\d)+$';
+
+  print "\n$tape\n";
 }
 
 {
