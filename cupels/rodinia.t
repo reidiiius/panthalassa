@@ -88,7 +88,7 @@ print "\n";
 
   ok( $bool, $desc );
 
-  my $tone = Laurasia::BARE ? 'HgSn' : 'tv';
+  my $tone = Laurasia::BARE ? 'HgSn' : 'vt';
 
   Rodinia::dialect $tone;
   print "\n";
@@ -100,7 +100,7 @@ print "\n";
 
   ok( $bool, $desc );
 
-  my $tone = Laurasia::BARE ? 'HgSn' : 'tv';
+  my $tone = Laurasia::BARE ? 'HgSn' : 'vt';
   my @lout = Rodinia::collect $tone;
 
   print "\n\t@lout\n\n";
@@ -133,9 +133,10 @@ print "\n";
 
   ok( $bool, $desc );
 
-  my $tape = Rodinia::whiskey '^([jk]\d)+$';
+  my @accum = Rodinia::whiskey '^([jk]\d)+$';
 
-  print "\n$tape\n";
+  Laurasia::tableau @accum;
+  print "\n";
 }
 
 {
@@ -174,7 +175,6 @@ print "\n";
     print "\t$slog\n";
   }
   print "\n";
-
 }
 
 {

@@ -155,20 +155,15 @@ sub whiskey {
 
   if ($lingo) {
     my @altar = Gondwana::keynotes;
-    my $accum = q//;
-    my $cycle = 0;
-    my $colum = 8;
+    my @accum = ();
 
     foreach my $argot (@altar) {
       if ( $argot =~ m{$lingo}ai ) {
-        $accum .= "\t$argot";
-        $accum .= "\n" if ++$cycle % $colum == 0;
+        $accum[ ++$#accum ] = $argot;
       }
     }
 
-    $accum .= "\n" unless $cycle % $colum == 0;
-
-    return $accum;
+    return @accum;
   }
   else {
     my $flaw = 'Argument string is empty';
@@ -180,27 +175,27 @@ sub whiskey {
 
 sub kleenex {
   my $limit = Laurasia::CEIL;
-  my ( $accum, $shine, $alert );
+  my @accum = ();
 
   foreach my $lingo (@_) {
-    $accum = q//;
-
     if ( Laurasia::boundary( $lingo, $limit ) ) {
-      $accum = whiskey $lingo;
+      @accum = whiskey $lingo;
 
-      if ($accum) {
-        $shine = Laurasia::penlight( $accum, 93 );
+      if (@accum) {
+        print "\e[0;93m";
 
-        print "\n$shine";
+        Laurasia::tableau @accum;
+
+        print "\e[0m";
       }
       else {
-        $alert = Laurasia::caution( $lingo, $limit, 94 );
+        my $alert = Laurasia::caution( $lingo, $limit, 94 );
 
         print "\n\t$alert\n";
       }
     }
     else {
-      $alert = Laurasia::caution( $lingo, $limit );
+      my $alert = Laurasia::caution( $lingo, $limit );
 
       print "\n\t$alert\n";
     }
@@ -251,15 +246,8 @@ sub dialect {
 
   if (@accum) {
     my @cigar = sort @accum;
-    my $cycle = 0;
-    my $colum = 8;
 
-    print "\n";
-    foreach my $clave (@cigar) {
-      print "\t$clave";
-      print "\n" if ++$cycle % $colum == 0;
-    }
-    print "\n" unless $cycle % $colum == 0;
+    Laurasia::tableau @cigar;
   }
   else {
     my $alert = Laurasia::caution( $lingo, 0, 94 );

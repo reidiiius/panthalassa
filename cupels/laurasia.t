@@ -47,6 +47,27 @@ print "\n";
 }
 
 {
+  my $desc = 'tableau defined';
+  my $bool = defined &Laurasia::tableau;
+  my @star = Gondwana::machine;
+  my @args = ( @star, "\n" );
+
+  ok( $bool, $desc );
+
+  $desc = 'tableau success returns true';
+  $bool = Laurasia::tableau @args;
+
+  ok( $bool, $desc );
+
+  @args = ();
+  $desc = 'tableau failure returns false';
+  $bool = Laurasia::tableau @args;
+
+  ok( !$bool, $desc );
+  print "\n";
+}
+
+{
   my $desc = 'lattice defined';
   my $bool = defined &Laurasia::lattice;
   my $yarn = Gondwana::tacet;

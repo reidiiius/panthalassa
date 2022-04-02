@@ -144,6 +144,29 @@ sub lattice {
   }
 }
 
+sub tableau {
+  if (@_) {
+    my $rota = 0;
+    my $cols = 8;
+
+    print "\n";
+    foreach my $item (@_) {
+      print "\t$item";
+    }
+    continue {
+      print "\n" if ++$rota % $cols == 0;
+    }
+    print "\n" unless $rota % $cols == 0;
+  }
+  else {
+    my $flaw = 'Argument list is empty';
+    my $info = anomaly $flaw;
+
+    print {*STDERR} "\n\t$info\n\n";
+    return 0;
+  }
+}
+
 sub prefable {
   my $pref = shift;
 
