@@ -146,17 +146,13 @@ sub lattice {
 
 sub tableau {
   if (@_) {
-    my $rota = 0;
     my $cols = 8;
 
-    print "\n";
-    foreach my $item (@_) {
+    while ( my ( $ndex, $item ) = each @_ ) {
+      print $/ if $ndex % $cols == 0;
       print "\t$item";
     }
-    continue {
-      print "\n" if ++$rota % $cols == 0;
-    }
-    print "\n" unless $rota % $cols == 0;
+    print $/;
   }
   else {
     my $flaw = 'Argument list is empty';

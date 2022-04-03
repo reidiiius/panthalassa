@@ -148,9 +148,9 @@ sub reflector {
 }
 
 sub whiskey {
-  my $lingo = shift || q//;
+  my $lingo = shift;
 
-  if ($lingo) {
+  if ( $lingo or $lingo eq q{0} ) {
     my @altar = Gondwana::keynotes;
     my @accum = ();
 
