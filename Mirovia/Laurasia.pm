@@ -109,7 +109,8 @@ sub refine {
 }
 
 sub pegBox {
-  my ( $data, $head, $tail, $zero ) = ( @_, 0 );
+  my ( $data, $head, $tail ) = @_;
+  my $zero = 0;
   my $hemp = substr( $data, $head, $tail );
   my $flax = substr( $data, $zero, $head );
   my $cord = $hemp . $flax;
@@ -120,8 +121,8 @@ sub pegBox {
 }
 
 sub wreath {
-  my $sign = shift;
-  my $tune = shift;
+  my $sign = shift || "u$<";
+  my $tune = shift || "p$$";
   my $code = shift || ANSI;
   my $glow = penlight( "$sign-$tune-i$^T", $code );
 

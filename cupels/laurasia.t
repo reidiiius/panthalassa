@@ -102,6 +102,12 @@ print "\n";
 
   ok( $bool, $desc );
 
+  $desc = 'wreath returns uid-pid-time by default';
+  $bool = Laurasia::wreath;
+
+  ok( $bool, $desc );
+  print "\t-> $bool\n";
+
   $desc = 'wreath returns an ANSI escaped string';
   $bool = ( $vine =~ /\e\[/a );
 
