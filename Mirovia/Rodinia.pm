@@ -87,11 +87,8 @@ sub vestibule {
     if (@gear) {
       my @star = ();
 
-      foreach my $harp (@gear) {
-        if ( $tune eq $harp ) {
-          @star = compose( $tune, $sign );
-        }
-      }
+      @star = map { compose( $_, $sign ) }
+        grep { $tune eq $_ } @gear;
 
       if (@star) {
         return @star;
@@ -157,11 +154,7 @@ sub whiskey {
     my @altar = Gondwana::keynotes;
     my @accum = ();
 
-    foreach my $argot (@altar) {
-      if ( $argot =~ m{$lingo}ai ) {
-        $accum[ ++$#accum ] = $argot;
-      }
-    }
+    @accum = grep( $_ =~ m{$lingo}ai, @altar );
 
     return @accum;
   }
