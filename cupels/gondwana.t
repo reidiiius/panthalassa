@@ -7,9 +7,11 @@ use strict;
 use Test::More;
 
 use lib './Mirovia';
-use Gondwana;
+use Rodinia;
 
-print "\n";
+print "\n\t\Ugondwana test\n\n";
+
+sleep 2;
 
 {
   my $desc = 'membership returns a boolean';
@@ -34,6 +36,8 @@ print "\n";
   ok( !$bool, $desc );
   print "\n";
 }
+
+sleep 4;
 
 {
   my $desc = "acquire returns a string by default";
@@ -62,6 +66,8 @@ print "\n";
   print $errs ? "$accu\n" : "\n";
 }
 
+sleep 4;
+
 {
   my $desc = "tacet returns a string of 60 characters";
   my $wire = Gondwana::tacet;
@@ -71,6 +77,8 @@ print "\n";
   ok( $bool, $desc );
   print $bool ? "\n" : "\t$size -> '$wire'\n\n";
 }
+
+sleep 4;
 
 {
   my ( $desc, $bool );
@@ -109,22 +117,28 @@ sub mismatch {
   print $errs ? "\t-> $errs\n\n" : "\n";
 }
 
+sleep 4;
+
 mismatch( \&Gondwana::keynotes, 'keynotes' );
 
+sleep 4;
+
 mismatch( \&Gondwana::lapidary, 'lapidary' );
+
+sleep 4;
 
 {
   my $desc = 'comparison of keynotes and lapidary';
   my @arks = Gondwana::keynotes;
   my @star = Gondwana::lapidary;
-  my ( $size, $span, $ndex, $errs ) = ( 0, 0, 0, 0 );
+  my ( $size, $span, $errs ) = ( 0, 0, 0 );
   my $accu = q//;
 
   $size = scalar @arks;
   $span = scalar @star;
 
   if ( $size == $span ) {
-    for ( $ndex = 0 ; $ndex < $size ; $ndex++ ) {
+    for ( my $ndex = 0 ; $ndex < $size ; $ndex++ ) {
       if ( $arks[$ndex] ne $star[$ndex] ) {
         $accu .= "\t$arks[$ndex]\t<diff>\t$star[$ndex]\n";
         $errs++;
@@ -141,6 +155,8 @@ mismatch( \&Gondwana::lapidary, 'lapidary' );
   }
 }
 
+sleep 4;
+
 {
   my @arks = Gondwana::sanguine;
   my @star = Gondwana::viridian;
@@ -151,6 +167,8 @@ mismatch( \&Gondwana::lapidary, 'lapidary' );
   is( $size, $span, $desc );
   print "\n";
 }
+
+sleep 4;
 
 {
   my @arts = Gondwana::machine;
@@ -190,6 +208,8 @@ mismatch( \&Gondwana::lapidary, 'lapidary' );
   print "\n";
 }
 
+sleep 4;
+
 {
   my @gear = Gondwana::pickaxe;
   my $desc = "pickaxe returns a sorted list of strings";
@@ -197,6 +217,8 @@ mismatch( \&Gondwana::lapidary, 'lapidary' );
   ok( @gear, $desc );
   print "\t-> @gear\n\n";
 }
+
+sleep 4;
 
 {
   my $desc = "hedgerow returns a list of strings";
@@ -222,5 +244,9 @@ mismatch( \&Gondwana::lapidary, 'lapidary' );
   print "\n";
 }
 
+sleep 2;
+
+print "\t\Utest completed\t";
 done_testing;
+print "\n";
 

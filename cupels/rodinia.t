@@ -9,7 +9,9 @@ use Test::More;
 use lib './Mirovia';
 use Rodinia;
 
-print "\n";
+print "\n\t\Urodinia test\n\n";
+
+sleep 2;
 
 {
   my $desc = 'entryway defined';
@@ -26,6 +28,8 @@ print "\n";
   Rodinia::entryway @args;
 }
 
+sleep 4;
+
 {
   my $desc = 'vestibule returns a list of strings';
   my @gear = Gondwana::pickaxe;
@@ -41,6 +45,8 @@ print "\n";
   }
   print "\n";
 }
+
+sleep 4;
 
 {
   my $desc = 'reflector defined';
@@ -66,6 +72,8 @@ print "\n";
   print "\n";
 }
 
+sleep 4;
+
 {
   my $desc = 'correlate defined';
   my $bool = defined &Rodinia::correlate;
@@ -82,6 +90,8 @@ print "\n";
   Rodinia::correlate @args;
 }
 
+sleep 4;
+
 {
   my $desc = 'dialect defined';
   my $bool = defined &Rodinia::dialect;
@@ -93,6 +103,8 @@ print "\n";
   Rodinia::dialect $tone;
   print "\n";
 }
+
+sleep 4;
 
 {
   my $desc = 'collect defined';
@@ -106,6 +118,8 @@ print "\n";
   print "\n\t@lout\n\n";
 }
 
+sleep 4;
+
 {
   my $desc = 'passkey defined';
   my $bool = defined &Rodinia::passkey;
@@ -115,6 +129,8 @@ print "\n";
   Rodinia::passkey 'j3';
   print "\n";
 }
+
+sleep 4;
 
 {
   my $desc = 'kleenex defined';
@@ -126,6 +142,8 @@ print "\n";
 
   Rodinia::kleenex @args;
 }
+
+sleep 4;
 
 {
   my $desc = 'whiskey defined';
@@ -139,6 +157,8 @@ print "\n";
   print "\n";
 }
 
+sleep 4;
+
 {
   my $desc = 'dashboard defined';
   my $bool = defined &Rodinia::dashboard;
@@ -147,6 +167,8 @@ print "\n";
 
   Rodinia::dashboard;
 }
+
+sleep 4;
 
 {
   my $desc = "compose returns a list of strings";
@@ -177,6 +199,8 @@ print "\n";
   print "\n";
 }
 
+sleep 4;
+
 {
   my $bool = Laurasia::BARE;
   my $span = $bool ? 60 : 36;
@@ -192,6 +216,8 @@ print "\n";
   print "\t-> '$cord'\n\n";
 }
 
+sleep 4;
+
 {
   my $span = 60;
   my $desc = "retrieve returns a string of $span characters";
@@ -203,6 +229,8 @@ print "\n";
   is( $size, $span, $desc );
   print "\t-> '$data'\n\n";
 }
+
+sleep 4;
 
 {
   my $desc = "validate returns a boolean";
@@ -223,5 +251,9 @@ print "\n";
   print "\targument passed: '$sign'\n\t-> $pole\n\n";
 }
 
+sleep 2;
+
+print "\t\Utest completed\t";
 done_testing;
+print "\n";
 

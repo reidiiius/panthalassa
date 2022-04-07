@@ -7,10 +7,11 @@ use strict;
 use Test::More;
 
 use lib './Mirovia';
-use Gondwana;
-use Laurasia;
+use Rodinia;
 
-print "\n";
+print "\n\t\Ulaurasia test\n\n";
+
+sleep 2;
 
 {
   my $desc = 'examples defined';
@@ -24,6 +25,8 @@ print "\n";
   ok( $bool, $desc );
   print "\n";
 }
+
+sleep 4;
 
 {
   my $desc = 'prefable defined';
@@ -46,6 +49,8 @@ print "\n";
   print "\n";
 }
 
+sleep 4;
+
 {
   my $desc = 'tableau defined';
   my $bool = defined &Laurasia::tableau;
@@ -66,6 +71,8 @@ print "\n";
   ok( !$bool, $desc );
   print "\n";
 }
+
+sleep 4;
 
 {
   my $desc = 'lattice defined';
@@ -88,6 +95,8 @@ print "\n";
   ok( !$bool, $desc );
   print "\n";
 }
+
+sleep 4;
 
 {
   my $desc = 'wreath defined';
@@ -115,6 +124,8 @@ print "\n";
   print "\t-> $vine\n\n";
 }
 
+sleep 4;
+
 {
   my $bool = Laurasia::BARE;
   my $span = $bool ? 60 : 36;
@@ -133,6 +144,8 @@ print "\n";
   print "\t-> '$cord'\n\n";
 }
 
+sleep 4;
+
 {
   my $span = 36;
   my $desc = "refine returns a string of $span characters";
@@ -150,6 +163,8 @@ print "\n";
   ok( $bool, $desc );
   print "\t-> '$wire'\n\n";
 }
+
+sleep 4;
 
 {
   my $desc = 'invert takes an alphanumeric argument';
@@ -175,6 +190,8 @@ print "\n";
   print "\t$yarn -> $wire\n\n";
 }
 
+sleep 4;
+
 {
   my $desc = 'boundary returns a boolean';
   my $word = '0123456789';
@@ -195,6 +212,8 @@ print "\n";
   print "\t-> $pole\n\n";
 }
 
+sleep 4;
+
 {
   my $desc = 'anomaly returns an ANSI escaped string';
   my @path = split( '/', "$0" );
@@ -214,6 +233,8 @@ print "\n";
   print "\t-> $info\n\n";
 }
 
+sleep 4;
+
 {
   my $desc = 'caution returns an ANSI escaped string';
   my $word = "$^O $^X $^V $0";
@@ -226,6 +247,8 @@ print "\n";
   ok( $bool, $desc );
   print "\t-> $errs\n\n";
 }
+
+sleep 4;
 
 {
   my $desc = 'chaplain returns an unescaped ANSI string';
@@ -242,6 +265,8 @@ print "\n";
   print "\t-> $vine\n\n";
 }
 
+sleep 4;
+
 {
   my $desc = 'penlight returns an ANSI escaped string';
   my $snip = join( $", Gondwana::pickaxe );
@@ -253,5 +278,9 @@ print "\n";
   print "\t-> $vine\n\n";
 }
 
+sleep 2;
+
+print "\t\Utest completed\t";
 done_testing;
+print "\n";
 
