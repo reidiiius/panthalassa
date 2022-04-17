@@ -208,20 +208,6 @@ sleep 4;
 sleep 4;
 
 {
-  my $span = 60;
-  my $desc = "retrieve returns a string of $span characters";
-  my @star = Gondwana::sanguine;
-  my $sign = $star[43];
-  my $data = Gondwana::acquire $sign;
-  my $size = length $data;
-
-  is( $size, $span, $desc );
-  print "\t-> '$data'\n\n";
-}
-
-sleep 4;
-
-{
   my $desc = "validate returns a boolean";
   my @star = Gondwana::sanguine;
   my $sign = $star[25];

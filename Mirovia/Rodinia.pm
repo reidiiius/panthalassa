@@ -21,16 +21,9 @@ sub validate {
   return $bool;
 }
 
-sub retrieve {
-  my $sign = shift;
-  my $data = Gondwana::acquire $sign;
-
-  return $data;
-}
-
 sub stockade {
   my ( $tone, $sign ) = @_;
-  my $data = retrieve $sign;
+  my $data = Gondwana::acquire $sign;
   my @fork = Gondwana::tension $tone;
   my ( $head, $tail ) = @fork;
   my $cord = Laurasia::pegBox( $data, $head, $tail );
@@ -323,16 +316,16 @@ sub entryway {
       }
     }
     else {
-      Laurasia::examples;
+      my $harp = \&Gondwana::pickaxe;
+      my $ruby = \&Gondwana::sanguine;
+      my $opal = \&Gondwana::viridian;
+      @args = ( $harp, $ruby, $opal );
+
+      Laurasia::dashboard @args;
     }
   }
   else {
-    my $harp = \&Gondwana::pickaxe;
-    my $ruby = \&Gondwana::sanguine;
-    my $opal = \&Gondwana::viridian;
-    @args = ( $harp, $ruby, $opal );
-
-    Laurasia::dashboard @args;
+    Laurasia::examples;
   }
 }
 
