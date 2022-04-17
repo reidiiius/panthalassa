@@ -9,9 +9,11 @@ use Test::More;
 use lib './Mirovia';
 use Rodinia;
 
+use constant TICS => 3;
+
 print "\n\t\Urodinia test\n\n";
 
-sleep 2;
+sleep TICS;
 
 {
   my $desc = 'entryway defined';
@@ -28,7 +30,7 @@ sleep 2;
   Rodinia::entryway @args;
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'vestibule returns a list of strings';
@@ -46,7 +48,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'reflector defined';
@@ -72,7 +74,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'correlate defined';
@@ -90,7 +92,7 @@ sleep 4;
   Rodinia::correlate @args;
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'dialect defined';
@@ -104,7 +106,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'collect defined';
@@ -118,7 +120,7 @@ sleep 4;
   print "\n\t@lout\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'passkey defined';
@@ -130,7 +132,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'kleenex defined';
@@ -143,7 +145,7 @@ sleep 4;
   Rodinia::kleenex @args;
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'whiskey defined';
@@ -157,7 +159,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = "compose returns a list of strings";
@@ -188,7 +190,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $bool = Laurasia::BARE;
@@ -205,7 +207,7 @@ sleep 4;
   print "\t-> '$cord'\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = "validate returns a boolean";
@@ -226,7 +228,7 @@ sleep 4;
   print "\targument passed: '$sign'\n\t-> $pole\n\n";
 }
 
-sleep 2;
+sleep TICS;
 
 print "\t\Utest completed\t";
 done_testing;

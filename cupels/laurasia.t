@@ -9,9 +9,11 @@ use Test::More;
 use lib './Mirovia';
 use Rodinia;
 
+use constant TICS => 3;
+
 print "\n\t\Ulaurasia test\n\n";
 
-sleep 2;
+sleep TICS;
 
 {
   my $desc = 'examples defined';
@@ -26,15 +28,15 @@ sleep 2;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'dashboard defined';
   my $bool = defined &Laurasia::dashboard;
   my $harp = \&Gondwana::pickaxe;
   my $ruby = \&Gondwana::sanguine;
-  my $opal = \&Gondwana::viridian;
-  my @args = ( $harp, $ruby, $opal );
+  my $jade = \&Gondwana::viridian;
+  my @args = ( $harp, $ruby, $jade );
 
   ok( $bool, $desc );
 
@@ -51,7 +53,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'tableau defined';
@@ -74,7 +76,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'lattice defined';
@@ -98,7 +100,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'wreath defined';
@@ -126,7 +128,7 @@ sleep 4;
   print "\t-> $vine\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $bool = Laurasia::BARE;
@@ -146,7 +148,7 @@ sleep 4;
   print "\t-> '$cord'\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $span = 36;
@@ -166,7 +168,7 @@ sleep 4;
   print "\t-> '$wire'\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'invert takes an alphanumeric argument';
@@ -192,7 +194,7 @@ sleep 4;
   print "\t$yarn -> $wire\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'boundary returns a boolean';
@@ -214,7 +216,7 @@ sleep 4;
   print "\t-> $pole\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'anomaly returns an ANSI escaped string';
@@ -235,7 +237,7 @@ sleep 4;
   print "\t-> $info\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'caution returns an ANSI escaped string';
@@ -250,7 +252,7 @@ sleep 4;
   print "\t-> $errs\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'chaplain returns an unescaped ANSI string';
@@ -267,7 +269,7 @@ sleep 4;
   print "\t-> $vine\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'penlight returns an ANSI escaped string';
@@ -280,7 +282,7 @@ sleep 4;
   print "\t-> $vine\n\n";
 }
 
-sleep 2;
+sleep TICS;
 
 print "\t\Utest completed\t";
 done_testing;

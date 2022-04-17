@@ -318,8 +318,8 @@ sub entryway {
     else {
       my $harp = \&Gondwana::pickaxe;
       my $ruby = \&Gondwana::sanguine;
-      my $opal = \&Gondwana::viridian;
-      @args = ( $harp, $ruby, $opal );
+      my $jade = \&Gondwana::viridian;
+      @args = ( $harp, $ruby, $jade );
 
       Laurasia::dashboard @args;
     }

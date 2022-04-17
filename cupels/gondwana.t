@@ -9,9 +9,11 @@ use Test::More;
 use lib './Mirovia';
 use Rodinia;
 
+use constant TICS => 3;
+
 print "\n\t\Ugondwana test\n\n";
 
-sleep 2;
+sleep TICS;
 
 {
   my $desc = 'membership returns a boolean';
@@ -37,7 +39,7 @@ sleep 2;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = "acquire returns a string by default";
@@ -66,7 +68,7 @@ sleep 4;
   print $errs ? "$accu\n" : "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = "tacet returns a string of 60 characters";
@@ -78,7 +80,7 @@ sleep 4;
   print $bool ? "\n" : "\t$size -> '$wire'\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my ( $desc, $bool );
@@ -117,15 +119,15 @@ sub mismatch {
   print $errs ? "\t-> $errs\n\n" : "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 mismatch( \&Gondwana::keynotes, 'keynotes' );
 
-sleep 4;
+sleep TICS;
 
 mismatch( \&Gondwana::lapidary, 'lapidary' );
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = 'comparison of keynotes and lapidary';
@@ -155,7 +157,7 @@ sleep 4;
   }
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my @arks = Gondwana::sanguine;
@@ -168,7 +170,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my @arts = Gondwana::machine;
@@ -208,7 +210,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my @gear = Gondwana::pickaxe;
@@ -218,7 +220,7 @@ sleep 4;
   print "\t-> @gear\n\n";
 }
 
-sleep 4;
+sleep TICS;
 
 {
   my $desc = "hedgerow returns a list of strings";
@@ -244,7 +246,7 @@ sleep 4;
   print "\n";
 }
 
-sleep 2;
+sleep TICS;
 
 print "\t\Utest completed\t";
 done_testing;
