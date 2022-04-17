@@ -165,30 +165,44 @@ sub tableau {
 }
 
 sub dashboard {
-  foreach my $pref (@_) {
-    if ( ref $pref eq 'CODE' ) {
-      my @menu = &{$pref};
-      my $size = scalar @menu;
-      my $item = 0;
+  my ( $flaw, $info );
 
-      while ( $item < $size ) {
-        print "\n" if $item % 7 == 0;
-        print "\t$menu[$item]";
-      }
-      continue {
-        $item++;
-      }
-    }
-    else {
-      my $flaw = 'Argument not reference';
-      my $info = anomaly $flaw;
+  if (@_) {
+    my @menu = ();
+    my ( $size, $item );
 
-      print {*STDERR} "\n\t$info\n\n";
-      return 0;
+    foreach my $pref (@_) {
+      if ( ref $pref eq 'CODE' ) {
+        @menu = &{$pref};
+        $size = scalar @menu;
+        $item = 0;
+
+        while ( $item < $size ) {
+          print "\n" if $item % 7 == 0;
+          print "\t$menu[$item]";
+        }
+        continue {
+          $item++;
+        }
+      }
+      else {
+        $flaw = 'Argument not reference';
+        $info = anomaly $flaw;
+
+        print {*STDERR} "\n\t$info\n\n";
+        return 0;
+      }
+      print "\n";
     }
     print "\n";
   }
-  print "\n";
+  else {
+    $flaw = 'Argument list is empty';
+    $info = anomaly $flaw;
+
+    print {*STDERR} "\n\t$info\n\n";
+    return 0;
+  }
 }
 
 sub examples {
