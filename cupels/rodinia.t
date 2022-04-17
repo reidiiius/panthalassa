@@ -160,17 +160,6 @@ sleep 4;
 sleep 4;
 
 {
-  my $desc = 'dashboard defined';
-  my $bool = defined &Rodinia::dashboard;
-
-  ok( $bool, $desc );
-
-  Rodinia::dashboard;
-}
-
-sleep 4;
-
-{
   my $desc = "compose returns a list of strings";
   my @gear = Gondwana::pickaxe;
   my @star = Gondwana::sanguine;

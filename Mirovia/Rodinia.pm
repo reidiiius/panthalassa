@@ -6,16 +6,6 @@ use strict;
 use Gondwana;
 use Laurasia;
 
-sub dashboard {
-  my @refs =
-    ( \&Gondwana::pickaxe, \&Gondwana::sanguine, \&Gondwana::viridian );
-
-  foreach my $pref (@refs) {
-    Laurasia::prefable $pref;
-  }
-  print "\n";
-}
-
 sub validate {
   my $sign = shift;
   my $bool = Laurasia::boundary $sign;
@@ -337,7 +327,12 @@ sub entryway {
     }
   }
   else {
-    dashboard;
+    my $harp = \&Gondwana::pickaxe;
+    my $ruby = \&Gondwana::sanguine;
+    my $opal = \&Gondwana::viridian;
+    my @args = ( $harp, $ruby, $opal );
+
+    Laurasia::dashboard @args;
   }
 }
 

@@ -164,28 +164,29 @@ sub tableau {
   }
 }
 
-sub prefable {
-  my $pref = shift;
+sub dashboard {
+  foreach my $pref (@_) {
+    if ( ref $pref eq 'CODE' ) {
+      my @menu = &{$pref};
+      my $size = scalar @menu;
+      my $item = 0;
 
-  if ( ref $pref ne q// ) {
-    my @menu = &{$pref};
-    my $size = scalar @menu;
-    my $item = 0;
-
-    while ( $item < $size ) {
-      print "\n" if $item % 7 == 0;
-      print "\t$menu[$item]";
+      while ( $item < $size ) {
+        print "\n" if $item % 7 == 0;
+        print "\t$menu[$item]";
+      }
+      continue {
+        $item++;
+      }
     }
-    continue {
-      $item++;
-    }
-  }
-  else {
-    my $flaw = 'Argument not reference';
-    my $info = anomaly $flaw;
+    else {
+      my $flaw = 'Argument not reference';
+      my $info = anomaly $flaw;
 
-    print {*STDERR} "\n\t$info\n";
-    return 0;
+      print {*STDERR} "\n\t$info\n\n";
+      return 0;
+    }
+    print "\n";
   }
   print "\n";
 }

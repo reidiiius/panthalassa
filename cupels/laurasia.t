@@ -29,22 +29,24 @@ sleep 2;
 sleep 4;
 
 {
-  my $desc = 'prefable defined';
-  my $bool = defined &Laurasia::prefable;
-  my $pref = \&Gondwana::machine;
+  my $desc = 'dashboard defined';
+  my $bool = defined &Laurasia::dashboard;
+  my $harp = \&Gondwana::pickaxe;
+  my $ruby = \&Gondwana::sanguine;
+  my $opal = \&Gondwana::viridian;
+  my @args = ( $harp, $ruby, $opal );
 
   ok( $bool, $desc );
 
-  $desc = 'prefable success returns true';
-  $bool = Laurasia::prefable $pref;
+  $desc = 'dashboard success returns true';
+  $bool = Laurasia::dashboard @args;
 
-  print "\n";
   ok( $bool, $desc );
 
-  $desc = 'prefable failure returns false';
-  $bool = Laurasia::prefable 42;
+  $desc = 'dashboard failure returns false';
+  @args = qw(not process reference);
+  $bool = Laurasia::dashboard @args;
 
-  print "\n";
   ok( !$bool, $desc );
   print "\n";
 }
