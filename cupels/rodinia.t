@@ -22,8 +22,9 @@ sleep TICS;
   my @star = Gondwana::viridian;
   my $tune = $gear[5];
   my $sign = $star[23];
+  my $flaw = 'k9';
   my $clef = Laurasia::invert $sign;
-  my @args = ( $tune, $clef, $sign );
+  my @args = ( $tune, $clef, $flaw, $sign );
 
   ok( $bool, $desc );
 

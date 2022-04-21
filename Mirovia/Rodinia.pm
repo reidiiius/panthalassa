@@ -79,7 +79,7 @@ sub vestibule {
       else {
         $flaw = Laurasia::caution $tune;
 
-        print "\t$flaw\n\n";
+        print {*STDERR} "\t$flaw\n\n";
         exit 0;
       }
     }
@@ -269,7 +269,7 @@ sub entryway {
       $tune = shift @args;       # change tuning
 
       unless ( Laurasia::boundary $tune ) {
-        $flaw = Laurasia::caution $tune;
+        $flaw = Laurasia::caution $tune, 64;
 
         print "\n\t$flaw\n\n";
         return 0;
@@ -319,6 +319,7 @@ sub entryway {
       my $harp = \&Gondwana::pickaxe;
       my $ruby = \&Gondwana::sanguine;
       my $jade = \&Gondwana::viridian;
+
       @args = ( $harp, $ruby, $jade );
 
       Laurasia::dashboard @args;
