@@ -1,0 +1,199 @@
+
+=head1 NAME
+
+Laurasia
+
+=head1 SYNOPSIS
+
+  use lib './Mirovia';
+  use Laurasia;
+
+=head1 CONSTANTS
+
+=over
+
+=item ANSI
+
+Integer 33
+
+=item BARE
+
+Integer (Boolean)
+
+=item CEIL
+
+Integer 72
+
+=item CURB
+
+Integer 10
+
+=back
+
+=head1 SUBROUTINES
+
+=over
+
+=item &penlight
+
+Takes two Scalar arguments and returns a ANSI escaped String.
+The first argument is a String and the second an Integer.
+
+  {
+    my $code = Laurasia::ANSI;
+    my $snip = 'The quick brown fox jumps over the lazy dog.';
+    my $glow = Laurasia::penlight( $snip, $code );
+    print "\t$glow\n";
+  }
+
+=item &chaplain
+
+Takes two Scalar arguments and returns a unescaped String.
+The first argument is a String and the second an Integer.
+
+  {
+    my $code = Laurasia::ANSI;
+    my ( $esc, $cse ) = ( "\e[0;${code}m", "\e[0m" );
+    my $snip = 'The quick brown fox jumps over the lazy dog.';
+    my $glow = $esc . $snip . $cse;
+    my $vine = Laurasia::chaplain( $glow, $code );
+    print "\t$vine\n";
+  }
+
+=item &caution
+
+Takes three Scalar arguments and returns a ANSI escaped String.
+The first argument is a String while the others are Integers.
+
+  {
+    my $word = 'The quick brown fox jumps over the lazy dog.';
+    my ( $span, $code ) = ( 48, 91 );
+    my $errs = Laurasia::caution( $word, $span, $code );
+    print "\t$errs\n";
+  }
+
+=item &anomaly
+
+Takes a String argument and returns a ANSI escaped String.
+
+  {
+    my $flaw = 'catastrophe';
+    my $info = Laurasia::anomaly $flaw;
+    print "\t$info\n";
+  }
+
+=item &boundary
+
+Takes two Scalar arguments and returns a Scalar Boolean.
+The first argument is a String and the second an Integer.
+
+  {
+    my $word = 'The quick brown fox jumps over the lazy dog.';
+    my $span = 48;
+    my $bout = Laurasia::boundary( $word, $span );
+    my $flag = $bout ? 1 : 0;
+    print "\t$flag\n";
+  }
+
+=item &invert
+
+Takes a String argument and returns a transformed String.
+
+  {
+    my $yarn = 'k345m2h';
+    my $sign = Laurasia::invert $yarn;
+    print "\t$sign\n";
+  }
+
+=item &refine
+
+Takes a String argument and returns a transformed String.
+
+  {
+    my $yarn =
+      'HgCu ____ SnSn ____ CuHg PbFe ____ AuAg ____ AgAu ____ FePb ';
+    my $cord = Laurasia::refine $yarn;
+    print "\t$cord\n";
+  }
+
+=item &pegBox
+
+Takes three Scalar arguments and returns a transformed String.
+The first argument is a String while the others are Integers.
+
+  {
+    my $data =
+      'HgCu ____ SnSn ____ CuHg PbFe ____ AuAg ____ AgAu ____ FePb ';
+    my ( $head, $tail ) = ( 10, 50 );
+    my $cord = Laurasia::pegBox( $data, $head, $tail );
+    print "\t$cord\n";
+  }
+
+=item &wreath
+
+Takes three Scalar arguments and returns a ANSI escaped String.
+The first and second arguments are Strings, the last an Integer.
+
+  {
+    my $sign = 'n0';
+    my $tune = 'eadgbe';
+    my $code = Laurasia::ANSI;
+    my $glow = Laurasia::wreath( $sign, $tune, $code );
+    print "\t$glow\n";
+  }
+
+=item &lattice
+
+Takes a List of Scalars and prints each formatted to screen.
+
+  {
+    my @args = qw( The quick brown fox jumps );
+    print "\n";
+    Laurasia::lattice @args;
+  }
+
+=item &tableau
+
+Takes a List of Scalars and prints each formatted to screen.
+
+  {
+    my @args = ( 1 .. 32 );
+    Laurasia::tableau @args;
+    print "\n";
+  }
+
+=item &dashboard
+
+Takes a List of References and prints their return values formatted to screen.
+
+  {
+    sub lunar {
+      return ( 1 .. 28 );
+    }
+    my $pref = \&lunar;
+    my @args = ( $pref, $pref );
+    Laurasia::dashboard @args;
+  }
+
+=item &examples
+
+Takes no arguments, prints formatted Strings to screen.
+
+  {
+    Laurasia::examples;
+  }
+
+=back
+
+=head1 AUTHOR
+
+=over
+
+=item Reid Netterville III
+
+=item https://github.com/reidiiius/panthalassa
+
+=back
+
+=cut
+

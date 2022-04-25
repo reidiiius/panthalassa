@@ -1,0 +1,156 @@
+
+=head1 NAME
+
+Rodinia
+
+=head1 SYNOPSIS
+
+  use lib './Mirovia';
+  use Rodinia;
+
+=head1 SUBROUTINES
+
+=over
+
+=item &validate
+
+Takes a String argument and returns a Boolean.
+
+  {
+    my $sign = 'k2j56';
+    my $bool = Rodinia::validate $sign;
+    my $flag = ( $bool ? 1 : 0 );
+    print "\t$flag\n";
+  }
+
+=item &stockade
+
+Takes two String arguments and returns a String.
+
+  {
+    my ( $tone, $sign ) = ( 'fn', 'n0' );
+    my $cord = Rodinia::stockade( $tone, $sign );
+    print "\t$cord\n";
+  }
+
+=item &compose
+
+Takes two String arguments and returns a List of Strings.
+
+  {
+    my ( $harp, $sign ) = ( 'cgdae', 'k6' );
+    my @lout = Rodinia::compose( $harp, $sign );
+    print "\n";
+    foreach my $crow (@lout) {
+      print "\t$crow\n";
+    }
+    print "\n";
+  }
+
+=item &vestibule
+
+Takes two String arguments and returns a List of Strings.
+
+  {
+    my ( $harp, $sign ) = ( 'cgdae', 'n0' );
+    my @star = Rodinia::vestibule( $harp, $sign );
+    print "\n";
+    foreach my $crow (@star) {
+      print "\t$crow\n";
+    }
+    print "\n";
+  }
+
+=item &reflector
+
+Takes a List of String arguments and prints formated Strings to screen.
+
+  {
+    my $tune = 'cgdae';
+    my @arks = qw( k1 k5 );
+    my @args = ( $tune, @arks );
+    Rodinia::reflector @args;
+  }
+
+=item &whiskey
+
+Takes a Scalar argument to match and returns a List of matched Strings.
+
+  {
+    my $regex = '^[jkn]\d$';
+    my @accum = Rodinia::whiskey $regex;
+    print "\t@accum\n";
+  }
+
+=item &kleenex
+
+Takes a List of Scalar arguments to match and prints matched Strings to screen.
+
+  {
+    my @args = qw( j3 j6 );
+    Rodinia::kleenex @args;
+  }
+
+=item &passkey
+
+Takes a String argument and prints a transformed String to screen.
+
+  {
+    my $sign = 'j6';
+    Rodinia::passkey $sign;
+    print "\n";
+  }
+
+=item &collect
+
+Takes a Scalar argument to match and returns a List of matched Strings.
+
+  {
+    my $tone = 'rx';
+    my @vase = Rodinia::collect $tone;
+    print "\t@vase\n";
+  }
+
+=item &dialect
+
+Takes a Scalar argument to match and prints matched Strings formated to screen.
+
+  {
+    my $tone = 'yq';
+    Rodinia::dialect $tone;
+    print "\n";
+  }
+
+=item &correlate
+
+Takes a List of Scalar arguments to match and prints matched Strings to screen.
+
+  {
+    my @args = qw( j6 yq );
+    Rodinia::correlate @args;
+  }
+
+=item &entryway
+
+Takes a List of String arguments and prints formated Strings to screen.
+The first argument should match a Tuning, the others a Mode Signature.
+
+  {
+    my @args = qw( fkbjdn n0 j2 );
+    Rodinia::entryway(@args);
+  }
+
+=back
+
+=head1 AUTHOR
+
+=over
+
+=item Reid Netterville III
+
+=item https://github.com/reidiiius/panthalassa
+
+=back
+
+=cut
+

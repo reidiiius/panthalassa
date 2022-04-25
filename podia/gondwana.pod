@@ -1,0 +1,179 @@
+
+=head1 NAME
+
+Gondwana
+
+=head1 SYNOPSIS
+
+  use lib './Mirovia';
+  use Gondwana;
+
+=head1 DESCRIPTION
+
+Model of tonal inversion functions.
+
+=head1 VARIABLES
+
+=over
+
+=item %matrices
+
+Instrument Tunings
+
+=item %chromia
+
+Open Pitches
+
+=item @corundum
+
+Mode Signatures
+
+=item @emerald
+
+Mode Signatures
+
+=item %patterns
+
+Regular Expressions
+
+=item %metalograph
+
+Musical Scales
+
+=back
+
+=head1 SUBROUTINES
+
+=over
+
+=item &hedgerow
+
+Takes a String argument and returns a List of Strings.
+Returns an empty List on failure to match any Tunings.
+
+  {
+    my $harp = 'beadgcf';
+    my @arms = Gondwana::hedgerow $harp;
+    print "\t@arms\n";
+  }
+
+=item &pickaxe
+
+Takes no arguments, returns a sorted List of Strings.
+
+  {
+    my @gear = Gondwana::pickaxe;
+    print "\t@gear\n";
+  }
+
+=item &machine
+
+Takes no arguments, returns a List of Strings.
+
+  {
+    my @arts = Gondwana::machine;
+    print "\t@arts\n";
+  }
+
+=item &tension
+
+Takes a String argument and returns a List of Integers.
+
+  {
+    my $tone = 'dn';
+    my @fork = Gondwana::tension $tone;
+    print "\t@fork\n";
+  }
+
+=item &sanguine
+
+Takes no arguments, returns a List of Strings.
+
+  {
+    my @ruby = Gondwana::sanguine;
+    print "\t@ruby\n";
+  }
+
+=item &viridian
+
+Takes no arguments, returns a List of Strings.
+
+  {
+    my @jade = Gondwana::viridian;
+    print "\t@jade\n";
+  }
+
+=item &lapidary
+
+Takes no arguments, returns a List of Strings.
+
+  {
+    my @gems = Gondwana::lapidary;
+    print "\t@gems\n";
+  }
+
+=item &regulus
+
+Takes a String argument and returns a Regular Expression.
+
+  {
+    my $sign = 'j3k56m4';
+    my $reps = Gondwana::regulus 'clefs';
+    my $bool = ( $sign =~ m{$reps}a );
+    my $flag = $bool ? 1 : 0;
+    print "\t$flag\n";
+  }
+
+=item &tacet
+
+Takes no arguments, returns a String.
+
+  {
+    my $mute = Gondwana::tacet;
+    print "\t$mute\n\n";
+  }
+
+=item &keynotes
+
+Takes no arguments, returns a List of Strings.
+
+  {
+    my @arks = Gondwana::keynotes;
+    print "\t@arks\n";
+  }
+
+=item &acquire
+
+Takes a String argument and returns a String.
+
+  {
+    my $sign = 'j2k56m4';
+    my $rope = Gondwana::acquire $sign;
+    print "\t$rope\n";
+  }
+
+=item &membership
+
+Takes a String argument and returns a Boolean.
+
+  {
+    my $sign = 'k1j6l7';
+    my $bool = Gondwana::membership $sign;
+    my $flag = $bool ? 1 : 0;
+    print "\t$flag\n";
+  }
+
+=back
+
+=head1 AUTHOR
+
+=over
+
+=item Reid Netterville III
+
+=item https://github.com/reidiiius/panthalassa
+
+=back
+
+=cut
+
