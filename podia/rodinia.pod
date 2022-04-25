@@ -1,14 +1,14 @@
 
-=head1 NAME
+=head2 NAME
 
-Rodinia
+B<Rodinia>
 
-=head1 SYNOPSIS
+=head2 SYNOPSIS
 
   use lib './Mirovia';
   use Rodinia;
 
-=head1 SUBROUTINES
+=head2 SUBROUTINES
 
 =over
 
@@ -142,7 +142,7 @@ The first argument should match a Tuning, the others a Mode Signature.
 
 =back
 
-=head1 AUTHOR
+=head2 AUTHOR
 
 =over
 

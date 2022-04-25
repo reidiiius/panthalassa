@@ -1,14 +1,14 @@
 
-=head1 NAME
+=head2 NAME
 
-Laurasia
+B<Laurasia>
 
-=head1 SYNOPSIS
+=head2 SYNOPSIS
 
   use lib './Mirovia';
   use Laurasia;
 
-=head1 CONSTANTS
+=head2 CONSTANTS
 
 =over
 
@@ -30,7 +30,7 @@ Integer 10
 
 =back
 
-=head1 SUBROUTINES
+=head2 SUBROUTINES
 
 =over
 
@@ -185,7 +185,7 @@ Takes no arguments, prints formatted Strings to screen.
 
 =back
 
-=head1 AUTHOR
+=head2 AUTHOR
 
 =over
 

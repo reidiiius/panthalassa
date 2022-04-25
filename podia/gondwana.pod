@@ -1,18 +1,18 @@
 
-=head1 NAME
+=head2 NAME
 
-Gondwana
+B<Gondwana>
 
-=head1 SYNOPSIS
+=head2 SYNOPSIS
 
   use lib './Mirovia';
   use Gondwana;
 
-=head1 DESCRIPTION
+=head2 DESCRIPTION
 
 Model of tonal inversion functions.
 
-=head1 VARIABLES
+=head2 VARIABLES
 
 =over
 
@@ -42,7 +42,7 @@ Musical Scales
 
 =back
 
-=head1 SUBROUTINES
+=head2 SUBROUTINES
 
 =over
 
@@ -165,7 +165,7 @@ Takes a String argument and returns a Boolean.
 
 =back
 
-=head1 AUTHOR
+=head2 AUTHOR
 
 =over
 
