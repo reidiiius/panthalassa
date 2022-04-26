@@ -167,13 +167,9 @@ Takes a String argument and returns a Boolean.
 
 =head2 AUTHOR
 
-=over
+Reid Netterville III
 
-=item Reid Netterville III
-
-=item https://github.com/reidiiius/panthalassa
-
-=back
+L<Code Repository|https://github.com/reidiiius/panthalassa>
 
 =cut
 
